@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPPKDO Budget Tracking</title>
+
+  	@include("scripts.headscripts")
+</head>
+<body class="hold-transition lockscreen">
+<!-- Automatic element centering -->
+<div class="lockscreen-wrapper">
+  <div class="lockscreen-logo">
+  	Policy, Planning, Knowledge and Project Development Office <br/> <b>(PPPKDO)</b>
+    <!-- <a href="../../index2.html"><b>Admin</b>LTE</a> -->
+  </div>
+  <!-- User name -->
+  <div class="lockscreen-name mb-3">Please enter your email </div>
+
+<form action="{{route('postrequest')}}" method="post">
+	@csrf
+  <!-- START LOCK SCREEN ITEM -->
+  <div class="lockscreen-item_">
+    <!-- lockscreen image -->
+<!--     <div class="lockscreen-image">
+      <img src="../../dist/img/user1-128x128.jpg" alt="User Image">
+    </div> -->
+    <!-- /.lockscreen-image -->
+
+    <!-- lockscreen credentials (contains the form) -->
+    <form class="lockscreen-credentials">
+      <div class="input-group mb-2">
+      	 <input type="text" class="form-control" name="fullname" placeholder="Full Name" required='required'>
+      </div>
+      <div class="input-group mb-2">
+         <input type="email" class="form-control" name="email" placeholder="Email Address" required='required'>
+      </div>
+      <div class="input-group">
+        <input type="password" class="form-control" name="password" placeholder="Password" required='required'>
+
+        <div class="input-group-append">
+          <button type="submit" class="btn">
+            <i class="fas fa-arrow-right text-muted"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- /.lockscreen credentials -->
+
+    @if (session('status'))
+      <br/>
+	  	<div class="lockscreen-name mb-3">{{session('status')}}</div>
+	  @endif
+</form>
+
+  </div>
+  <!-- /.lockscreen-item -->
+<!--   <div class="help-block text-center">
+    or sign up for an account
+  </div>
+  <div class="text-center">
+    <a href="login.html">sign up</a>
+  </div> -->
+  <div class="lockscreen-footer text-center">
+  	Budget tracking of PPPKDO <br/> <br/>
+    Already have an account, click <b><a href="{{route('login')}}" class="text-black">Login</a></b>
+    <!-- All rights reserved -->
+  </div>
+</div>
+<!-- /.center -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
