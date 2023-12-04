@@ -240,4 +240,22 @@ class DivisionwindowController extends Controller
 
         $returnhtml = view("chargestable",compact());
     }
+
+    function allactivities($divid = null) {
+        $id         = Auth::id();
+        $division   = loginControl::join("divisiontbls","login_controls.divisionid","=","divisiontbls.divisionid")
+                                    ->where("login_controls.userid",$id)
+                                    ->get();
+
+        $activities = inputwindow::where("division",$divid)->get();
+
+        // $charges    = [];
+
+        // if (count($activities) > 0) {
+        //     $charges    = chargingto::where("activitygrpid",$activities[0])
+        // } 
+        
+
+        return view("allactivities", compact("activities","division","divid"));
+    }
 }

@@ -12,6 +12,8 @@ use App\Models\chargingto;
 use App\Models\chargetype;
 use App\Models\inputwindow;
 
+use DB;
+
 class AdminwindowController extends Controller
 {
     //
@@ -58,5 +60,24 @@ class AdminwindowController extends Controller
                           ->where("chargingtos.activitygrpid",$grpid)->get();
 
         return view("chargefromotherdivision", compact("division","chargingtables","chargewhat","inputwindow","grpid","charges"));
+    }
+
+    function deletefromtbl(Request $req) {
+        $sql   = null;
+
+        $id    = $req->input("id");
+        $table = $req->input("table");
+        // $grpid = $req->input("grpid");
+
+        //if ($proceed == "true") {
+            switch($table) {
+                case "charging": $sql = "Delete from chargingtos where chargeid = '{$id}';"; break;
+            }
+
+            $delete = DB::delete($sql);
+
+            return response()->json($delete); 
+        //}
+        // return view("delete");
     }
 }

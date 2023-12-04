@@ -39,6 +39,30 @@ $(function(){
 
 	});
 
+	$(document).find(".deletethis").on("click",function(){
+		var conf = confirm("Are you sure you want to delete this?");
+
+		if (!conf) {
+			return;
+		}
+
+		var id  = $(this).data("id");
+		var tbl = $(this).data("table");
+
+		$.ajax({
+			url 	 : url+"/delete",
+			type     : "POST",
+			data     : { id : id, table : tbl  },
+			dataType : "json",
+			success  : function(data){
+				Alert("deleted");
+				window.location.reload();
+			}, error : function(){
+				alert("error deleting")
+			}
+		})
+	})
+
 	$(document).find("#savebtn").on("click",function(){
 		// activitytitle
 		// initialcost

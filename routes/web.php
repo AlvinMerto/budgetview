@@ -67,4 +67,7 @@ Route::middleware("auth")->group(function(){
     Route::post("/postupdatebudget",[DivisionwindowController::class,"postupdatebudget"])->name("postupdatebudget");
 
     Route::get("/displaycharges",[DivisionwindowController::class,"displaycharges"]);
+    Route::get("/allactivities/{divid?}", [DivisionwindowController::class,"allactivities"])->name("allactivities");
+
+    Route::post("/delete",[AdminwindowController::class,"deletefromtbl"])->name('delete');
 });

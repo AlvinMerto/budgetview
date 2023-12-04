@@ -271,12 +271,12 @@
 	          							<?php
 			          						foreach($charging as $cg) {
 			          							$cost = number_format($cg->actualcost,2);
-			          							
+			          							$url  = url("delete/{$cg->chargeid}/charging");
 			          							echo "<tr>";
 			          								echo "<td> {$cg->chargename} </td>";
 			          								echo "<td> {$cost} </td>";
 			          								echo "<td> {$cg->chargingname} </td>";
-			          								echo "<td> Delete </td>";
+			          								echo "<td> <small class='deletethis' style='cursor:pointer;' data-id='{$cg->chargeid}' data-table='charging'> Delete </small> </td>";
 			          							echo "</tr>";
 			          						}
 			          					?>	
