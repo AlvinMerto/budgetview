@@ -14,7 +14,7 @@ class BudgetviewController extends Controller
 {
     //
 
-    function budgetview() {
+    function budgetviewwindow() {
         $values      = $this->getthebudgetvalues();
         $activities  = $this->getactivities();
 

@@ -51,7 +51,7 @@ Route::post("/savecharging",[InputwindowController::class,"savecharging"])->name
 
 Route::middleware("auth")->group(function(){
     // windows
-    Route::get("/budget", [BudgetViewController::class,"budgetview"])->name("budget");
+    Route::get("/budget", [BudgetViewController::class,"budgetviewwindow"])->name("budget");
     Route::get("/divisionwindow/{chargingid?}/{tab?}",[DivisionwindowController::class,"divisionwindow"])->name("divisionwindow");
     Route::get("/adminwindow",[AdminwindowController::class,"adminwindow"])->name("adminwindow");
     Route::get("/inputwindow/{grpid?}",[InputwindowController::class,"inputwindow"])->name("inputwindow");
