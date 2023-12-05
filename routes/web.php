@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BudgetViewController;
+use App\Http\Controllers\BudgetviewController;
 use App\Http\Controllers\InputwindowController;
 use App\Http\Controllers\LoginControlController;
 use App\Http\Controllers\DivisionwindowController;
