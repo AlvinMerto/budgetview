@@ -10,6 +10,7 @@ use App\Models\inputwindow;
 
 use Auth;
 use DB;
+// use \stdClass
 
 class BudgetviewController extends Controller
 {
@@ -25,6 +26,56 @@ class BudgetviewController extends Controller
         $lefttospend = $actual-$spent;
 
         return view("budget", compact("planned","actual","spent","lefttospend","activities"));
+    }
+
+    function charges($divid = null) {
+        
+    }
+
+    function activities($divid = null) {
+        $activities  = $this->getactivities($divid);
+
+        $new_act        = array_map(function($a){
+            //$obj         = new \stdClass();
+
+            $lastupdate  = null;
+            $lastpoint   = null;
+            $currentdate = date("Y-m-d");
+
+            if ($a->daterelease != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterelease));
+                $lastpoint  = "Director's Office";
+            }
+
+            if ($a->daterecvbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
+                $lastpoint  = "Received by OC";
+            }
+
+            if ($a->datereleasedbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
+                $lastpoint  = "Released from OC";
+            }
+
+            if ($a->daterecvbyproc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
+                $lastpoint  = "Procurement";
+            }
+
+            $date1  = new \DateTime($lastupdate);
+            $date2  = new \DateTime($currentdate);
+
+            // $obj->{"maturity"} = $date1->diff($date2);
+            $interval             = $date1->diff($date2);
+            $a->{"maturity"}      = $interval->days . " days";
+            $a->{"lastpoint"}     = $lastpoint;
+
+            return $a;
+        }, $activities);
+
+       // var_dump($activities);
+
+        return view("activities",compact('activities','divid'));
     }
 
     function getofficebudget() {
@@ -104,7 +155,7 @@ class BudgetviewController extends Controller
         return response()->json(["label"=>$labels,"lefttospend"=>$lefttospend,"actualbudget"=>$actualbudget,"spent"=>$spent]);
     }
 
-    function getactivities() {
+    function getactivities($divid = null) {
         $getwhat    = "all";
         $pppkdodivs = [1,2,3,4];
 
@@ -116,6 +167,12 @@ class BudgetviewController extends Controller
         //                 ->get();
 
         $collection    = DB::select("SELECT inputwindows.*, sum(chargingtos.actualcost) as acost, divisiontbls.divfullname, divisiontbls.divaccr FROM inputwindows join chargingtos on inputwindows.activitygrpid = chargingtos.activitygrpid join divisiontbls on inputwindows.division = divisiontbls.divisionid where inputwindows.division in (1,2,3,4) GROUP by activitygrpid");
+
+        if ($divid != null) {
+            $collection    = DB::select("SELECT inputwindows.*, sum(chargingtos.actualcost) as acost, divisiontbls.divfullname, divisiontbls.divaccr FROM inputwindows join chargingtos on inputwindows.activitygrpid = chargingtos.activitygrpid join divisiontbls on inputwindows.division = divisiontbls.divisionid where inputwindows.division = {$divid} GROUP by activitygrpid");
+        
+        }
+
         return $collection;
     }
 }

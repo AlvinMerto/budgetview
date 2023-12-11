@@ -17,7 +17,6 @@ $(function () {
       data     : { },
       dataType : "json",
       success  : function(data) { 
-        console.log(data);
         var $salesChart = $('#sales-chart')
         // eslint-disable-next-line no-unused-vars
         var salesChart = new Chart($salesChart, {
@@ -57,7 +56,7 @@ $(function () {
             },
             scales: {
               yAxes: [{
-                // display: false,
+                // display: true,
                 gridLines: {
                   display: true,
                   lineWidth: '4px',
@@ -81,7 +80,7 @@ $(function () {
               xAxes: [{
                 display: true,
                 gridLines: {
-                  display: false
+                  display: true
                 },
                 ticks: ticksStyle
               }]
@@ -89,7 +88,7 @@ $(function () {
           }
         })
       }, error : function(){
-        alert("error");
+        // alert("error");
       }
     })
 
@@ -152,7 +151,7 @@ $(function () {
             xAxes: [{
               display: true,
               gridLines: {
-                display: false
+                display: true
               },
               ticks: ticksStyle
             }]
@@ -160,7 +159,7 @@ $(function () {
         }
       })
     }, error : function() {
-      alert("error");
+      // alert("error");
     } 
   })
     

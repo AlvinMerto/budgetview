@@ -58,8 +58,6 @@ class DivisionwindowController extends Controller
 
                         $budgetdet    = $this->getbudgetarydetails($chargingid);
 
-                        
-
                         $spent      = $this->getexpenditure($chargingid)['totalspent'];
                         $planned    = $budgetdet['planned'];
                         $actual     = $budgetdet['actual'];

@@ -44,6 +44,8 @@
 		<!-- Bootstrap -->
 		<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
+		<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"> </script>
+
 		<script>
 			function ajaxsetup() {
 			    $.ajaxSetup({

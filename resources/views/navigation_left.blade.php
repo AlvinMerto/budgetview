@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">PPPKDO</span>
+      <span class="brand-text font-weight-light">PPPDKMO</span>
     </a>
 
     <?php
@@ -38,6 +38,7 @@
         $divisionwindow = null;
         $adminwindow    = null;
         $inputwindow    = null;
+        $allactivity    = null;
         $menuopen       = null;
         $menu_href      = null;
 
@@ -56,6 +57,11 @@
             break;
           case "inputwindow":
             $inputwindow = "active";
+            $menuopen    = "menu-open";
+            $menu_href   = "active";
+            break;
+          case "allactivities":
+            $allactivity = "active";
             $menuopen    = "menu-open";
             $menu_href   = "active";
             break;
@@ -100,7 +106,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('allactivities')}}" class="nav-link <?php echo $inputwindow; ?>">
+                <a href="{{route('allactivities')}}" class="nav-link <?php echo $allactivity; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Activity Design</p>
                 </a>

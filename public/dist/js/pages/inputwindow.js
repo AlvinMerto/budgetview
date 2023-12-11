@@ -76,4 +76,34 @@ $(function(){
 
 		
 	});
+
+	$(document).find("#status").on("change", function(){
+		var selected = $(this).val();
+
+		if (selected < 49) {
+			$(document).find("#daterelease").hide();
+			$(document).find(".ocdate").hide();
+			$(document).find("#inprocurement").hide();
+		}
+
+		if (selected >= 50) {
+			$(document).find("#daterelease").show();
+
+			$(document).find(".ocdate").hide();
+			$(document).find("#inprocurement").hide();
+		}
+
+		if (selected >= 75) {
+			$(document).find("#daterelease").show();
+			$(document).find(".ocdate").show();
+
+			$(document).find("#inprocurement").hide();
+		}
+
+		if (selected == 100) {
+			$(document).find("#daterelease").show();
+			$(document).find(".ocdate").show();
+			$(document).find("#inprocurement").show();
+		}
+	});
 })

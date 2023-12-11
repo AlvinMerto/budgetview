@@ -95,5 +95,6 @@
       </div>
   </div>
 </div>
+@include("scripts.footscripts")
 </body>
 </html>

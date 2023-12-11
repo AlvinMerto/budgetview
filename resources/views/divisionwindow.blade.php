@@ -109,10 +109,42 @@
               </div>
               <div class="card">
                 <div class="card-header">
-                  <h6 class="card-title"> Budget Lines </h6>
-                  <div class="card-tools">
+                  <h6 class="card-title"> Active Budget Lines </h6>
+                  <!-- <div class="card-tools">
                     <small> show inactive </small>
-                  </div>
+                  </div> -->
+                </div>
+                <div class="card-content pl-1">
+                  <ul class="nav nav-pills flex-column">
+                    <?php
+                      foreach($budgetlines as $b) {
+                        if ($tab == null) {
+                          $tab = "information";
+                        }
+
+                        $url = url("divisionwindow/{$b->chargingid}/{$tab}");
+                        $selected     = null;
+                        
+                        if ($b->chargingid == $chargingid) {
+                          $selected             = "text-bold";
+                          $selectedname         = $b->chargingname;
+                          $selecteddivision     = "";
+                        }
+
+                        echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}'/> {$b->chargingname} </a> </li>";
+                      }
+                    ?>
+                    <!-- <li class="nav-item"> <a href="#" class="nav-link"/> KMD Regular </a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link"/> KMD Continuing </a> </li> -->
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h6 class="card-title"> Inactive Budget Lines </h6>
+                  <!-- <div class="card-tools">
+                    <small> show inactive </small>
+                  </div> -->
                 </div>
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">

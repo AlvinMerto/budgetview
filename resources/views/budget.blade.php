@@ -18,20 +18,43 @@
 
   @include("navigation_left")
 
+    <?php
+      use App\Models\loginControl;
+
+      $user        = Auth::user();
+      $id          = Auth::id();
+
+      $atype       = loginControl::where("userid",$id)->get("accounttype");
+      $accounttype = $atype[0]->accounttype;
+      // echo "hello".$accounttype[0]->accounttype;
+    ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <div class="content-header pt-0">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-                          <div class="card-footer">
+              <div class="card-header pl-0 pb-0">
+                <h3 class="m-0 ">Dashboard</h3>
+                  <div class="pt-2 pb-2 pt-2 pl-0">
+                    <a href="{{route('budget')}}" class="card-link text-bold">Main Dashboard</a>
+
+                    <?php if ($accounttype == "1") { ?>
+                      <a href="{{route('activities')}}" class="card-link ">Activity Designs</a>
+                    <?php } ?>
+
+                    <a href="{{route('charges')}}"/>Charges</a>
+                  </div>
+              </div>
+              <div class="card-footer">
                 <div class="row">
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span> -->
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
                       <span class="description-text">Planned</span>
+                      <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -39,8 +62,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span> -->
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($actual,2); ?> PHp</h5>
                       <span class="description-text">Actual Budget</span>
+                      <h5 class="description-header text-bold text-lg"><?php echo number_format($actual,2); ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -48,8 +71,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span> -->
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
                       <span class="description-text">TOTAL SPENT</span>
+                      <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -57,8 +80,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
                       <!-- <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
                       <span class="description-text">LEFT TO SPEND</span>
+                      <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -89,18 +112,18 @@
                   <!-- <a href="javascript:void(0);">View Report</a> -->
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body pt-0">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <!-- <span class="text-bold text-lg">820</span> -->
-                    <span>Overall Budget Utilization</span>
+                    <span class="text-bold text-lg"> &nbsp; </span>
+                    <span>Budget Utilization Rate</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success text-bold text-lg">
-                      23,920.00 PHp
+                     &nbsp;
                       <!-- <i class="fas fa-arrow-up"></i> 12.5% -->
                     </span>
-                    <span class="text-muted">This months expenditure</span>
+                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo date("l, M d. Y"); ?> </span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -135,23 +158,23 @@
                   <!-- <a href="javascript:void(0);">View Report</a> -->
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body pt-0">
                 <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <!-- <span class="text-bold text-lg">$18,230.00</span> -->
-                    <span>Utilization Over Time</span>
+                   <p class="d-flex flex-column">
+                   <span class="text-bold text-lg"> &nbsp;</span>
+                   <span>Budget Utilization Rate per Budget Line</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success text-bold text-lg">
                       &nbsp;
                     </span>
-                    <span class="text-muted">&nbsp;</span>
+                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo date("l, M d. Y"); ?> </span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
 
                 <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
+                  <canvas id="sales-chart" height="200"></canvas> 
                 </div>
 
                 <div class="d-flex flex-row justify-content-end">
@@ -183,10 +206,10 @@
                 <div class="card-tools">
                   <!-- <a href="#" class="btn btn-tool btn-sm">
                     <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-bars"></i>
                   </a> -->
+                  <a href="{{url('activities')}}" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
                 </div>
               </div>
               <div class="card-body table-responsive p-0">

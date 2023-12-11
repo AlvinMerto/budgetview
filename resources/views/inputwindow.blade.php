@@ -7,6 +7,11 @@
 
 		   @include("scripts.headscripts")
 
+		   <style>
+		   	.hideit {
+		   		display: none;
+		   	}
+		   </style>
 	</head>
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -101,7 +106,7 @@
 			          				</select>
 			          			</td>
 			          		</tr>
-			          		<tr>
+			          			<tr id="daterelease" class="hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Release from PPPDO 
 				          				<dt class="m-0"><?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterelease)); }?></dt>
@@ -121,7 +126,7 @@
 			                    
 				          			</td>
 				          		</tr>
-				          		<tr>
+				          		<tr class="ocdate hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Received by OC 
 				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterecvbyoc)); }?> </dt>
@@ -140,7 +145,7 @@
 			                    </div> -->
 				          			</td>
 				          		</tr>
-				          		<tr>
+				          		<tr class="ocdate hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Released by OC 
 				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->datereleasedbyoc)); }?> </dt>
@@ -160,7 +165,7 @@
 			                    
 				          			</td>
 				          		</tr>
-				          		<tr>
+				          		<tr id="inprocurement" class="hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Received by Procurement 
 				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterecvbyproc)); }?> </dt>
