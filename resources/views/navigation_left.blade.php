@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('budget')}}" class="brand-link">
       <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">PPPDKMO</span>
+      <h3 class="brand-text font-weight-light mb-0" style="text-align: center;">PPPDKMO</h3>
     </a>
 
     <?php

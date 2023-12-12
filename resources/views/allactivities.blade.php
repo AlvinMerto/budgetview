@@ -20,19 +20,22 @@
   
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-      <div class="content-header">
+<!--       <div class="content-header">
         <div class="container-fluid">
 
         </div>
-      </div>
+      </div> -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-3">
-              <div class="card">
-                <div class="card-header">
+            <div class="card-header border-0">
+              <h1 class="card-title"> All Activities </h1>
+            </div> 
+            <div class="col-lg-12 mt-2">
+              <div class="card mb-2">
+                <!-- <div class="card-header">
                   <h6> Division </h6>
-                </div>
+                </div> -->
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column">
                     <li class="nav-item"> 
@@ -51,13 +54,11 @@
             </div>
 
             <?php if ($divid != null) { ?>
-              <div class="col-lg-9">
+              <div class="col-lg-12">
               	<div class="card">
-              	 <div class="card-header">
-                  <h1 class="card-title"> All Activities </h1>
-                 </div>	
-                 <div class="card-body pt-2">
-                    <table class="table" id='allactivities_perdiv'>
+              	 
+                 <div class="card-body p-0">
+                    <table class="table table-bordered" id='allactivities_perdiv'>
                       <thead>
                         <tr>
                           <th> Activity Title </th>

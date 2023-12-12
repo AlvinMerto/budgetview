@@ -177,7 +177,7 @@
             
             <div class="col-lg-9">
               <div class="card_">
-                <div class="card-header">
+                <div class="card-header pl-0">
                   <h3 class="card-title"> <?php echo $selectedname; ?> </h3>
                   <div class="card-tools">
                     @if (session('infoupdate'))
@@ -188,7 +188,7 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="pb-0 pt-1 pb-1 pl-3">
+                  <div class="pb-3 pt-3 pb-1 pl-0">
                     <?php 
                       $taburl = url("divisionwindow/{$chargingid}");
                       $b_info = null;
@@ -206,7 +206,7 @@
 
                   </div>
                   <?php if ($displayright == "information"): ?>
-                    <div class="row pl-3 pr-3 pb-3 pt-2">
+                    <div class="row pl-0 pr-0 pb-3 pt-0">
                       <div class="col-lg-6">
                        <div class="card">
                         <div class="card-body">
@@ -379,12 +379,13 @@
                   </div>
                   <?php endif; ?>
                   <?php if ($displayright == "activities"): ?>
-                      <div class="">
-                        <table class="table" id="allactivities_perdiv">
+                      <div class="card">
+                        <table class="table table-bordered" id="activities_perdiv">
                           <thead>
                             <tr> 
                               <th> Activity Title </th>
                               <th> Activity Date </th>
+                              <th> Initial Cost </th>
                               <th> Status </th>
                               <th> Action </th>
                             </tr>
@@ -397,13 +398,11 @@
                                   echo "<td> {$a->activitytitle} </td>";
                                   echo "<td> {$a->dateofactivity} </td>";
                                   echo "<td> {$init_cost} </td>";
-                                  echo "<td> {$a->activitytitle} </td>";
                                   echo "<td>";
-                                  echo "
-                                    <div class='progress progress-xs progress-striped active'>
-                                    <div class='progress-bar bg-primary' style='width:{$a->status}%'></div>
-                                    </div>
-                                    <span class='badge bg-primary'>{$a->status}%</span>";
+                                  echo "<div class='progress progress-xs progress-striped active'>
+                                          <div class='progress-bar bg-primary' style='width:{$a->status}%'></div>
+                                        </div>
+                                        <span class='badge bg-primary'>{$a->status}%</span>";
                                   echo "</td>";
                                   echo "<td> <a href='{{route('inputwindow')}}/{$a->activitygrpid}' target='_blank'/>View</a> </td>";
                                 echo "</tr>";
@@ -412,12 +411,13 @@
                           </tbody>
                         </table>
                       </div>
+
                   <?php endif; ?>
 
                   <?php if ($displayright == "charging"): ?>
                     <div class="p-0">
-                      <div class="">
-                          <table class="table" id="allactivities_perdiv">
+                      <div class="card">
+                          <table class="table table-bordered" id="activities_perdiv">
                             <thead>
                               <tr>
                                 <th> Charging Division </th>
@@ -463,28 +463,28 @@
     padding: 5px;
   }
 
-  #allactivities_perdiv_info {
+  #activities_perdiv_info {
     float:left;
     margin:5px;
   }
 
-  #allactivities_perdiv_paginate {
+  #activities_perdiv_paginate {
     float:right;
     margin:10px;
   }
 
-  #allactivities_perdiv_previous, #allactivities_perdiv_next {
+  #activities_perdiv_previous, #activities_perdiv_next {
     background: #fff;
     color:#333;
     padding:5px 10px;
     border:1px solid #ccc;
   }
 
-   #allactivities_perdiv_previous {
+   #activities_perdiv_previous {
     border-radius: 5px 0px 0px 5px;
    }
 
-   #allactivities_perdiv_next {
+   #activities_perdiv_next {
     border-radius: 0px 5px 5px 0px;
    }
 
@@ -499,12 +499,13 @@
   }
 
 </style>
-  <script>
-  $(function () {
-    $("#allactivities_perdiv").DataTable({
+
+<script>
+  $(function() {
+    $("#activities_perdiv").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#allactivities_perdiv_wrapper');
+    }).buttons().container().appendTo('#activities_perdiv_wrapper');
   });
 </script>
 
