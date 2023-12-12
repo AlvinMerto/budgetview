@@ -176,7 +176,7 @@
             <?php if ($displayright != false) { ?>
             
             <div class="col-lg-9">
-              <div class="card">
+              <div class="card_">
                 <div class="card-header">
                   <h3 class="card-title"> <?php echo $selectedname; ?> </h3>
                   <div class="card-tools">
@@ -188,7 +188,7 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="pb-0 pt-1 pb-1 pl-3" style="border-bottom: 1px solid #e7e7e7;">
+                  <div class="pb-0 pt-1 pb-1 pl-3">
                     <?php 
                       $taburl = url("divisionwindow/{$chargingid}");
                       $b_info = null;
@@ -200,8 +200,8 @@
                       elseif ($tab == "charging") { $b_char = "text-bold"; }
                     ?>
 
-                    <a href="<?php echo $taburl; ?>/information" class="card-link <?php echo $b_info; ?>"/>Information</a>
-                    <a href="<?php echo $taburl; ?>/activities" class="card-link <?php echo $b_acti; ?>"/>Activities</a>
+                    <a href="<?php echo $taburl; ?>/information" class="card-link border-right pr-4 <?php echo $b_info; ?>"/>Information</a>
+                    <a href="<?php echo $taburl; ?>/activities" class="card-link border-right pr-4 <?php echo $b_acti; ?>"/>Activities</a>
                     <a href="<?php echo $taburl; ?>/charging" class="card-link <?php echo $b_char; ?>"/>Charges</a>
 
                   </div>

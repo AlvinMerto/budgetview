@@ -104,7 +104,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
@@ -150,7 +150,7 @@
             <!-- /.card -->
           </div>
           <!-- /.col-md-6 -->
-          <div class="col-lg-6">
+          <div class="col-lg-8">
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
