@@ -29,7 +29,7 @@ class BudgetviewController extends Controller
     }
 
     function charges($divid = null) {
-        
+
     }
 
     function activities($divid = null) {
@@ -130,25 +130,36 @@ class BudgetviewController extends Controller
         //                       left join inputwindows on chargingtos.activitygrpid = inputwindows.activitygrpid 
         //                       where budgetviews.isactive = 1 group by divid;");
 
-        $values = DB::select("select actual, sum(chargingtos.actualcost) as spent, chargingname, inputwindows.status as activitystatus from budgetviews 
+        $values = DB::select("select actual, sum(chargingtos.actualcost) as spent, chargingname, inputwindows.status as activitystatus,  
+                              divid from budgetviews 
                               left join chargingtbls on budgetviews.divid = chargingtbls.chargingid 
                               left join chargingtos on budgetviews.divid = chargingtos.chargeto 
                               left join inputwindows on chargingtos.activitygrpid = inputwindows.activitygrpid 
                               where budgetviews.isactive = 1 group by divid;");
 
-       // and inputwindows.status = 100 
+        $values2 = DB::select("select actual, sum(chargingtos.actualcost) as spent, chargingname, inputwindows.status as activitystatus, 
+                              divid from budgetviews 
+                              left join chargingtbls on budgetviews.divid = chargingtbls.chargingid 
+                              left join chargingtos on budgetviews.divid = chargingtos.chargeto 
+                              left join inputwindows on chargingtos.activitygrpid = inputwindows.activitygrpid 
+                              where budgetviews.isactive = 1 and inputwindows.status = 100 group by divid;");
+
+        // and inputwindows.status = 100 
+
         if (count($values) > 0) {
             foreach($values as $v) {
                 array_push($labels, $v->chargingname);
-                array_push($spent, $v->spent);
                 array_push($actualbudget,$v->actual);
 
-                if ($v->activitystatus == "100") {
-                    $lts = $v->actual-$v->spent;
-                } else {
+                foreach($values2 as $v2) {
                     $lts = $v->actual;
+                    if ($v->divid == $v2->divid) {
+                        $lts = $v->actual-$v2->spent;
+
+                        array_push($spent, $v2->spent);
+                    } 
+                    array_push($lefttospend, $lts);
                 }
-                array_push($lefttospend, $lts);
             }
         }
 

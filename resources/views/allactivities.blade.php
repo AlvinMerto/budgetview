@@ -56,8 +56,8 @@
               	 <div class="card-header">
                   <h1 class="card-title"> All Activities </h1>
                  </div>	
-                 <div class="card-body">
-                    <table class="table">
+                 <div class="card-body pt-2">
+                    <table class="table" id='allactivities_perdiv'>
                       <thead>
                         <tr>
                           <th> Activity Title </th>
@@ -96,5 +96,64 @@
   </div>
 </div>
 @include("scripts.footscripts")
+<style>
+  .dataTables_filter label{
+    margin:5px;
+    float: right;
+  }
+
+  .dataTables_filter input[type="search"] {
+    border: 1px solid #e2e2e2;
+    margin-left: 11px;
+    padding: 5px;
+  }
+
+  #allactivities_perdiv_info {
+    float:left;
+    margin:5px;
+  }
+
+  #allactivities_perdiv_paginate {
+    float:right;
+    margin:10px;
+  }
+
+  #allactivities_perdiv_previous, #allactivities_perdiv_next {
+    background: #fff;
+    color:#333;
+    padding:5px 10px;
+    border:1px solid #ccc;
+  }
+
+   #allactivities_perdiv_previous {
+    border-radius: 5px 0px 0px 5px;
+   }
+
+   #allactivities_perdiv_next {
+    border-radius: 0px 5px 5px 0px;
+   }
+
+  .paginate_button {
+    border:1px solid #007bff;
+    padding:5px;
+  }
+
+  .current {
+    background: #007bff;
+    color:#fff;
+  }
+
+</style>
+
+<script>
+  $(function () {
+    $("#allactivities_perdiv").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#allactivities_perdiv_wrapper');
+  });
+</script>
+
+
 </body>
 </html>

@@ -39,13 +39,13 @@
               <div class="card-header pl-0 pb-0">
                 <h3 class="m-0 ">Dashboard</h3>
                   <div class="pt-2 pb-2 pt-2 pl-0">
-                    <a href="{{route('budget')}}" class="card-link text-bold">Main Dashboard</a>
+                    <a href="{{route('budget')}}" class="card-link text-bold border-right pr-4">Main Dashboard</a>
 
                     <?php if ($accounttype == "1") { ?>
-                      <a href="{{route('activities')}}" class="card-link ">Activity Designs</a>
+                      <a href="{{route('activities')}}" class="card-link border-right pr-4">Activity Designs</a>
                     <?php } ?>
 
-                    <a href="{{route('charges')}}"/>Charges</a>
+                    <a href="{{route('charges')}}" class="card-link "/>Charges</a>
                   </div>
               </div>
               <div class="card-footer">
@@ -53,7 +53,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span> -->
-                      <span class="description-text">Planned</span>
+                      <span class="description-text">Proposed</span>
                       <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
@@ -62,7 +62,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span> -->
-                      <span class="description-text">Actual Budget</span>
+                      <span class="description-text">Current Budget</span>
                       <h5 class="description-header text-bold text-lg"><?php echo number_format($actual,2); ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
@@ -80,7 +80,7 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
                       <!-- <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                      <span class="description-text">LEFT TO SPEND</span>
+                      <span class="description-text">REMAINING BALANCE</span>
                       <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
                     </div>
                     <!-- /.description-block -->
@@ -179,11 +179,11 @@
 
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Left to Spend
+                    <i class="fas fa-square text-primary"></i> Remaining Balance
                   </span>
 
                   <span>
-                    <i class="fas fa-square" style="color:#5dcac0;"></i> Actual Budget
+                    <i class="fas fa-square" style="color:#5dcac0;"></i> Current Budget
                   </span>
 
                   <span class="ml-2">

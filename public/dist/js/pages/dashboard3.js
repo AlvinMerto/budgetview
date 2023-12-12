@@ -103,7 +103,7 @@ $(function () {
       var obc = new Chart(obc_chart, {
         type: 'bar',
         data: {
-          labels: ['Planned', 'Actual',"Spent", 'Left to spend'],
+          labels: ['Planned', 'Current',"Spent", 'Remaining'],
           datasets: [
             {
               backgroundColor: '#007bff',

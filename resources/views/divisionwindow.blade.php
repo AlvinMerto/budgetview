@@ -188,7 +188,7 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="pt-2 pb-2 pt-2 pl-3">
+                  <div class="pb-0 pt-1 pb-1 pl-3" style="border-bottom: 1px solid #e7e7e7;">
                     <?php 
                       $taburl = url("divisionwindow/{$chargingid}");
                       $b_info = null;
@@ -203,10 +203,10 @@
                     <a href="<?php echo $taburl; ?>/information" class="card-link <?php echo $b_info; ?>"/>Information</a>
                     <a href="<?php echo $taburl; ?>/activities" class="card-link <?php echo $b_acti; ?>"/>Activities</a>
                     <a href="<?php echo $taburl; ?>/charging" class="card-link <?php echo $b_char; ?>"/>Charges</a>
-                    <!-- <a href="#" class="card-link"/>Budget</a> -->
+
                   </div>
                   <?php if ($displayright == "information"): ?>
-                    <div class="row p-3">
+                    <div class="row pl-3 pr-3 pb-3 pt-2">
                       <div class="col-lg-6">
                        <div class="card">
                         <div class="card-body">
@@ -268,6 +268,30 @@
                         <input type="hidden" id="chargingid" value="<?php echo $chargingid; ?>" name="chargingid"/>
                         <table class="table"> 
                           <tbody>
+                            <tr class="bg-lightblue">
+                              <td> Status </td>
+                              <td> 
+                                <div class="input-group">
+                                  <select class="form-control" name="isactive">
+                                    <?php
+                                      $active   = null;
+                                      $inactive = null; 
+                                      
+                                      if (count($budgetlinestatus) > 0) {
+                                        if ($budgetlinestatus[0]->isactive == 1) {
+                                          $active = "selected";
+                                        } else if ($budgetlinestatus[0]->isactive == 0) {
+                                          $inactive = "selected";
+                                        }
+                                      }
+                                    ?>
+                                    <option value="1" <?php echo $active; ?> > Active </option>
+                                    <option value="0" <?php echo $inactive; ?> > Inactive </option>
+                                  </select> 
+                                </div>
+                              </td>
+                            </tr>
+
                             <tr>
                               <td> Division </td>
                               <td> 
@@ -306,31 +330,9 @@
                               </td>
                             </tr>
                             <tr>
-                            <tr class="bg-lightblue">
-                              <td> Status </td>
-                              <td> 
-                                <div class="input-group">
-                                  <select class="form-control" name="isactive">
-                                    <?php
-                                      $active   = null;
-                                      $inactive = null; 
-                                      
-                                      if (count($budgetlinestatus) > 0) {
-                                        if ($budgetlinestatus[0]->isactive == 1) {
-                                          $active = "selected";
-                                        } else if ($budgetlinestatus[0]->isactive == 0) {
-                                          $inactive = "selected";
-                                        }
-                                      }
-                                    ?>
-                                    <option value="1" <?php echo $active; ?> > Active </option>
-                                    <option value="0" <?php echo $inactive; ?> > Inactive </option>
-                                  </select> 
-                                </div>
-                              </td>
-                            </tr>
+                            
                             <tr>
-                              <td> Planned Amount </td>
+                              <td> Planned Budget </td>
                               <td> 
                                 <div class="input-group">
                                   <?php $planned = number_format($planned,2); ?>
@@ -339,7 +341,7 @@
                               </td>
                             </tr>
                             <tr>
-                              <td> Actual Amount </td>
+                              <td> Actual Budget </td>
                               <td> 
                                 <div class="input-group">
                                   <?php $actual = number_format($actual,2); ?>
@@ -356,7 +358,7 @@
                               </td>
                             </tr>
                             <tr>
-                              <td> left to Spend PHp</td>
+                              <td> Remaining </td>
                               <td> 
                                 <div class="input-group">
                                   <h6 class="text-lg text-bold"> PHp <?php echo number_format($leftospend,2); ?> </h6>
@@ -377,44 +379,45 @@
                   </div>
                   <?php endif; ?>
                   <?php if ($displayright == "activities"): ?>
-                    <div class="p-2">
-                      <div class="card m-1">
-                        <div class="card-header">
-                          <div class="row">
-                            <div class="col-lg-3 text-bold"> Activity Title </div>
-                            <div class="col-lg-3 text-bold"> Activity Date </div>
-                            <!-- <div class="col-lg-3 text-bold"> Cost </div> -->
-                            <div class="col-lg-3 text-bold"> Status </div>
-                            <div class="col-lg-3 text-bold"> Action </div>
-                          </div>
-                        </div>
+                      <div class="">
+                        <table class="table" id="allactivities_perdiv">
+                          <thead>
+                            <tr> 
+                              <th> Activity Title </th>
+                              <th> Activity Date </th>
+                              <th> Status </th>
+                              <th> Action </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                              foreach($activities as $a) {
+                                $init_cost = number_format($a->initialcost,2);
+                                echo "<tr>";
+                                  echo "<td> {$a->activitytitle} </td>";
+                                  echo "<td> {$a->dateofactivity} </td>";
+                                  echo "<td> {$init_cost} </td>";
+                                  echo "<td> {$a->activitytitle} </td>";
+                                  echo "<td>";
+                                  echo "
+                                    <div class='progress progress-xs progress-striped active'>
+                                    <div class='progress-bar bg-primary' style='width:{$a->status}%'></div>
+                                    </div>
+                                    <span class='badge bg-primary'>{$a->status}%</span>";
+                                  echo "</td>";
+                                  echo "<td> <a href='{{route('inputwindow')}}/{$a->activitygrpid}' target='_blank'/>View</a> </td>";
+                                echo "</tr>";
+                              }
+                            ?>
+                          </tbody>
+                        </table>
                       </div>
-                      <div class="card m-1">
-                        <?php foreach($activities as $a) { ?>
-                          <div class="card-body">
-                              <div class="row">
-                                <div class="col-lg-3"> <?php echo $a->activitytitle; ?> </div>
-                                <div class="col-lg-3"> <?php echo $a->dateofactivity; ?> </div>
-                                <!-- <div class="col-lg-3"> <?php echo number_format($a->initialcost,2); ?> </div> -->
-                                <div class="col-lg-3"> 
-                                  <div class='progress progress-xs progress-striped active'>
-                                  <div class='progress-bar bg-primary' style='width: <?php echo $a->status; ?>%'></div>
-                                  </div>
-                                  <span class='badge bg-primary'><?php echo $a->status; ?>%</span>
-                                </div>
-                                <div class="col-lg-3"> <a href="{{route('inputwindow')}}/<?php echo $a->activitygrpid; ?>" target="_blank"/>View</a> </div>
-                              </div>
-                          </div>
-                        <?php } ?>
-                      </div>
-                    </div>
                   <?php endif; ?>
 
                   <?php if ($displayright == "charging"): ?>
-                    <div class="p-2">
-                      <div class="card">
-                        <div class="card-content">
-                          <table class="table">
+                    <div class="p-0">
+                      <div class="">
+                          <table class="table" id="allactivities_perdiv">
                             <thead>
                               <tr>
                                 <th> Charging Division </th>
@@ -432,7 +435,6 @@
                               <?php } ?>
                             </tbody>
                           </table>
-                        </div>
                       </div>
                     </div>
                   <?php endif; ?>
@@ -449,6 +451,63 @@
 
   @include("scripts.footscripts")
   <script src="{{ asset('dist/js/pages/division.js')}}"></script>
+<style>
+  .dataTables_filter label{
+    margin:5px;
+    float: right;
+  }
+
+  .dataTables_filter input[type="search"] {
+    border: 1px solid #e2e2e2;
+    margin-left: 11px;
+    padding: 5px;
+  }
+
+  #allactivities_perdiv_info {
+    float:left;
+    margin:5px;
+  }
+
+  #allactivities_perdiv_paginate {
+    float:right;
+    margin:10px;
+  }
+
+  #allactivities_perdiv_previous, #allactivities_perdiv_next {
+    background: #fff;
+    color:#333;
+    padding:5px 10px;
+    border:1px solid #ccc;
+  }
+
+   #allactivities_perdiv_previous {
+    border-radius: 5px 0px 0px 5px;
+   }
+
+   #allactivities_perdiv_next {
+    border-radius: 0px 5px 5px 0px;
+   }
+
+  .paginate_button {
+    border:1px solid #007bff;
+    padding:5px;
+  }
+
+  .current {
+    background: #007bff;
+    color:#fff;
+  }
+
+</style>
+  <script>
+  $(function () {
+    $("#allactivities_perdiv").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#allactivities_perdiv_wrapper');
+  });
+</script>
+
 </div>
 
 </body>
