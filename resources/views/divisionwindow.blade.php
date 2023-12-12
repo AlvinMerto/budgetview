@@ -149,21 +149,21 @@
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">
                     <?php
-                      foreach($budgetlines as $b) {
+                      foreach($inactivebudgetlines as $ibl) {
                         if ($tab == null) {
                           $tab = "information";
                         }
 
-                        $url = url("divisionwindow/{$b->chargingid}/{$tab}");
+                        $url = url("divisionwindow/{$ibl->chargingid}/{$tab}");
                         $selected     = null;
                         
-                        if ($b->chargingid == $chargingid) {
+                        if ($ibl->chargingid == $chargingid) {
                           $selected             = "text-bold";
-                          $selectedname         = $b->chargingname;
+                          $selectedname         = $ibl->chargingname;
                           $selecteddivision     = "";
                         }
 
-                        echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}'/> {$b->chargingname} </a> </li>";
+                        echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}'/> {$ibl->chargingname} </a> </li>";
                       }
                     ?>
                     <!-- <li class="nav-item"> <a href="#" class="nav-link"/> KMD Regular </a> </li>
@@ -311,8 +311,20 @@
                               <td> 
                                 <div class="input-group">
                                   <select class="form-control" name="isactive">
-                                    <option value="1"> Active </option>
-                                    <option value="0"> Inactive </option>
+                                    <?php
+                                      $active   = null;
+                                      $inactive = null; 
+                                      
+                                      if (count($budgetlinestatus) > 0) {
+                                        if ($budgetlinestatus[0]->isactive == 1) {
+                                          $active = "selected";
+                                        } else if ($budgetlinestatus[0]->isactive == 0) {
+                                          $inactive = "selected";
+                                        }
+                                      }
+                                    ?>
+                                    <option value="1" <?php echo $active; ?> > Active </option>
+                                    <option value="0" <?php echo $inactive; ?> > Inactive </option>
                                   </select> 
                                 </div>
                               </td>

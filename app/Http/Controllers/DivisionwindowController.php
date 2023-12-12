@@ -26,13 +26,24 @@ class DivisionwindowController extends Controller
         $budgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
                             ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
                             ->where(["login_controls.userid"=>$id,"budgetviews.isactive"=>1])
-                            ->get();    
+                            ->get(); 
+                            
+        $inactivebudgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
+                                    ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
+                                    ->where(["login_controls.userid"=>$id,"budgetviews.isactive"=>0])
+                                    ->get();   
 
-        $chargingids     = [];
+        $chargingids      = [];
+        $budget           = [];
+        $budgetlinestatus = [];
 
-        $budget          = budgetview::join("chargingtbls","budgetviews.divid","=","chargingtbls.chargingid")
-                            ->whereIn("divid",$chargingids)
-                            ->get(["budgetviews.*","chargingtbls.chargingname"]);
+        if ($chargingid != null) {
+            $budgetlinestatus = budgetview::where("divid",$chargingid)->get("isactive");
+        }
+
+        // $budget          = budgetview::join("chargingtbls","budgetviews.divid","=","chargingtbls.chargingid")
+        //                     ->whereIn("divid",$chargingids)
+        //                     ->get(["budgetviews.*","chargingtbls.chargingname"]);
 
         $information     = [];
         $year            = null;
@@ -50,13 +61,13 @@ class DivisionwindowController extends Controller
 
         $displayright    = false;
         if ($chargingid != null) {
-            $selecteddiv  = $this->getdivision($chargingid);
+            $selecteddiv = $this->getdivision($chargingid);
             if ($tab != null) {
                 switch ($tab) {
                     case 'information':
                         $displayright = "information";
 
-                        $budgetdet    = $this->getbudgetarydetails($chargingid);
+                        $budgetdet  = $this->getbudgetarydetails($chargingid);
 
                         $spent      = $this->getexpenditure($chargingid)['totalspent'];
                         $planned    = $budgetdet['planned'];
@@ -85,7 +96,7 @@ class DivisionwindowController extends Controller
         return view("divisionwindow", 
                         compact("budget","division","budgetlines", "displayright","tab", 
                                 "chargingid","spent","planned","actual","leftospend","year","selecteddiv",
-                                "activities","charges"));
+                                "activities","charges","inactivebudgetlines","budgetlinestatus"));
     }
 
     function getactivities($chargingid, $divisionid = null) {
@@ -134,7 +145,7 @@ class DivisionwindowController extends Controller
     }
 
     function getbudgetarydetails($chargeid) {
-        $budget  = budgetview::where(["divid"=>$chargeid,"isactive"=>1])->get();
+        $budget  = budgetview::where(["divid"=>$chargeid])->get(); // ,"isactive"=>1
 
         $planned = 0;
         $actual  = 0;
