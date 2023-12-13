@@ -34,28 +34,42 @@
                 if ($divid != null) { 
                   if ($divid == 1) {
                     $pdd = 'text-bold';
+                    $pdd = 'active';
                   }
 
                   if ($divid == 2) {
                     $prd = 'text-bold';
+                    $prd = 'active';
                   }
 
                   if ($divid == 3) {
                     $pfd = 'text-bold';
+                    $pfd = 'active';
                   }
 
                   if ($divid == 4) {
                     $kmd = 'text-bold';
+                    $kmd = 'active';
                   }
                 } else {
                   $all = 'text-bold';
+                  $all = 'active';
                 }
               ?>
+
+              <ul class="nav nav-pills" style="margin-top: -10px;">
+                <li class="nav-item"><a class="nav-link <?php echo $all; ?>" href="{{url('activities')}}">All</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $pdd; ?>" href="{{url('activities/1')}}" >PDD</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $prd; ?>" href="{{url('activities/2')}}">PRD</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $pfd; ?>" href="{{url('activities/3')}}">PFD</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $kmd; ?>" href="{{url('activities/4')}}">KMD</a></li>
+              </ul>
+<!-- 
               <a href="{{url('activities')}}" class="card-link <?php echo $all; ?>"/>All</a>
               <a href="{{url('activities/1')}}" class="card-link <?php echo $pdd; ?>"/>PDD</a>
               <a href="{{url('activities/2')}}" class="card-link <?php echo $prd; ?>"/>PRD</a>
               <a href="{{url('activities/3')}}" class="card-link <?php echo $pfd; ?>"/>PFD</a>
-              <a href="{{url('activities/4')}}" class="card-link <?php echo $kmd; ?>"/>KMD</a>
+              <a href="{{url('activities/4')}}" class="card-link <?php echo $kmd; ?>"/>KMD</a> -->
             </div>
           </div>
         </div>
@@ -190,6 +204,10 @@
 @include("scripts.footscripts")
 
 <style>
+  .table-bordered td, .table-bordered th {
+    font-size: 14px;
+  }
+
   .dataTables_filter label{
     margin:5px;
     float: right;

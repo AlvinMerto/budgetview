@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
-
+          <h3> User Management </h3>
         </div>
       </div>
       <div class="content">
@@ -103,8 +103,8 @@
                               echo "<td>
                                   <div class='card-tools'>
                                     <i class='fa fa-trash'></i>
-                                    <g> - </g>
-                                    <i> edit </i>
+                                    <g> &nbsp; </g>
+                                    <i class='fas fa-pencil-alt'></i>
                                   </div>
                                 </td>";
                             echo "</tr>";

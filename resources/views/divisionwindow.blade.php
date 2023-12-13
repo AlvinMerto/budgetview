@@ -33,10 +33,13 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-3">
-              <div class="card">
+              <div class="card collapsed-card">
                 <div class="card-header">
-                  <h3 class="card-title"> Budget </h3>
+                  <h3 class="card-title"> Create a Budget Line</h3>
                   <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-plus"></i>
+                    </button>
                     @if (session('status'))
                       <p class="m-0" style="color: green;">
                           {{ session('status') }}
@@ -44,7 +47,7 @@
                     @endif
                   </div>
                 </div>
-                <div class="card-content pl-2">
+                <div class="card-body p-0" >
                   <form action="{{route('postbudgetentry')}}" method="post">
                     @csrf
                     <table class="table"> 
@@ -124,14 +127,16 @@
 
                         $url = url("divisionwindow/{$b->chargingid}/{$tab}");
                         $selected     = null;
+                        $style        = null;
                         
                         if ($b->chargingid == $chargingid) {
                           $selected             = "text-bold";
                           $selectedname         = $b->chargingname;
                           $selecteddivision     = "";
+                          $style                = "style='color:#007bff;'";
                         }
 
-                        echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}'/> {$b->chargingname} </a> </li>";
+                        echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}' {$style}/> <i class='nav-icon fas fa-copy'></i> &nbsp; {$b->chargingname} </a> </li>";
                       }
                     ?>
                     <!-- <li class="nav-item"> <a href="#" class="nav-link"/> KMD Regular </a> </li>
@@ -188,21 +193,23 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="pb-3 pt-3 pb-1 pl-0">
+                  <div class="pb-2 pt-2 pb-1 pl-0">
                     <?php 
                       $taburl = url("divisionwindow/{$chargingid}");
                       $b_info = null;
                       $b_acti = null;
                       $b_char = null;
 
-                      if ($tab == "information") { $b_info = "text-bold"; }
-                      elseif ($tab == "activities") { $b_acti = "text-bold"; }
-                      elseif ($tab == "charging") { $b_char = "text-bold"; }
+                      if ($tab == "information") { $b_info = "text-bold active"; }
+                      elseif ($tab == "activities") { $b_acti = "text-bold active"; }
+                      elseif ($tab == "charging") { $b_char = "text-bold active"; }
                     ?>
 
-                    <a href="<?php echo $taburl; ?>/information" class="card-link border-right pr-4 <?php echo $b_info; ?>"/>Information</a>
-                    <a href="<?php echo $taburl; ?>/activities" class="card-link border-right pr-4 <?php echo $b_acti; ?>"/>Activities</a>
-                    <a href="<?php echo $taburl; ?>/charging" class="card-link <?php echo $b_char; ?>"/>Charges</a>
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link <?php echo $b_info; ?>" href="<?php echo $taburl; ?>/information">Information</a></li>
+                      <li class="nav-item"><a class="nav-link <?php echo $b_acti; ?>" href="<?php echo $taburl; ?>/activities" >Activities</a></li>
+                      <li class="nav-item"><a class="nav-link <?php echo $b_char; ?>" href="<?php echo $taburl; ?>/charging">Charges</a></li>
+                    </ul>
 
                   </div>
                   <?php if ($displayright == "information"): ?>
@@ -505,7 +512,7 @@
     $("#activities_perdiv").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#activities_perdiv_wrapper');
+    }).container().appendTo('#activities_perdiv_wrapper');
   });
 </script>
 

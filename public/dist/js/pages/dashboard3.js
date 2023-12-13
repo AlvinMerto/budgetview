@@ -45,7 +45,10 @@ $(function () {
             maintainAspectRatio: false,
             tooltips: {
               mode: mode,
-              intersect: intersect
+              intersect: intersect,
+              callbacks: {
+                label: (ttItem, data) => (numberWithCommas(ttItem.value) + " PHp")
+              }
             },
             hover: {
               mode: mode,
@@ -116,7 +119,10 @@ $(function () {
           maintainAspectRatio: false,
           tooltips: {
             mode: mode,
-            intersect: intersect
+            intersect: intersect,
+            callbacks: {
+                label: (ttItem, data) => (numberWithCommas(ttItem.value) + " PHp")
+            }
           },
           hover: {
             mode: mode,

@@ -72,13 +72,13 @@ class InputwindowController extends Controller
             $budget    = (int) $checkbudget[0]->budgetactual;
             $remaining = $budget-$spent;
 
-            if ($actualcost > $remaining) {
-                if (isset($_POST['addcharging_outside'])) {
-                    return redirect("/charge/{$grpid}")->with("status","The remaining budget is below the actual cost.");
-                }
+            // if ($actualcost > $remaining) {
+            //     if (isset($_POST['addcharging_outside'])) {
+            //         return redirect("/charge/{$grpid}")->with("status","The remaining budget is below the actual cost.");
+            //     }
 
-                return redirect("/inputwindow/{$grpid}")->with("status","The remaining budget is below the actual cost.");
-            }
+            //     return redirect("/inputwindow/{$grpid}")->with("status","The remaining budget is below the actual cost.");
+            // }
         }
 
         $values     = [

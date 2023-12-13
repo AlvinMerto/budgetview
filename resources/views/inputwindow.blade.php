@@ -24,35 +24,47 @@
 
     <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-	    <div class="content-header">
-	      <div class="container-fluid">
+	    
 	      	@if (session('status'))
-	      		 <p class="m-0" style="color: red;">
-              {{ session('status') }}
-             </p>
+	      		<div class="content-header">
+	      			<div class="container-fluid">
+		      		 <p class="m-0" style="color: red;">
+	              {{ session('status') }}
+	             </p>
+		          </div>
+		    		</div>
 	      	@endif
-	      </div>
-    	</div>
+	      
 	    <div class="content">
 	    	<div class="container-fluid">
+	    		<div class="row pt-2 pb-2 pl-2">
+	    			<a href="{{url('inputwindow')}}" class="btn btn-primary full-width"/>Enter New</a>
+	    		</div>
 	        <div class="row">
-	          <div class="col-lg-6">
+<!-- 	        	<div class="col-lg-2">
+	        		
+	        	</div> -->
+	          <div class="col-lg-7">
 	          	<div class="card">
-	          		<div class="card-header">
+	          		<!-- <div class="card-header">
 	          				<h6 class="m-0"> Activity Information </h6>
-	          		</div>
-
+	          		</div> -->
 	          		<form action="{{route('saveactivity')}}" method="post">
 	          			@csrf
-	          		<div class="card-content p-3">
+	          		<div class="card-content">
 	          			<input type='hidden' name="activitygrpid" value="<?php echo $grpid; ?>"/>
-	          			<div class="mb-2">
-	          				<h6> Activity Title </h6>
-			         			<div class="input-group">
-			         				<textarea class="form-control" rows="3" id="activitytitle" name="activitytitle"><?php if (count($details)>0) { echo $details[0]->activitytitle; }?></textarea>
-			          		</div>
-			          	</div>
 			          	<table class="table m-0">
+			          		<tr>
+			          			<td colspan="10"> Activity Information </td>
+			          		</tr>
+			          		<tr> 
+			          			<td style="vertical-align: middle; text-align: right;"> <h6> Activity Title </h6> </td>
+			          			<td>
+			          				<div class="input-group">
+					         				<textarea class="form-control" rows="3" id="activitytitle" name="activitytitle"><?php if (count($details)>0) { echo $details[0]->activitytitle; }?></textarea>
+					          		</div>
+			          			</td>
+			          		</tr>
 			          		<tr> 
 			          			<td style="vertical-align: middle; text-align: right;"> Division </td>
 			          			<td>
@@ -198,7 +210,7 @@
 	          	</div>
 	          </div>
 	       <?php if (count($details) > 0) { ?>
-	          	<div class="col-lg-6">
+	          	<div class="col-lg-5">
 	          		<div class="card">
 	          			<div class="card-content">
 	          				 <form action="{{route('savecharging')}}" method="post">
@@ -208,8 +220,8 @@
 					          	
 	          				<table class="table">
 		          				<tr>
-			          			<td colspan='10'> Charging </td>
-			          		</tr>
+				          			<td colspan='10'> Charging </td>
+				          		</tr>
 			          		<tr> 
 			          			<td style="vertical-align: middle; text-align: right;"> Charge to </td>
 			          			<td>
@@ -260,17 +272,22 @@
 	          		
 	          		</div>
 	          		<div class="card">
-	          			<div class="card-header">
+	          			<!-- <div class="card-header">
 	          				<h6 class="m-0"> Charge to </h6>
-	          			</div>
+	          			</div> -->
 	          			<div class="card-content">
-	          				<div id="chargewindow" class="p-3">
+	          				<div id="chargewindow">
 	          					<table class="table">
 	          						<thead>
-	          							<th> Item </th>
-	          							<th> Amount </th>
-	          							<th> Charged to </th>
-	          							<th> Action </th>
+	          							<tr>
+	          								<td> Charge to </td>
+	          							</tr>
+	          							<tr>
+		          							<th> Item </th>
+		          							<th> Amount </th>
+		          							<th> Charged to </th>
+		          							<th> Action </th>
+	          							</tr>
 	          						</thead>
 	          						<tbody>
 	          							<?php
@@ -281,7 +298,7 @@
 			          								echo "<td> {$cg->chargename} </td>";
 			          								echo "<td> {$cost} </td>";
 			          								echo "<td> {$cg->chargingname} </td>";
-			          								echo "<td> <small class='deletethis' style='cursor:pointer;' data-id='{$cg->chargeid}' data-table='charging'> Delete </small> </td>";
+			          								echo "<td> <small class='deletethis' style='cursor:pointer;' data-id='{$cg->chargeid}' data-table='charging'> <i class='fa fa-trash' style='color:red;'></i> </small> </td>";
 			          							echo "</tr>";
 			          						}
 			          					?>	

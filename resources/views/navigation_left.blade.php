@@ -35,6 +35,7 @@
       <!-- Sidebar Menu  http://localhost:8000/budget  -->
       <?php 
         $budget         = null;
+        $allads         = null;
         $divisionwindow = null;
         $adminwindow    = null;
         $inputwindow    = null;
@@ -44,6 +45,9 @@
 
         $uri    = explode("/",Request::url())[3];
         switch($uri) {
+          case "activities":
+            $allads         = "active";
+            break;
           case "budget":
             $budget = "active";
             break;
@@ -84,6 +88,18 @@
             </a>
           </li>
           <?php //} ?>
+          
+          <?php //if ($accounttype == "2" || $accounttype == "1") { ?>
+            <li class="nav-item">
+              <a href="{{route('activities')}}" class="nav-link <?php echo $allads; ?>">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>
+                  All Activity Designs
+                </p>
+              </a>
+            </li>
+          <?php //} ?>
+
 
           <?php if ($accounttype == "1") { ?>
             <li class="nav-item">
@@ -108,7 +124,7 @@
               <li class="nav-item">
                 <a href="{{route('allactivities')}}" class="nav-link <?php echo $allactivity; ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>All Activity Design</p>
+                  <p>Activity Design</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -127,7 +143,9 @@
             </ul>
           </li>
           <?php } ?>
-          
+<!--           <li>
+            <p> Sign out </p>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

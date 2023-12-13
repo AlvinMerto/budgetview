@@ -45,7 +45,7 @@
     <!-- /.lockscreen credentials -->
 
       @if (session('status'))
-	  	<div class="lockscreen-name mb-3">{{session('status')}}</div>
+	  	<div class="lockscreen-name mb-3" style="color:red;">{{session('status')}}</div>
 	  @endif
 </form>
 

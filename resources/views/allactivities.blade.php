@@ -27,36 +27,35 @@
       </div> -->
       <div class="content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="card-header border-0">
-              <h1 class="card-title"> All Activities </h1>
+          <div class="row pt-2">
+            <div class="col-lg-12 pt-3 pb-3">
+              <h4 class=""> All Activities </h4>
             </div> 
-            <div class="col-lg-12 mt-2">
+            <div class="col-lg-3 mt-0">
               <div class="card mb-2">
-                <!-- <div class="card-header">
-                  <h6> Division </h6>
-                </div> -->
                 <div class="card-body">
-                  <ul class="nav nav-pills flex-column">
-                    <li class="nav-item"> 
+                     <ul class="nav nav-pills">
                       <?php 
                         foreach($division as $d) {
+                          $class = null;
+
+                          if ($divid == $d->divisionid) {
+                            $class = "active";
+                          }
+
                           $url  = url("allactivities/{$d->divisionid}");
 
-                          echo "<a href='{$url}'> {$d->divfullname} </a>";
+                          echo "<li class='nav-item'><a class='nav-link {$class}' href='{$url}'>{$d->divfullname}</a></li>";
                         }
                       ?>
-                      <!-- <a href="http://localhost:8000/divisionwindow/9/information" class="nav-link text-bold"> KMD Regular </a>  -->
-                    </li>
-                  </ul>
+                      </ul>
                 </div>
               </div>
             </div>
 
             <?php if ($divid != null) { ?>
-              <div class="col-lg-12">
+              <div class="col-lg-9">
               	<div class="card">
-              	 
                  <div class="card-body p-0">
                     <table class="table table-bordered" id='allactivities_perdiv'>
                       <thead>

@@ -32,11 +32,11 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header pt-0">
+    <div class="content-header pt-0 pb-0">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-              <div class="card-header pl-0 pb-0">
+<!--               <div class="card-header pl-0 pb-0">
                 <h3 class="m-0 ">Dashboard</h3>
                   <div class="pt-2 pb-2 pt-2 pl-0">
                     <a href="{{route('budget')}}" class="card-link text-bold border-right pr-4">Main Dashboard</a>
@@ -47,43 +47,59 @@
 
                     <a href="{{route('charges')}}" class="card-link "/>Charges</a>
                   </div>
-              </div>
-              <div class="card-footer">
+              </div> -->
+              <div class="pt-3 pb-0">
                 <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span> -->
-                      <span class="description-text">Proposed</span>
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
+                      <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Total Spent</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.description-block -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <!-- <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span> -->
-                      <span class="description-text">Current Budget</span>
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($actual,2); ?> PHp</h5>
+
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
+                      <span class="info-box-icon bg-primary"><i class="far fa-copy"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Remaining Balance</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.description-block -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <!-- <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span> -->
-                      <span class="description-text">TOTAL SPENT</span>
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
+
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
+                      <span class="info-box-icon"  style="background:#adadad;"><i class="far fa-copy"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Current Budget</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($actual,2); ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.description-block -->
+                    <!-- /.info-box -->
                   </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <!-- <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span> -->
-                      <span class="description-text">REMAINING BALANCE</span>
-                      <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
+
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
+                      <span class="info-box-icon" style="background:#adadad;"><i class="far fa-copy"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Proposed</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.description-block -->
+                    <!-- /.info-box -->
                   </div>
                 </div>
                 <!-- /.row -->
