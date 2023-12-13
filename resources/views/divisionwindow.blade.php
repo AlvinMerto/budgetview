@@ -22,6 +22,7 @@
     $selecteddivision     = null;
   ?>
   
+  <input type="hidden" id="chargingid_1" value="<?php echo $divisionid; ?>" name="chargingid"/>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
       <div class="content-header">
@@ -112,10 +113,32 @@
               </div>
               <div class="card">
                 <div class="card-header">
+                  <h6 class="card-title"> Overall Division Budget </h6>
+                </div>
+                <div class="card-content">
+                  <ul class="nav nav-pills flex-column">
+                    <?php foreach($division as $dd) { $divisionname = $dd['divfullname']; ?>
+                      <li class="nav-item">
+                        <?php
+                          $active = null;
+                          $style  = null;
+                          if ($divisionid == $dd['divisionid']) {
+                            $active = "text-bold";
+                            $style  = "style=color:#007bff;";
+                          }
+                          $url1 = url("divisionwindow/{$chargingid}/division/{$dd['divisionid']}");
+                        ?> 
+                        <a href="{{$url1}}" class="nav-link {{$active}}" {{$style}}> 
+                          <i class="nav-icon fas fa-copy"></i> &nbsp; <?php echo $dd['divfullname']; ?> 
+                        </a>
+                      </li>
+                    <?php } ?>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
                   <h6 class="card-title"> Active Budget Lines </h6>
-                  <!-- <div class="card-tools">
-                    <small> show inactive </small>
-                  </div> -->
                 </div>
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">
@@ -130,10 +153,12 @@
                         $style        = null;
                         
                         if ($b->chargingid == $chargingid) {
-                          $selected             = "text-bold";
-                          $selectedname         = $b->chargingname;
-                          $selecteddivision     = "";
-                          $style                = "style='color:#007bff;'";
+                          if ($tab != "division") {
+                            $selected             = "text-bold";
+                            $selectedname         = $b->chargingname;
+                            $selecteddivision     = "";
+                            $style                = "style='color:#007bff;'";
+                          }
                         }
 
                         echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}' {$style}/> <i class='nav-icon fas fa-copy'></i> &nbsp; {$b->chargingname} </a> </li>";
@@ -155,7 +180,7 @@
                   <ul class="nav nav-pills flex-column">
                     <?php
                       foreach($inactivebudgetlines as $ibl) {
-                        if ($tab == null) {
+                        if ($tab == null || $tab == "division") {
                           $tab = "information";
                         }
 
@@ -183,7 +208,15 @@
             <div class="col-lg-9">
               <div class="card_">
                 <div class="card-header pl-0">
-                  <h3 class="card-title"> <?php echo $selectedname; ?> </h3>
+                  <h3 class="card-title"> 
+                    <?php
+                      if ($tab != "division") { 
+                        echo $selectedname; 
+                      } else {
+                        echo $divisionname;
+                      }
+                    ?> 
+                  </h3>
                   <div class="card-tools">
                     @if (session('infoupdate'))
                        <p class="m-0" style="color: green;">
@@ -193,25 +226,26 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="pb-2 pt-2 pb-1 pl-0">
-                    <?php 
-                      $taburl = url("divisionwindow/{$chargingid}");
-                      $b_info = null;
-                      $b_acti = null;
-                      $b_char = null;
+                  <?php if($tab != "division"): ?>
+                    <div class="pb-2 pt-2 pb-1 pl-0">
+                      <?php 
+                        $taburl = url("divisionwindow/{$chargingid}");
+                        $b_info = null;
+                        $b_acti = null;
+                        $b_char = null;
 
-                      if ($tab == "information") { $b_info = "text-bold active"; }
-                      elseif ($tab == "activities") { $b_acti = "text-bold active"; }
-                      elseif ($tab == "charging") { $b_char = "text-bold active"; }
-                    ?>
+                        if ($tab == "information") { $b_info = "text-bold active"; }
+                        elseif ($tab == "activities") { $b_acti = "text-bold active"; }
+                        elseif ($tab == "charging") { $b_char = "text-bold active"; }
+                      ?>
 
-                    <ul class="nav nav-pills">
-                      <li class="nav-item"><a class="nav-link <?php echo $b_info; ?>" href="<?php echo $taburl; ?>/information">Information</a></li>
-                      <li class="nav-item"><a class="nav-link <?php echo $b_acti; ?>" href="<?php echo $taburl; ?>/activities" >Activities</a></li>
-                      <li class="nav-item"><a class="nav-link <?php echo $b_char; ?>" href="<?php echo $taburl; ?>/charging">Charges</a></li>
-                    </ul>
-
-                  </div>
+                      <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link <?php echo $b_info; ?>" href="<?php echo $taburl; ?>/information">Information</a></li>
+                        <li class="nav-item"><a class="nav-link <?php echo $b_acti; ?>" href="<?php echo $taburl; ?>/activities" >Activities</a></li>
+                        <li class="nav-item"><a class="nav-link <?php echo $b_char; ?>" href="<?php echo $taburl; ?>/charging">Charges</a></li>
+                      </ul>
+                    </div>
+                  <?php endif; ?>
                   <?php if ($displayright == "information"): ?>
                     <div class="row pl-0 pr-0 pb-3 pt-0">
                       <div class="col-lg-6">
@@ -262,9 +296,6 @@
                                 <i class="fas fa-square text-primary"></i> Utilization
                               </span>
 
-                              <!-- <span>
-                                <i class="fas fa-square text-gray"></i> Last Week
-                              </span> -->
                             </div>
                           </div>
                         </div>
@@ -275,23 +306,27 @@
                         <input type="hidden" id="chargingid" value="<?php echo $chargingid; ?>" name="chargingid"/>
                         <table class="table"> 
                           <tbody>
-                            <tr class="bg-lightblue">
+                            <?php
+                              $active    = null;
+                              $inactive  = null;
+                              $bg_status = null;
+                                      
+                              if (count($budgetlinestatus) > 0) {
+                                if ($budgetlinestatus[0]->isactive == 1) {
+                                  $active    = "selected";
+                                  $bg_status = "bg-lightblue";
+                                } else if ($budgetlinestatus[0]->isactive == 0) {
+                                  $inactive = "selected";
+                                  $bg_status = "bg-gray-dark";
+                                }
+                              }
+                            ?>
+                            <tr class="<?php echo $bg_status; ?> shadow">
                               <td> Status </td>
                               <td> 
                                 <div class="input-group">
                                   <select class="form-control" name="isactive">
-                                    <?php
-                                      $active   = null;
-                                      $inactive = null; 
-                                      
-                                      if (count($budgetlinestatus) > 0) {
-                                        if ($budgetlinestatus[0]->isactive == 1) {
-                                          $active = "selected";
-                                        } else if ($budgetlinestatus[0]->isactive == 0) {
-                                          $inactive = "selected";
-                                        }
-                                      }
-                                    ?>
+                                    
                                     <option value="1" <?php echo $active; ?> > Active </option>
                                     <option value="0" <?php echo $inactive; ?> > Inactive </option>
                                   </select> 
@@ -446,6 +481,44 @@
                     </div>
                   <?php endif; ?>
 
+                  <?php if ($displayright == "division") { ?>
+                    <div class="row pt-4">
+                      <div class="col-lg-5">
+                        <div class="card">
+                          <div class="card-content p-0">
+                            <table class="table">
+                              <tr>
+                                <td colspan="10">
+                                  Division Budget Information
+                                </td>
+                              </tr>
+                              <tr>
+                                <td> Division </td>
+                                <td class="text-bold text-lg"> {{$divisionname}}</td>
+                              </tr>
+                              <tr>
+                                <td> Overall Budget </td>
+                                <td class="text-bold text-lg"> <?php echo number_format($actual,2); ?> </td>
+                              </tr>
+                              <tr>
+                                <td> Spent </td>
+                                <td class="text-bold text-lg"> <?php echo number_format($spent,2); ?> </td>
+                              </tr>
+                              <tr>
+                                <td> Remaining Budget </td>
+                                <td class="text-bold text-lg"> <?php echo number_format($leftospend,2); ?> </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-7">
+                        <div class="position-relative mb-4">
+                          <canvas id="division-budget-chart" height="350"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  <?php } ?>
                 </div>
               </div>
             </div>

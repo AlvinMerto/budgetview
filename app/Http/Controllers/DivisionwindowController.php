@@ -11,18 +11,19 @@ use App\Models\chargingtbl;
 use App\Models\inputwindow;
 
 use Auth;
+use DB;
 
 class DivisionwindowController extends Controller
 {
     //
-    function divisionwindow($chargingid = null, $tab = null) {
+    function divisionwindow($chargingid = null, $tab = null, $divisionid = null) {
 
         $id              = Auth::id();
                             // select("chargingtbls.chargingid")
         $division        = loginControl::join("divisiontbls","login_controls.divisionid","=","divisiontbls.divisionid")
                             ->where("login_controls.userid",$id)
                             ->get(["divisiontbls.divisionid","divisiontbls.divfullname"])->toArray(); 
-        
+
         $budgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
                             ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
                             ->where(["login_controls.userid"=>$id,"budgetviews.isactive"=>1])
@@ -59,21 +60,39 @@ class DivisionwindowController extends Controller
         // charges
         $charges         = [];
 
+        // per division 
+        $divisionbudget  = [];
+
         $displayright    = false;
         if ($chargingid != null) {
             $selecteddiv = $this->getdivision($chargingid);
             if ($tab != null) {
                 switch ($tab) {
+                    case 'division':
+                        $displayright     = "division";
+
+                        $divisionbudget   = $this->getdivisionbudget($selecteddiv);
+                        $divisionexpenses = $this->getdivisionexpenditure($selecteddiv);
+
+                        $planned          = $divisionbudget['planned'];
+                        $actual           = $divisionbudget['actual'];
+                        $spent            = $divisionexpenses['totalspent'];
+                        $leftospend       = $actual-$spent;
+                        
+                        break;
                     case 'information':
                         $displayright = "information";
 
                         $budgetdet  = $this->getbudgetarydetails($chargingid);
 
                         $spent      = $this->getexpenditure($chargingid)['totalspent'];
-                        $planned    = $budgetdet['planned'];
-                        $actual     = $budgetdet['actual'];
-                        $leftospend = $actual-$spent;
-                        $year       = $budgetdet['year'];
+
+                        //if (count($budget) > 0) {
+                            $planned    = $budgetdet['planned'];
+                            $actual     = $budgetdet['actual'];
+                            $leftospend = $actual-$spent;
+                            $year       = $budgetdet['year'];
+                        //}
                         break;
                     case 'activities':
                         $displayright = "activities";
@@ -96,7 +115,44 @@ class DivisionwindowController extends Controller
         return view("divisionwindow", 
                         compact("budget","division","budgetlines", "displayright","tab", 
                                 "chargingid","spent","planned","actual","leftospend","year","selecteddiv",
-                                "activities","charges","inactivebudgetlines","budgetlinestatus"));
+                                "activities","charges","inactivebudgetlines","budgetlinestatus","divisionid"));
+    }
+
+    function getdivisionexpenditure($division_id) {
+        $charges = chargingto::join("chargingtbls","chargingtos.chargeto","=","chargingtbls.chargingid")
+                                ->join("inputwindows","chargingtos.activitygrpid","=","inputwindows.activitygrpid")
+                                ->where(["chargingtbls.divisionid"=>$division_id,"inputwindows.status"=>"100"])
+                                ->get(["chargingtos.actualcost"]);
+
+        $totalspent = 0;
+     
+        foreach($charges as $c) {
+            $totalspent = $totalspent+$c->actualcost;
+        }
+
+        // if (count($charges) > 0) {
+            return [
+                "totalspent"   => $totalspent,
+            ];
+
+        return $division_expenses;
+    }
+
+    function getdivisionbudget($division_id) {
+        $divisionbudget    = DB::select("select sum(planned) as planned, sum(actual) as actual from budgetviews join chargingtbls on budgetviews.divid = chargingtbls.chargingid where chargingtbls.divisionid = '{$division_id}' and budgetviews.isactive = 1; ");
+
+        $planned = 0;
+        $actual  = 0;
+
+        if ( count($divisionbudget) > 0 ) {
+            $planned = $divisionbudget[0]->planned;
+            $actual  = $divisionbudget[0]->actual;
+        }
+
+        return [
+            "planned"   => $planned,
+            "actual"    => $actual
+        ];
     }
 
     function getactivities($chargingid, $divisionid = null) {
@@ -124,6 +180,25 @@ class DivisionwindowController extends Controller
             return $division[0]->divisionid; 
         }
         return false;
+    }
+
+    function getdivision_graph(Request $req) {
+        $selecteddiv      = $req->input("chargingid");
+
+        $divisionbudget   = $this->getdivisionbudget($selecteddiv);
+        $divisionexpenses = $this->getdivisionexpenditure($selecteddiv);
+
+        $planned          = $divisionbudget['planned'];
+        $actual           = $divisionbudget['actual'];
+        $spent            = $divisionexpenses['totalspent'];
+        $leftospend       = $actual-$spent;
+
+        return response()->json([
+            //$planned,
+            $actual,
+            $spent,
+            $leftospend
+        ]);
     }
 
     function getbudgetutilization_graph(Request $req) {
@@ -266,5 +341,9 @@ class DivisionwindowController extends Controller
         
 
         return view("allactivities", compact("activities","division","divid"));
+    }
+
+    function divisionbudget($divid = null) {
+
     }
 }

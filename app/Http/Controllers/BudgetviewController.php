@@ -151,15 +151,16 @@ class BudgetviewController extends Controller
                 array_push($labels, $v->chargingname);
                 array_push($actualbudget,$v->actual);
 
+                $lts = $v->actual;
                 foreach($values2 as $v2) {
-                    $lts = $v->actual;
+                   
                     if ($v->divid == $v2->divid) {
                         $lts = $v->actual-$v2->spent;
 
                         array_push($spent, $v2->spent);
                     } 
-                    array_push($lefttospend, $lts);
                 }
+                array_push($lefttospend, $lts);
             }
         }
 

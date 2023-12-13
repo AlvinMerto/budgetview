@@ -56,7 +56,7 @@ Route::middleware("auth")->group(function(){
     Route::get("/activities/{divid?}",[BudgetviewController::class,"activities"])->name("activities");
     Route::get("/charges",[BudgetviewController::class,"charges"])->name("charges");
 
-    Route::get("/divisionwindow/{chargingid?}/{tab?}",[DivisionwindowController::class,"divisionwindow"])->name("divisionwindow");
+    Route::get("/divisionwindow/{chargingid?}/{tab?}/{divisionid?}",[DivisionwindowController::class,"divisionwindow"])->name("divisionwindow");
     Route::get("/adminwindow",[AdminwindowController::class,"adminwindow"])->name("adminwindow");
     Route::get("/inputwindow/{grpid?}",[InputwindowController::class,"inputwindow"])->name("inputwindow");
 
@@ -74,4 +74,7 @@ Route::middleware("auth")->group(function(){
     Route::get("/allactivities/{divid?}", [DivisionwindowController::class,"allactivities"])->name("allactivities");
 
     Route::post("/delete",[AdminwindowController::class,"deletefromtbl"])->name('delete');
+
+    Route::post("/getdivision_graph",[DivisionwindowController::class,"getdivision_graph"])->name("getdivision_graph");
+
 });
