@@ -288,7 +288,7 @@
 
                             <div class="position-relative mb-4">
                               <!-- <canvas id="visitors-chart" height="200"></canvas> -->
-                              <canvas id="division-budget-chart" height="200"></canvas>
+                              <canvas id="division-budget-line-chart" height="200"></canvas>
                             </div>
 
                             <div class="d-flex flex-row justify-content-end">
@@ -436,6 +436,7 @@
                             <?php
                               foreach($activities as $a) {
                                 $init_cost = number_format($a->initialcost,2);
+                                $url       = route('inputwindow');
                                 echo "<tr>";
                                   echo "<td> {$a->activitytitle} </td>";
                                   echo "<td> {$a->dateofactivity} </td>";
@@ -446,7 +447,8 @@
                                         </div>
                                         <span class='badge bg-primary'>{$a->status}%</span>";
                                   echo "</td>";
-                                  echo "<td> <a href='{{route('inputwindow')}}/{$a->activitygrpid}' target='_blank'/>View</a> </td>";
+
+                                  echo "<td> <a href='{$url}/{$a->activitygrpid}' target='_blank'/>View</a> </td>";
                                 echo "</tr>";
                               }
                             ?>

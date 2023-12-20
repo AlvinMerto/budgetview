@@ -25,7 +25,24 @@ class BudgetviewController extends Controller
         $spent       = $this->getexpenditure();
         $lefttospend = $actual-$spent;
 
-        return view("budget", compact("planned","actual","spent","lefttospend","activities"));
+        $bur         = ($spent/$actual)*100;
+        $bur         = $bur;
+
+        $date        = date("l, M. d, Y");
+        $date_month  = date("m");
+        $qtr         = null;
+        
+        if ($date_month >= 1 && $date_month <= 3) {
+            $qtr     = "1st Quarter";
+        } else if ($date_month >= 4 && $date_month <= 6) {
+            $qtr     = "2st Quarter";
+        } else if ($date_month >= 7 && $date_month <= 9) {
+            $qtr     = "3rd Quarter";
+        } else if ($date_month >= 10 && $date_month <= 12) {
+            $qtr     = "4th Quarter";
+        }
+
+        return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
 
     function charges($divid = null) {

@@ -17,7 +17,7 @@ $(function () {
 	    data     : { chargingid : chargingid },
 	    dataType : "json",
 	    success  : function(data) {
-	      var obc_chart = $("#division-budget-chart");
+	      var obc_chart = $("#division-budget-line-chart");
 	      var obc = new Chart(obc_chart, {
 	        type: 'bar',
 	        data: {
@@ -45,7 +45,7 @@ $(function () {
 	          },
 	          scales: {
 	            yAxes: [{
-	              // display: false,
+	              display: true,
 	              gridLines: {
 	                display: true,
 	                lineWidth: '4px',
@@ -69,7 +69,7 @@ $(function () {
 	            xAxes: [{
 	              display: true,
 	              gridLines: {
-	                display: false
+	                display: true
 	              },
 	              ticks: ticksStyle
 	            }]

@@ -131,15 +131,15 @@
               <div class="card-body pt-0">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg"> &nbsp; </span>
-                    <span>Budget Utilization Rate</span>
+                    <span class="text-bold text-lg"> Budget Utilization Rate </span>
+                    <span> &nbsp; </span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success text-bold text-lg">
-                     &nbsp;
-                      <!-- <i class="fas fa-arrow-up"></i> 12.5% -->
+                      <!-- <i class="fas fa-arrow-up"></i> -->
+                        <?php echo $bur; ?>%
                     </span>
-                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo date("l, M d. Y"); ?> </span>
+                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo $qtr; ?> </span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -151,12 +151,9 @@
 
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Utilization
+                    &nbsp;
+                    <!-- <i class="fas fa-square text-primary"></i> Utilization -->
                   </span>
-
-                  <!-- <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
-                  </span> -->
                 </div>
               </div>
             </div>
@@ -184,7 +181,7 @@
                     <span class="text-success text-bold text-lg">
                       &nbsp;
                     </span>
-                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo date("l, M d. Y"); ?> </span>
+                    <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo $qtr; ?> </span>
                   </p>
                 </div>
                 <!-- /.d-flex -->
@@ -240,6 +237,7 @@
                     <th> OC date received </th>
                     <th> OC date released </th>
                     <th> Procurement date received </th>
+                    <th> P.O Released </th>
                     <th> Status </th>
                     <th> Division </th>
                     <!-- <th> Charge to </th> -->
@@ -258,6 +256,7 @@
                               echo "<td>". date("M. d, Y", strtotime($a->daterecvbyoc))."</td>";
                               echo "<td>". date("M. d, Y", strtotime($a->datereleasedbyoc))."</td>";
                               echo "<td>". date("M. d, Y", strtotime($a->daterecvbyproc))."</td>";
+                              echo "<td> &nbsp; </td>";
                               echo "<td>";
 
                               $thecolor = null;
