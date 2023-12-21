@@ -109,19 +109,58 @@
 			          		<tr>
 			          			<td style="vertical-align: middle; text-align: right;"> Status </td>
 			          			<td> 
+			          				<?php 
+			          					$ongoing 	 	  = null;
+			          					$dir_approved = null;
+			          					$oc_rcvd 		  = null;
+			          					$proc_rcvd    = null;
+			          					$po_rlsd      = null;
+
+			          					$sel_status = $details[0]->status; 
+
+			          					if ($sel_status == "20") {
+			          						$ongoing = "selected";
+			          					}
+
+			          					if ($sel_status == "40") {
+			          						$dir_approved = "selected";
+			          					}
+
+			          					if ($sel_status == "60") {
+			          						$oc_rcvd = "selected";
+			          					}
+
+			          					if ($sel_status == "80") {
+			          						$proc_rcvd = "selected";
+			          					}
+
+			          					if ($sel_status == "100") {
+			          						$po_rlsd = "selected";
+			          					}
+
+			          				?>
 			          				<select class="form-control" id="status" name='status'>
-			          					<option value="25"> on-going </option>
-			          					<option value="50"> Approved by Director </option>
-			          					<option value="75"> for OC's signature </option>
-			          					<option value="100"> for Procurement </option>
-			          					<!-- <option value="100"> Approved </option> -->
+			          					<option value="20" <?php echo $ongoing; ?>> on-going </option>
+			          					<option value="40" <?php echo $dir_approved; ?>> Approved by Director </option>
+			          					<option value="60" <?php echo $oc_rcvd; ?>> for OC's signature </option>
+			          					<option value="80" <?php echo $proc_rcvd; ?>> for Procurement </option>
+			          					<option value="100" <?php echo $po_rlsd; ?>> P.O. Released </option>
 			          				</select>
 			          			</td>
 			          		</tr>
 			          			<tr id="daterelease" class="hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Release from PPPDO 
-				          				<dt class="m-0"><?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterelease)); }?></dt>
+				          				<dt class="m-0">
+				          						<?php 
+				          							if (count($details)>0) { 
+				          								if ($details[0]->daterelease == null) {
+				          									echo null;
+				          								} else {
+				          									echo date('M. d, Y', strtotime($details[0]->daterelease)); 
+				          								}
+				          							}
+				          						?></dt>
 				          			</td>
 				          			<td> 
 				          				<input type="date" class="form-control" id="daterelease" name="daterelease" 
@@ -141,7 +180,16 @@
 				          		<tr class="ocdate hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Received by OC 
-				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterecvbyoc)); }?> </dt>
+				          				<dt class="m-0"> 
+				          					<?php 
+				          						if (count($details)>0) { 
+				          							if ($details[0]->daterecvbyoc == null) {
+				          								echo null;
+				          							} else {
+				          								echo date('M. d, Y', strtotime($details[0]->daterecvbyoc));
+				          							} 
+				          						}
+				          					?> </dt>
 				          			</td>
 				          			<td> 
 				          				<input type="date" class="form-control" 
@@ -160,7 +208,16 @@
 				          		<tr class="ocdate hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Released by OC 
-				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->datereleasedbyoc)); }?> </dt>
+				          				<dt class="m-0"> 
+				          					<?php 
+				          						if (count($details)>0) { 
+				          							if ($details[0]->datereleasedbyoc == null) {
+				          								echo null;
+				          							} else {
+				          								echo date('M. d, Y', strtotime($details[0]->datereleasedbyoc)); 
+				          							}
+				          						}
+				          					?> </dt>
 				          			</td>
 				          			<td> 
 				          				 <input type="date" class="form-control" 
@@ -180,7 +237,16 @@
 				          		<tr id="inprocurement" class="hideit">
 				          			<td style="vertical-align: middle; text-align: right;"> 
 				          				Date Received by Procurement 
-				          				<dt class="m-0"> <?php if (count($details)>0) { echo date('M. d, Y', strtotime($details[0]->daterecvbyproc)); }?> </dt>
+				          				<dt class="m-0"> 
+				          					<?php 
+				          					if (count($details)>0) { 
+				          						if ($details[0]->daterecvbyproc == null) {
+				          							echo null;
+				          						} else {
+				          							echo date('M. d, Y', strtotime($details[0]->daterecvbyproc)); 
+				          						}
+				          					}
+				          				?> </dt>
 				          			</td>
 				          			<td> 
 				          				<input type="date" class="form-control" 
@@ -194,6 +260,27 @@
 			                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 			                        </div>
 			                    </div> -->
+				          			</td>
+				          		</tr>
+
+				          		<tr id="poreleased_tr" class="hideit">
+				          			<td style="vertical-align: middle; text-align: right;"> 
+				          				P.O. Released
+				          				<dt class="m-0"> 
+				          					<?php 
+				          						if (count($details)>0) { 
+				          							if ($details[0]->date_po == null) {
+				          								echo null;
+				          							} else {
+				          								echo date('M. d, Y', strtotime($details[0]->date_po)); 
+				          							}
+				          						}
+				          					?> </dt>
+				          			</td>
+				          			<td> 
+				          				<input type="date" class="form-control" 
+			                        			 data-target="#poreleased_txt" id="poreleased" name="poreleased"
+			                        			 value="<?php if (count($details)>0) { echo $details[0]->date_po; }?>">
 				          			</td>
 				          		</tr>
 			          		

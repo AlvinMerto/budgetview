@@ -151,6 +151,13 @@ class InputwindowController extends Controller
             $datercvdbyproc  = date("Y-m-d", strtotime($req->input("datercvdbyproc")));
         }
 
+        $date_po          = $req->input("poreleased");
+        if ( strlen($date_po) == 0 ) {
+            $date_po = null;
+        } else {
+            $date_po  = date("Y-m-d", strtotime($req->input("poreleased")));
+        }
+
         $division         = $req->input("divisionselect");
 
         $initialcost      = str_replace(',', '', $initialcost);
@@ -165,6 +172,7 @@ class InputwindowController extends Controller
             "daterecvbyoc"        => $daterecvdbyoc,
             "datereleasedbyoc"    => $datereleasedbyoc,
             "daterecvbyproc"      => $datercvdbyproc,
+            "date_po"             => $date_po,
             "status"              => $status,
             "division"            => $division
         ];

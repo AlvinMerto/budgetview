@@ -52,11 +52,11 @@
                 <div class="row">
                   <div class="col-md-3 col-sm-6 col-12">
                     <div class="info-box shadow mb-2">
-                      <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                      <span class="info-box-icon bg-warning"><i class="fa fa-chart-line"></i></span>
 
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Spent</span>
-                        <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
+                        <span class="info-box-text">BUR as of <strong> <?Php echo $qtr; ?> </strong> </span>
+                        <h5 class="description-header text-bold text-lg"><?php echo $bur; ?>%</h5>
                       </div>
                       <!-- /.info-box-content -->
                     </div>
@@ -65,20 +65,7 @@
 
                   <div class="col-md-3 col-sm-6 col-12">
                     <div class="info-box shadow mb-2">
-                      <span class="info-box-icon bg-primary"><i class="far fa-copy"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text">Remaining Balance</span>
-                        <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                  </div>
-
-                  <div class="col-md-3 col-sm-6 col-12">
-                    <div class="info-box shadow mb-2">
-                      <span class="info-box-icon"  style="background:#adadad;"><i class="far fa-copy"></i></span>
+                      <span class="info-box-icon" style="background:#5dcac0;"><i class="far fa-money-bill-alt"></i></span>
 
                       <div class="info-box-content">
                         <span class="info-box-text">Current Budget</span>
@@ -91,16 +78,40 @@
 
                   <div class="col-md-3 col-sm-6 col-12">
                     <div class="info-box shadow mb-2">
+                      <span class="info-box-icon" style="background:#adadad;"><i class="fas fa-hand-holding-usd"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Total Spent</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($spent,2); ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
+                      <span class="info-box-icon bg-primary"><i class="fas fa-dollar-sign"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Remaining Balance</span>
+                        <h5 class="description-header text-bold text-lg"><?php echo number_format($lefttospend,2) ?> PHp</h5>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+
+<!--                   <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box shadow mb-2">
                       <span class="info-box-icon" style="background:#adadad;"><i class="far fa-copy"></i></span>
 
                       <div class="info-box-content">
                         <span class="info-box-text">Proposed</span>
                         <h5 class="description-header text-bold text-lg"><?php echo number_format($planned,2); ?> PHp</h5>
                       </div>
-                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.row -->
               </div>
@@ -131,12 +142,27 @@
               <div class="card-body pt-0">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg"> Budget Utilization Rate </span>
+                    <span class="text-bold text-lg"> Budget Utilization </span>
                     <span> &nbsp; </span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success text-bold text-lg">
-                      <!-- <i class="fas fa-arrow-up"></i> -->
+                    <?php 
+                      $class = "text-success";
+                      $arrow = "<i class='fas fa-arrow-up'></i>";
+
+                      if ($bur <= 50) {
+                        $class = "text-danger";
+                        $arrow = "<i class='fas fa-arrow-down'></i>";
+                      } else if ($bur >= 51 && $bur <=80) {
+                        $class = "text-warning";
+                         $arrow = null;
+                      } else if ($bur >=81) {
+                        $class = "text-success";
+                         $arrow = "<i class='fas fa-arrow-up'></i>";
+                      }
+                    ?>
+                    <span class="<?php echo $class; ?> text-bold text-lg">
+                        <?php echo $arrow; ?>
                         <?php echo $bur; ?>%
                     </span>
                     <span class="text-muted"> <small> as of &nbsp; </small> <?Php echo $qtr; ?> </span>
@@ -164,6 +190,104 @@
           </div>
           <!-- /.col-md-6 -->
           <div class="col-lg-8">
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Activity Designs</h3>
+                <div class="card-tools">
+                  <!-- <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a> -->
+                  <a href="{{url('activities')}}" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle" id="activities_on_budget"> <!-- activity_table_budget -->
+                  <thead>
+                  <tr>
+                    <th> Division </th>
+                    <th> Activity Design </th> 
+                    <th> Actual Cost </th>
+                    <th> Last Touch</th>
+                    <th> Maturity </th>
+                    <th> Status </th>
+                    <!-- <th> Activity Design </th> 
+                    <th> Cost </th>
+                    <th> Actual Cost</th>
+                    <th> Date released </th>
+                    <th> OC date received </th>
+                    <th> OC date released </th>
+                    <th> Procurement date received </th>
+                    <th> P.O Released </th>
+                    <th> Status </th>
+                    <th> Division </th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr>
+                      <td> PDD </td>
+                      <td> Lorem Ipsum Dolor set amit </td>
+                      <td> 40,025,255.36 </td>
+                      <td> Procurement </td>
+                      <td> 12 Days </td>
+                      <td> 
+                          <div class='progress progress-xs progress-striped active'>
+                            <div class='progress-bar {$thecolor}' style='width: 10%'></div>
+                          </div>
+                         <span class='badge {$thecolor}'>10%</span>
+                      </td>
+                    </tr> -->
+                     <?php 
+                        if (count($activities) > 0) {
+                          foreach($activities as $a) {
+                            echo "<tr>";
+                              echo "<td> {$a->divaccr} </td>";
+                              echo "<td> {$a->activitytitle} </td>";
+                              echo "<td>". number_format($a->acost,2)."</td>";
+                              echo "<td> {$a->lastpoint} </td>";
+                              echo "<td> {$a->maturity} </td>";
+                              // echo "<td>". number_format($a->initialcost,2)."</td>";
+                              // echo "<td>". number_format($a->acost,2)."</td>";
+                              // echo "<td>". date("M. d, Y", strtotime($a->daterelease))."</td>";
+                              // echo "<td>". date("M. d, Y", strtotime($a->daterecvbyoc))."</td>";
+                              // echo "<td>". date("M. d, Y", strtotime($a->datereleasedbyoc))."</td>";
+                              // echo "<td>". date("M. d, Y", strtotime($a->daterecvbyproc))."</td>";
+                              echo "<td>";
+
+                              $thecolor = null;
+
+                              switch($a->status) {
+                                case "100": $thecolor = "bg-success"; break;
+                                case "80": $thecolor  = "bg-primary"; break;
+                                case "60": $thecolor  = "bg-info"; break;
+                                case "40": $thecolor  = "bg-warning"; break;
+                                case "20": $thecolor  = "bg-default"; break;
+                                case "0": $thecolor   = "bg-danger"; break;
+                              }
+                              echo "
+                                <div class='progress progress-xs progress-striped active'>
+                                  <div class='progress-bar {$thecolor}' style='width: {$a->status}%'></div>
+                                </div>
+                                <span class='badge {$thecolor}'>{$a->status}%</span>";
+                              echo "</td>";
+                              // echo "<td> {$a->divaccr} </td>";
+                              // echo "<td> {$a->chargingname} </td>";
+                            echo "</tr>";
+                          }
+                        }
+                     ?>
+                  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <div class="row">
+        	<div class="col-lg-12">
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
@@ -207,86 +331,6 @@
               </div>
             </div>
             <!-- /.card -->
-
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <div class="row">
-        	<div class="col-lg-12">
-        		<div class="card">
-              <div class="card-header border-0">
-                <h3 class="card-title">Activity Designs</h3>
-                <div class="card-tools">
-                  <!-- <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-download"></i>
-                  </a> -->
-                  <a href="{{url('activities')}}" class="btn btn-tool btn-sm">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body table-responsive p-0">
-                <table class="table table-striped table-valign-middle">
-                  <thead>
-                  <tr>
-                    <th> Activity Design </th> 
-                    <!-- <th> Plan </th> -->
-                    <th> Cost </th>
-                    <th> Actual Cost</th>
-                    <th> Date released </th>
-                    <th> OC date received </th>
-                    <th> OC date released </th>
-                    <th> Procurement date received </th>
-                    <th> P.O Released </th>
-                    <th> Status </th>
-                    <th> Division </th>
-                    <!-- <th> Charge to </th> -->
-                  </tr>
-                  </thead>
-                  <tbody>
-                  
-                     <?php 
-                        if (count($activities) > 0) {
-                          foreach($activities as $a) {
-                            echo "<tr>";
-                              echo "<td> {$a->activitytitle} </td>";
-                              echo "<td>". number_format($a->initialcost,2)."</td>";
-                              echo "<td>". number_format($a->acost,2)."</td>";
-                              echo "<td>". date("M. d, Y", strtotime($a->daterelease))."</td>";
-                              echo "<td>". date("M. d, Y", strtotime($a->daterecvbyoc))."</td>";
-                              echo "<td>". date("M. d, Y", strtotime($a->datereleasedbyoc))."</td>";
-                              echo "<td>". date("M. d, Y", strtotime($a->daterecvbyproc))."</td>";
-                              echo "<td> &nbsp; </td>";
-                              echo "<td>";
-
-                              $thecolor = null;
-
-                              switch($a->status) {
-                                case "100": $thecolor = "bg-success"; break;
-                                case "80": $thecolor  = "bg-primary"; break;
-                                case "60": $thecolor  = "bg-info"; break;
-                                case "40": $thecolor  = "bg-warning"; break;
-                                case "20": $thecolor  = "bg-default"; break;
-                                case "0": $thecolor   = "bg-danger"; break;
-                              }
-                              echo "
-                                <div class='progress progress-xs progress-striped active'>
-                                  <div class='progress-bar {$thecolor}' style='width: {$a->status}%'></div>
-                                </div>
-                                <span class='badge {$thecolor}'>{$a->status}%</span>";
-                              echo "</td>";
-                              echo "<td> {$a->divaccr} </td>";
-                              // echo "<td> {$a->chargingname} </td>";
-                            echo "</tr>";
-                          }
-                        }
-                     ?>
-                  
-                  </tbody>
-                </table>
-              </div>
-            </div>
-        	</div>
         </div>
         <!-- /.row -->
       </div>
@@ -310,5 +354,63 @@
 <!-- ./wrapper -->
 
 		@include("scripts.footscripts")
+
+    <style>
+  .dataTables_filter label{
+    margin:5px;
+    float: right;
+  }
+
+  .dataTables_filter input[type="search"] {
+    border: 1px solid #e2e2e2;
+    margin-left: 11px;
+    padding: 5px;
+  }
+
+  #activities_on_budget_info {
+    float:left;
+    margin:5px;
+  }
+
+  #activities_on_budget_paginate {
+    float:right;
+    margin:10px;
+  }
+
+  #activities_on_budget_previous, #activities_on_budget_next {
+    background: #fff;
+    color:#333;
+    padding:5px 10px;
+    border:1px solid #ccc;
+  }
+
+   #activities_on_budget_previous {
+    border-radius: 5px 0px 0px 5px;
+   }
+
+   #activities_on_budget_next {
+    border-radius: 0px 5px 5px 0px;
+   }
+
+  .paginate_button {
+    border:1px solid #007bff;
+    padding:5px;
+  }
+
+  .current {
+    background: #007bff;
+    color:#fff;
+  }
+
+</style>
+
+<script>
+  $(function() {
+    $("#activities_on_budget").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).container().appendTo('#activities_on_budget_wrapper');
+  });
+</script> 
 	</body>
 </html>

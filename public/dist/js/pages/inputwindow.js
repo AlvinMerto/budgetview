@@ -80,30 +80,52 @@ $(function(){
 	$(document).find("#status").on("change", function(){
 		var selected = $(this).val();
 
-		if (selected < 49) {
+		windowselector(selected);
+	});
+
+	$(document).ready(function(){
+		var selected = $(document).find("#status").val();
+		
+		windowselector(selected);
+	})
+})
+
+function windowselector(selected) {
+	if (selected <= 20) { // on going
 			$(document).find("#daterelease").hide();
 			$(document).find(".ocdate").hide();
+			$(document).find("#poreleased_tr").hide();
 			$(document).find("#inprocurement").hide();
 		}
 
-		if (selected >= 50) {
+		if (selected >= 40) { // approved by director level
 			$(document).find("#daterelease").show();
 
 			$(document).find(".ocdate").hide();
+			$(document).find("#poreleased_tr").hide();
 			$(document).find("#inprocurement").hide();
 		}
 
-		if (selected >= 75) {
+		if (selected >= 60) { // for O'Cs signature
 			$(document).find("#daterelease").show();
 			$(document).find(".ocdate").show();
 
+			$(document).find("#poreleased_tr").hide();
 			$(document).find("#inprocurement").hide();
 		}
 
-		if (selected == 100) {
+		if (selected >= 80) { // for procurement 
+			$(document).find("#daterelease").show();
+			$(document).find(".ocdate").show();
+
+			$(document).find("#poreleased_tr").hide();
+			$(document).find("#inprocurement").show();
+		}
+
+		if (selected == 100) { // P.O. Released
 			$(document).find("#daterelease").show();
 			$(document).find(".ocdate").show();
 			$(document).find("#inprocurement").show();
+			$(document).find("#poreleased_tr").show();
 		}
-	});
-})
+}

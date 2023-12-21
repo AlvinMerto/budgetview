@@ -42,6 +42,56 @@ class BudgetviewController extends Controller
             $qtr     = "4th Quarter";
         }
 
+        array_map(function($a){
+
+            $lastupdate  = null;
+            $lastpoint   = null;
+            $currentdate = date("Y-m-d");
+
+            if ($a->daterelease != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterelease));
+                $lastpoint  = "Director's Office";
+            }
+
+            if ($a->daterecvbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
+                $lastpoint  = "Received by OC";
+            }
+
+            if ($a->datereleasedbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
+                $lastpoint  = "Released from OC";
+            }
+
+            if ($a->daterecvbyproc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
+                $lastpoint  = "Procurement";
+            }
+
+            if ($a->date_po != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->date_po));
+                $lastpoint  = "For P.O.";
+            }
+
+            $date1  = new \DateTime($lastupdate);
+            $date2  = new \DateTime($currentdate);
+
+            $interval             = $date1->diff($date2);
+            $maturity             = null;
+
+            if ($a->date_po != null) {
+                $maturity = $lastupdate;
+            } else {
+                $maturity = $interval->days;
+            }
+
+            $a->{"maturity"}      = $maturity . " days";
+            $a->{"lastpoint"}     = $lastpoint.": <strong> ".date("M. d, Y", strtotime($lastupdate))."</strong>";
+
+            return $a;
+        }, $activities);
+
+
         return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
 
@@ -50,9 +100,9 @@ class BudgetviewController extends Controller
     }
 
     function activities($divid = null) {
-        $activities  = $this->getactivities($divid);
+        $activities      = $this->getactivities($divid);
 
-        $new_act        = array_map(function($a){
+        $new_act         = array_map(function($a){
             //$obj         = new \stdClass();
 
             $lastupdate  = null;

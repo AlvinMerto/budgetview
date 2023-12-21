@@ -441,12 +441,32 @@
                                   echo "<td> {$a->activitytitle} </td>";
                                   echo "<td> {$a->dateofactivity} </td>";
                                   echo "<td> {$init_cost} </td>";
+
                                   echo "<td>";
-                                  echo "<div class='progress progress-xs progress-striped active'>
-                                          <div class='progress-bar bg-primary' style='width:{$a->status}%'></div>
-                                        </div>
-                                        <span class='badge bg-primary'>{$a->status}%</span>";
+
+                                  $thecolor = null;
+
+                                  switch($a->status) {
+                                    case "100": $thecolor = "bg-success"; break;
+                                    case "80": $thecolor  = "bg-primary"; break;
+                                    case "60": $thecolor  = "bg-info"; break;
+                                    case "40": $thecolor  = "bg-warning"; break;
+                                    case "20": $thecolor  = "bg-default"; break;
+                                    case "0": $thecolor   = "bg-danger"; break;
+                                  }
+                                  echo "
+                                    <div class='progress progress-xs progress-striped active'>
+                                      <div class='progress-bar {$thecolor}' style='width: {$a->status}%'></div>
+                                    </div>
+                                    <span class='badge {$thecolor}'>{$a->status}%</span>";
                                   echo "</td>";
+
+                                  // echo "<td>";
+                                  // echo "<div class='progress progress-xs progress-striped active'>
+                                  //         <div class='progress-bar bg-primary' style='width:{$a->status}%'></div>
+                                  //       </div>
+                                  //       <span class='badge bg-primary'>{$a->status}%</span>";
+                                  // echo "</td>";
 
                                   echo "<td> <a href='{$url}/{$a->activitygrpid}' target='_blank'/>View</a> </td>";
                                 echo "</tr>";
