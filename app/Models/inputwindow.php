@@ -12,7 +12,7 @@ class inputwindow extends Model
     protected $table      = "inputwindows";
     protected $fillable   = [
         "activitygrpid","activitytitle","initialcost","actualcost","dateofactivity",
-        "daterelease","daterecvbyoc","datereleasedbyoc","daterecvbyproc","status",
+        "daterelease","daterecvbyoc","datereleasedbyoc","daterecvbyproc","date_po","status",
         "division","created_at","updated_at"
     ];
 

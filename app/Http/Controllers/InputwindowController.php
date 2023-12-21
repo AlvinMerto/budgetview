@@ -191,6 +191,7 @@ class InputwindowController extends Controller
                          "daterecvbyoc"        => $daterecvdbyoc,
                          "datereleasedbyoc"    => $datereleasedbyoc,
                          "daterecvbyproc"      => $datercvdbyproc,
+                         "date_po"             => $date_po,
                          "status"              => $status,
                          "division"            => $division]
                     );

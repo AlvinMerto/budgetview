@@ -70,7 +70,7 @@ class BudgetviewController extends Controller
 
             if ($a->date_po != null) {
                 $lastupdate = date("Y-m-d", strtotime($a->date_po));
-                $lastpoint  = "For P.O.";
+                $lastpoint  = "P.O.";
             }
 
             $date1  = new \DateTime($lastupdate);
@@ -79,13 +79,17 @@ class BudgetviewController extends Controller
             $interval             = $date1->diff($date2);
             $maturity             = null;
 
-            if ($a->date_po != null) {
-                $maturity = $lastupdate;
+             if ($a->date_po != null) {
+                $po_last_date1 = new \DateTime($a->daterecvbyproc);
+                $po_last_date2 = new \DateTime($lastupdate);
+
+                $sec_interval  = $po_last_date1->diff($po_last_date2);
+                $maturity      = null;
             } else {
-                $maturity = $interval->days;
+                $maturity = $interval->days." days";
             }
 
-            $a->{"maturity"}      = $maturity . " days";
+            $a->{"maturity"}      = $maturity;
             $a->{"lastpoint"}     = $lastpoint.": <strong> ".date("M. d, Y", strtotime($lastupdate))."</strong>";
 
             return $a;
@@ -129,12 +133,28 @@ class BudgetviewController extends Controller
                 $lastpoint  = "Procurement";
             }
 
+            if ($a->date_po != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->date_po));
+                $lastpoint  = "P.O.";
+            }
+
             $date1  = new \DateTime($lastupdate);
             $date2  = new \DateTime($currentdate);
 
-            // $obj->{"maturity"} = $date1->diff($date2);
             $interval             = $date1->diff($date2);
-            $a->{"maturity"}      = $interval->days . " days";
+            $maturity             = null;
+
+            if ($a->date_po != null) {
+                // $po_last_date1 = new \DateTime($a->daterecvbyproc);
+                // $po_last_date2 = new \DateTime($lastupdate);
+
+                // $sec_interval  = $po_last_date1->diff($po_last_date2);
+                $maturity = null;
+            } else {
+                $maturity = $interval->days." days";
+            }
+            
+            $a->{"maturity"}      = $maturity;
             $a->{"lastpoint"}     = $lastpoint;
 
             return $a;

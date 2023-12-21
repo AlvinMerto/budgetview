@@ -141,6 +141,7 @@
                                 <th> OC date received </th>
                                 <th> OC date released </th>
                                 <th> Procurement date received </th>
+                                <th> P.O. Released </th>
                                 <th> Status </th>
                                 <th> Division </th>
                                 <!-- <th> Charge to </th> -->
@@ -157,10 +158,41 @@
                                           echo "<td> {$a->activitytitle} </td>";
                                           echo "<td>". number_format($a->initialcost,2)."</td>";
                                           echo "<td>". number_format($a->acost,2)."</td>";
-                                          echo "<td>". date("M. d, Y", strtotime($a->daterelease))."</td>";
-                                          echo "<td>". date("M. d, Y", strtotime($a->daterecvbyoc))."</td>";
-                                          echo "<td>". date("M. d, Y", strtotime($a->datereleasedbyoc))."</td>";
-                                          echo "<td>". date("M. d, Y", strtotime($a->daterecvbyproc))."</td>";
+                                          echo "<td>";
+                                            if ($a->daterelease == null) {
+                                              echo "no data";
+                                            } else {
+                                              echo date("M. d, Y", strtotime($a->daterelease));
+                                            }
+                                          echo "</td>";
+                                          echo "<td>";
+                                            if ($a->daterecvbyoc == null) {
+                                              echo "no data";
+                                            } else {
+                                              echo date("M. d, Y", strtotime($a->daterecvbyoc));
+                                            } 
+                                          echo "</td>";
+                                          echo "<td>";
+                                            if ($a->datereleasedbyoc == null) {
+                                              echo "no data";
+                                            } else {
+                                              echo date("M. d, Y", strtotime($a->datereleasedbyoc));
+                                            } 
+                                          echo "</td>";
+                                          echo "<td>";
+                                            if ($a->daterecvbyproc == null) {
+                                              echo "no data";
+                                            } else {
+                                              echo date("M. d, Y", strtotime($a->daterecvbyproc));
+                                            } 
+                                          echo "</td>";
+                                          echo "<td>";
+                                            if ($a->date_po == null) {
+                                              echo "no data";
+                                            } else {
+                                              echo date("M. d, Y", strtotime($a->date_po));
+                                            } 
+                                          echo "</td>";
                                           echo "<td>";
 
                                           $thecolor = null;
