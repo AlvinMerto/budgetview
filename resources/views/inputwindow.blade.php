@@ -116,7 +116,12 @@
 			          					$proc_rcvd    = null;
 			          					$po_rlsd      = null;
 
-			          					$sel_status = $details[0]->status; 
+			          					if (count($details) > 0) {
+			          						$sel_status   = $details[0]->status;
+			          					} else {
+			          						$sel_status   = "20";
+			          					}
+			          					 
 
 			          					if ($sel_status == "20") {
 			          						$ongoing = "selected";
@@ -307,7 +312,8 @@
 					          	
 	          				<table class="table">
 		          				<tr>
-				          			<td colspan='10'> Charging </td>
+				          			<td colspan=''> Charging </td>
+				          			<td style="float:right;"> <a href="<?php echo url('generateqr')."/".$grpid; ?>" target="_blank"> <i class="fa fa-download"></i> </a> </td>
 				          		</tr>
 			          		<tr> 
 			          			<td style="vertical-align: middle; text-align: right;"> Charge to </td>

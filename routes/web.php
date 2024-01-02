@@ -50,6 +50,11 @@ Route::post("/saveactivity",[InputwindowController::class,"saveactivity"])->name
 // Route::post("/updateactivity",[InputwindowController::class,"updateactivity"])->name("updateactivity");
 Route::post("/savecharging",[InputwindowController::class,"savecharging"])->name("savecharging");
 
+Route::get("/trackit/{actgrpid?}",[InputwindowController::class,"trackit"])->name('trackit');
+Route::post("/posttrackit",[InputwindowController::class,"posttrackit"])->name("posttrackit");
+
+Route::get("/generateqr/{actgrpid?}",[InputwindowController::class,"generateqr"])->name("generateqr");
+
 Route::middleware("auth")->group(function(){
     // windows
     Route::get("/budget", [BudgetviewController::class,"budgetviewwindow"])->name("budget");
@@ -77,4 +82,6 @@ Route::middleware("auth")->group(function(){
 
     Route::post("/getdivision_graph",[DivisionwindowController::class,"getdivision_graph"])->name("getdivision_graph");
 
+    Route::get("/generateqr/{actgrpid?}/{title?}", [InputwindowController::class,"generateqr"])->name("generateqr");
 });
+

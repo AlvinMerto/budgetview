@@ -8,6 +8,9 @@ use App\Models\chargingto;
 use App\Models\chargingtbl;
 use App\Models\loginControl;
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use Auth;
 use DB;
 
@@ -197,6 +200,8 @@ class InputwindowController extends Controller
                     );
 
         if ($save) {
+            // $this->generateqr($activitygrpid,$activitytitle);
+
             if (isset($_POST['savebtn_outside'])) {
                 return redirect("/charge/{$activitygrpid}");
             } 
@@ -204,5 +209,39 @@ class InputwindowController extends Controller
         }
 
         die("Error Saving");
+    }
+
+    function generateqr($code) {
+   
+        $url = url("trackit")."/".$code;
+
+        $pdf = Pdf::loadView("qrcode", compact("url"));
+
+        return $pdf->download("activitydesign.pdf");
+    }
+
+    function trackit($code) {
+
+        $collection = inputwindow::where("activitygrpid",$code)->get()->toArray();
+
+        if (count($collection) == 0) {
+            die("Activity design not found");
+            return;
+        }
+
+        return view("trackit", compact("code","collection"));
+    }
+
+    function posttrackit(Request $req) {
+        $code = $req->input("qid");
+        $fld  = $req->input("fld");
+
+        $datetoday = date("Y-m-d");
+
+        $updated = inputwindow::where("activitygrpid",$code)->update([$fld=>$datetoday]);
+
+        if ($updated) {
+            return redirect("trackit/{$code}")->with("msg","Document Received");
+        }
     }
 }
