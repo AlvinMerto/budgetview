@@ -280,14 +280,33 @@
                             <div class="d-flex">
                               <p class="d-flex flex-column">
                                 <!-- <span class="text-bold text-lg">820</span> -->
-                                <span>Remaining Budget</span>
+                                <span>Budget Utilization Rate</span>
                               </p>
                               <p class="ml-auto d-flex flex-column text-right">
                                 <span class="text-success text-bold text-lg">
-                                  <?php echo number_format($leftospend,2); ?> PHp
+                                  <?php 
+                                    $class = "text-success";
+                                    $arrow = "<i class='fas fa-arrow-up'></i>";
+
+                                    if ($bur <= 50) {
+                                      $class = "text-danger";
+                                      $arrow = "<i class='fas fa-arrow-down'></i>";
+                                    } else if ($bur >= 51 && $bur <=80) {
+                                      $class = "text-warning";
+                                       $arrow = null;
+                                    } else if ($bur >=81) {
+                                      $class = "text-success";
+                                       $arrow = "<i class='fas fa-arrow-up'></i>";
+                                    }
+                                  ?>
+                                  <span class="<?php echo $class; ?> text-bold text-lg">
+                                      <?php echo $arrow; ?>
+                                      <?php echo $bur; ?>%
+                                  </span>
+                                  <?php // echo number_format($leftospend,2); ?> 
                                   <!-- <i class="fas fa-arrow-up"></i> 12.5% -->
                                 </span>
-                                <!-- <span class="text-muted">This months expenditure</span> -->
+                                <span class="text-muted"> <?php echo $qtr; ?> </span>
                               </p>
                             </div>
                             <!-- /.d-flex -->

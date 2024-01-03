@@ -112,10 +112,32 @@ class DivisionwindowController extends Controller
             
         }
 
+        $qtr         = null;
+        $bur         = null;
+
+        if ($tab == "information") {
+            $bur         = ($spent/$actual)*100;
+            $bur         = number_format($bur,2);
+
+            $date        = date("l, M. d, Y");
+            $date_month  = date("m");
+            
+            
+            if ($date_month >= 1 && $date_month <= 3) {
+                $qtr     = "1st Quarter of ".date("Y");
+            } else if ($date_month >= 4 && $date_month <= 6) {
+                $qtr     = "2st Quarter of".date("Y");
+            } else if ($date_month >= 7 && $date_month <= 9) {
+                $qtr     = "3rd Quarter of".date("Y");
+            } else if ($date_month >= 10 && $date_month <= 12) {
+                $qtr     = "4th Quarter of".date("Y");
+            }
+        }
+        
         return view("divisionwindow", 
                         compact("budget","division","budgetlines", "displayright","tab", 
                                 "chargingid","spent","planned","actual","leftospend","year","selecteddiv",
-                                "activities","charges","inactivebudgetlines","budgetlinestatus","divisionid"));
+                                "activities","charges","inactivebudgetlines","budgetlinestatus","divisionid","bur","qtr"));
     }
 
     function getdivisionexpenditure($division_id) {
