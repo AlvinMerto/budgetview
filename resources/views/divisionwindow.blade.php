@@ -111,6 +111,7 @@
                   </form>
                 </div>
               </div>
+              <?php if ($chargingid != null) { ?>
               <div class="card">
                 <div class="card-header">
                   <h6 class="card-title"> Overall Division Budget </h6>
@@ -136,6 +137,7 @@
                   </ul>
                 </div>
               </div>
+              <?php } ?>
               <div class="card">
                 <div class="card-header">
                   <h6 class="card-title"> Active Budget Lines </h6>
@@ -143,9 +145,11 @@
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">
                     <?php
+                    $reset = false;
                       foreach($budgetlines as $b) {
-                        if ($tab == null) {
-                          $tab = "information";
+                        if ($tab == null || $tab == "division") {
+                          $tab   = "information";
+                          $reset = true;
                         }
 
                         $url = url("divisionwindow/{$b->chargingid}/{$tab}");
@@ -153,7 +157,7 @@
                         $style        = null;
                         
                         if ($b->chargingid == $chargingid) {
-                          if ($tab != "division") {
+                          if (!$reset) { // true
                             $selected             = "text-bold";
                             $selectedname         = $b->chargingname;
                             $selecteddivision     = "";
@@ -210,7 +214,7 @@
                 <div class="card-header pl-0">
                   <h3 class="card-title"> 
                     <?php
-                      if ($tab != "division") { 
+                      if (!$reset) { 
                         echo $selectedname; 
                       } else {
                         echo $divisionname;
@@ -226,7 +230,9 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <?php if($tab != "division"): ?>
+                  <?php 
+                    if (!$reset):
+                    // if($tab != "division"): ?>
                     <div class="pb-2 pt-2 pb-1 pl-0">
                       <?php 
                         $taburl = url("divisionwindow/{$chargingid}");
