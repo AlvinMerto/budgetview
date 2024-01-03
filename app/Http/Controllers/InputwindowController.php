@@ -238,7 +238,7 @@ class InputwindowController extends Controller
 
         $datetoday = date("Y-m-d");
 
-        $status    = ;20
+        $status    = 20;
         switch($fld) {
             case "daterelease":
                 $status = 40;
