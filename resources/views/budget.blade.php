@@ -142,7 +142,7 @@
               <div class="card-body pt-0">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg"> Budget Utilization </span>
+                    <span class="text-bold text-lg"> Budget Utilization Rate</span>
                     <span> &nbsp; </span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">

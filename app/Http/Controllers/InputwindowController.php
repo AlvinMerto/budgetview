@@ -238,7 +238,26 @@ class InputwindowController extends Controller
 
         $datetoday = date("Y-m-d");
 
-        $updated = inputwindow::where("activitygrpid",$code)->update([$fld=>$datetoday]);
+        $status    = ;20
+        switch($fld) {
+            case "daterelease":
+                $status = 40;
+                break;
+            case "daterecvbyoc":
+                $status = 60;
+                break;
+            case "datereleasedbyoc":
+                $status = 80;
+                break;
+            case "daterecvbyproc":
+                $status = 80;
+                break;
+            case "date_po":
+                $status = 100;
+                break;
+        }
+
+        $updated = inputwindow::where("activitygrpid",$code)->update([$fld=>$datetoday, "status" => $status]);
 
         if ($updated) {
             return redirect("trackit/{$code}")->with("msg","Document Received");

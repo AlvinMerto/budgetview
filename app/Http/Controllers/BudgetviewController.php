@@ -26,20 +26,20 @@ class BudgetviewController extends Controller
         $lefttospend = $actual-$spent;
 
         $bur         = ($spent/$actual)*100;
-        $bur         = $bur;
+        $bur         = number_format($bur,2);
 
         $date        = date("l, M. d, Y");
         $date_month  = date("m");
         $qtr         = null;
         
         if ($date_month >= 1 && $date_month <= 3) {
-            $qtr     = "1st Quarter";
+            $qtr     = "1st Quarter of ".date("Y");
         } else if ($date_month >= 4 && $date_month <= 6) {
-            $qtr     = "2st Quarter";
+            $qtr     = "2st Quarter of".date("Y");
         } else if ($date_month >= 7 && $date_month <= 9) {
-            $qtr     = "3rd Quarter";
+            $qtr     = "3rd Quarter of".date("Y");
         } else if ($date_month >= 10 && $date_month <= 12) {
-            $qtr     = "4th Quarter";
+            $qtr     = "4th Quarter of".date("Y");
         }
 
         array_map(function($a){
