@@ -127,6 +127,14 @@
                   <p>Activity Design</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Budget Line</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{route('inputwindow')}}" class="nav-link <?php echo $inputwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
@@ -134,12 +142,6 @@
                 </a>
               </li>
               
-              <li class="nav-item">
-                <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Budget Line</p>
-                </a>
-              </li>
             </ul>
           </li>
           <?php } ?>
