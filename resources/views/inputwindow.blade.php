@@ -335,10 +335,15 @@
 			          			<td>
 			          				<select class="form-control pb-2" id="whattocharge" name="chargewhat">
 			          					  <option> --- </option>
-				              			<option value="1"> Entire Activity </option>
+			          					  <?php
+			          					  	foreach($chargetype as $ct) {
+			          					  		echo "<option value='{$ct->chargetypeid}'> {$ct->chargename} </option>";
+			          					  	}
+			          					  ?>
+				              			<!-- <option value="1"> Entire Activity </option>
 				              			<option value="2"> Remaining Activity </option>
 				              			<option value="3"> Travel </option>
-				              			<option value="4"> Food </option>
+				              			<option value="4"> Food </option> -->
 				              		</select>
 			          			</td>
 			          		</tr>

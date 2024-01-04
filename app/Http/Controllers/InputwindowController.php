@@ -7,6 +7,7 @@ use App\Models\inputwindow;
 use App\Models\chargingto;
 use App\Models\chargingtbl;
 use App\Models\loginControl;
+use App\Models\chargetype;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -36,7 +37,9 @@ class InputwindowController extends Controller
         $division = loginControl::join("divisiontbls","login_controls.divisionid","=","divisiontbls.divisionid")
                                   ->where("login_controls.userid",$id)->get();
 
-        return view("inputwindow", compact("details","grpid","charging","chargingtables","division"));
+        $chargetype = chargetype::all();
+
+        return view("inputwindow", compact("details","grpid","charging","chargingtables","division","chargetype"));
     }
 
     function getcharging() {

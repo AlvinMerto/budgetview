@@ -83,11 +83,15 @@
                   <h6> Division </h6>
                 </div>
                 <div class="card-body">
-                  <ul class="nav nav-pills flex-column">
+                  <ul class="nav nav-pills flex-row">
                     <li class="nav-item"> 
-                      <?php 
-
-                      ?>
+                      <a> hello </a>
+                    </li>
+                    <li class="nav-item"> 
+                      <a> hello </a>
+                    </li>
+                    <li class="nav-item"> 
+                      <a> hello </a>
                     </li>
                   </ul>
                 </div>
@@ -96,15 +100,16 @@
 
               <div class="col-lg-12">
               	<div class="card">
-              	 <!-- <div class="card-header"> -->
+              	  <div class="card-header">
                     <!-- <h1 class="card-title"> Activity Designs </h1> -->
-                    <!-- <span> &nbsp; </span><span> &nbsp; </span><span> &nbsp; </span><span> &nbsp; </span>
-                    <a href="" class="card-link"/>KMD</a>
-                    <a href="" class="card-link"/>PFD</a>
-                    <a href="" class="card-link"/>PRD</a>
-                    <a href="" class="card-link"/>PDD</a> -->
-
-                   <!--  <div class="card-tools">
+                    
+                    <div class="card-tools" style="float:left;">
+                      <a href="" class="card-link"/>1st Quarter</a>
+                      <a href="" class="card-link"/>2nd Quarter</a>
+                      <a href="" class="card-link"/>3rd Quarter</a>
+                      <a href="" class="card-link"/>4th Quarter</a>
+                    </div>
+                    <!-- <div class="card-tools">
                       <a href="#" class="btn btn-tool btn-sm">
                         <i class="fas fa-download"></i>
                       </a>
@@ -112,7 +117,7 @@
                         <i class="fas fa-bars"></i>
                       </a>
                     </div> -->
-                 <!-- </div>	 -->
+                 </div>	
                  <div class="card-content">
                   <div class="row">
           

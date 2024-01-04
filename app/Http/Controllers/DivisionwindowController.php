@@ -104,6 +104,11 @@ class DivisionwindowController extends Controller
                         $charges      = $this->getcharges($chargingid);
 
                         break;
+                    case 'projects':
+                        $displayright = "projects";
+                        $charges      = $this->getcharges($chargingid);
+                        
+                        break;
                     default:
                         die("Do not know what you are looking for");
                         break;
@@ -133,7 +138,7 @@ class DivisionwindowController extends Controller
                 $qtr     = "4th Quarter of".date("Y");
             }
         }
-        
+
         return view("divisionwindow", 
                         compact("budget","division","budgetlines", "displayright","tab", 
                                 "chargingid","spent","planned","actual","leftospend","year","selecteddiv",

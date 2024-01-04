@@ -239,15 +239,18 @@
                         $b_info = null;
                         $b_acti = null;
                         $b_char = null;
+                        $p_char = null;
 
                         if ($tab == "information") { $b_info = "text-bold active"; }
                         elseif ($tab == "activities") { $b_acti = "text-bold active"; }
                         elseif ($tab == "charging") { $b_char = "text-bold active"; }
+                        elseif ($tab == "projects") { $p_char = "text-bold active"; }
                       ?>
 
                       <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link <?php echo $b_info; ?>" href="<?php echo $taburl; ?>/information">Information</a></li>
                         <li class="nav-item"><a class="nav-link <?php echo $b_acti; ?>" href="<?php echo $taburl; ?>/activities" >Activities</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link <?php echo $p_char; ?>" href="<?php echo $taburl; ?>/projects">Projects</a></li> -->
                         <li class="nav-item"><a class="nav-link <?php echo $b_char; ?>" href="<?php echo $taburl; ?>/charging">Charges</a></li>
                       </ul>
                     </div>
@@ -526,6 +529,87 @@
                           </table>
                       </div>
                     </div>
+                  <?php endif; ?>
+
+                  <?php if ($displayright == "projects"): ?>
+                    <!-- <div class="p-0">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="card collapsed-card">
+                              <div class="card-header">
+                                <h6 class='card-title'> Create Project </h6>
+                                <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body">
+                                <div class="p-0">
+                                  <div class="form-group">
+                                    <label> Project Name </label> 
+                                    <input type='text' class="form-control"/>
+                                  </div>
+                                  <div class="form-group">
+                                    <label> Budget </label>
+                                    <input type='text' class="form-control"/>
+                                  </div>
+                                  <div class="form-group">
+                                    <label> Status </label>
+                                    <select class="form-control">
+                                      <option> Active </option>
+                                      <option> Inactive </option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group mb-0">
+                                    <button class="btn btn-primary"> Save Project </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="card">
+                              <div class="card-header">
+                                <h6 class='card-title'> Project Information </h6>
+                                <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="card-body p-0">
+                                  <table class="table"> 
+                                    <tr>
+                                      <th> Actual Budget </th>
+                                      <td> 12,509,512.00</td>
+                                    </tr>
+                                    <tr>
+                                      <th> Remaining Budget </th>
+                                      <td> 12,509,512.00</td>
+                                    </tr>
+                                    <tr>
+                                      <th> Spent Budget </th>
+                                      <td> 12,509,512.00</td>
+                                    </tr>
+                                  </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="card">
+                              <div class="card-header">
+                                <h6 class='card-title'> Projects </h6>
+                              </div>
+                              <div class="card-content">
+                                  <ul class="nav nav-pills flex-column">
+                                    <li class="nav-item"> <a class='nav-link'> MindaWater </a> </li>
+                                    <li class="nav-item"> <a class='nav-link'> MindaNow </a> </li>
+                                  </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div> -->
                   <?php endif; ?>
 
                   <?php if ($displayright == "division") { ?>
