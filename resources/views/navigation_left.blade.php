@@ -110,7 +110,7 @@
             </li>
           <?php } ?>
           
-          <?php if ($accounttype == "1" || $accounttype == "3") { ?>
+          <?php if ($accounttype == "1" || $accounttype == "3" || $accounttype == "2") { ?>
           <li class="nav-header">BOARDS</li>
           <li class="nav-item <?php echo $menuopen; ?>">
             <a href="#" class="nav-link <?php echo $menu_href; ?>">
@@ -121,13 +121,15 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if ($accounttype == "1" || $accounttype == "3") { ?>
               <li class="nav-item">
                 <a href="{{route('allactivities')}}" class="nav-link <?php echo $allactivity; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Activity Design</p>
                 </a>
               </li>
-
+              <?php } ?>
+              
               <li class="nav-item">
                 <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
@@ -135,19 +137,23 @@
                 </a>
               </li>
 
+              <?php if ($accounttype == "1" || $accounttype == "3") { ?>
               <li class="nav-item">
                 <a href="{{route('inputwindow')}}" class="nav-link <?php echo $inputwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enter Activity Design</p>
                 </a>
               </li>
-              
+              <?php } ?>
             </ul>
           </li>
           <?php } ?>
-<!--           <li>
-            <p> Sign out </p>
-          </li> -->
+          <li>
+            <a href="{{route('logout')}}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+             <p> Sign out </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -55,7 +55,7 @@
 	          			<input type='hidden' name="activitygrpid" value="<?php echo $grpid; ?>"/>
 			          	<table class="table m-0">
 			          		<tr>
-			          			<td colspan="10"> Activity Information </td>
+			          			<td colspan="10"> <h6 class="card-title"> Activity Information </h6> </td>
 			          		</tr>
 			          		<tr> 
 			          			<td style="vertical-align: middle; text-align: right;"> <h6> Activity Title </h6> </td>
@@ -312,7 +312,7 @@
 					          	
 	          				<table class="table">
 		          				<tr>
-				          			<td colspan=''> Charging </td>
+				          			<td colspan=''> <h6 class="card-title"> Charging </h6> </td>
 				          			<td style="float:right;"> <a href="<?php echo url('generateqr')."/".$grpid; ?>" target="_blank"> <i class="fa fa-download"></i> </a> </td>
 				          		</tr>
 			          		<tr> 
@@ -328,6 +328,16 @@
 				         					<option value="4"> KMD </option>
 				         					<option value="5"> MRB-NEXUS </option> -->
 				         				</select>
+			          			</td>
+			          		</tr>
+			          		<tr> 
+			          			<td style="vertical-align: middle; text-align: right;"> Mother Activity Design </td>
+			          			<td> 
+			          				<select class="form-control">
+			          					<option> Lorem Ipsum Dolor Set amit </option>
+			          					<option> Consectitur Adelpiscing </option>
+			          					<option> Test Test Test </option>
+			          				</select>
 			          			</td>
 			          		</tr>
 			          		<tr> 
