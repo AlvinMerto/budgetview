@@ -80,7 +80,7 @@ $(function () {
   // - PIE CHART -
   //-------------
   // Get context with jQuery - using jQuery's .get() method.
-  var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieChartCanvas = $('#leave-distribution').get(0).getContext('2d')
   var pieData = {
     labels: [
       'Chrome',

@@ -14,6 +14,8 @@ $(function () {
     //Money Euro
     $('[data-mask]').inputmask()
 
+   //  $('.singledate').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
     //Date picker
     $('#reservationdate').datetimepicker({
         format: 'L'
@@ -33,6 +35,10 @@ $(function () {
 
     //Date and time picker
     $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+
+    // date range
+    $(".daterange").daterangepicker();
 
     //Date range picker
     $('#dateofactivity').daterangepicker()

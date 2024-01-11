@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('motheractivitydesigns', function (Blueprint $table) {
+        Schema::create('apply_ps', function (Blueprint $table) {
             $table->id();
-            $table->string("motheractivitytitle");
-            $table->string('activityid');
-            $table->string("initialbudget");
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('motheractivitydesigns');
+        Schema::dropIfExists('apply_ps');
     }
 };

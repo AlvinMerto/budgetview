@@ -75,9 +75,45 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
+          <li class="nav-header">LEAVE ADMINISTRATION</li>
+          <li class="nav-item">
+            <a href="{{route('monitoring')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p> Leave Monitoring </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('applyleave')}}" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                Leave Cabinet
+              </p>
+            </a>
+            <!-- <ul class="nav nav-treeview">
+              
+              <li class="nav-item"> 
+                <a href="{{route('applyleave')}}" class="nav-link"> 
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Apply for Leave </p>
+                </a>
+              </li>
+              <li class="nav-item"> 
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Apply for Pass Slip </p>
+                </a>
+              </li>
+              <li class="nav-item"> 
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Apply for OB </p>
+                </a>
+              </li>
+            </ul> -->
+          </li>
+          
           <?php //if ($accounttype == "2" || $accounttype == "1") { ?>
-          <li class="nav-header">Office Admin</li>
+          <li class="nav-header">OFFICE ADMIN</li>
           <li class="nav-item">
             <a href="{{route('budget')}}" class="nav-link <?php echo $budget; ?>">
               <i class="nav-icon fas fa-calendar-alt"></i>
@@ -129,7 +165,7 @@
                 </a>
               </li>
               <?php } ?>
-              
+
               <li class="nav-item">
                 <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>

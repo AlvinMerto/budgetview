@@ -7,6 +7,7 @@ use App\Http\Controllers\InputwindowController;
 use App\Http\Controllers\LoginControlController;
 use App\Http\Controllers\DivisionwindowController;
 use App\Http\Controllers\AdminwindowController;
+use App\Http\Controllers\ApplyLeaveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +84,14 @@ Route::middleware("auth")->group(function(){
     Route::post("/getdivision_graph",[DivisionwindowController::class,"getdivision_graph"])->name("getdivision_graph");
 
     Route::get("/generateqr/{actgrpid?}/{title?}", [InputwindowController::class,"generateqr"])->name("generateqr");
+
+    // leave applications
+        Route::get("/leave/{leaveid?}", [ApplyLeaveController::class,"applyleave"])->name("applyleave");
+        Route::get("/leaveapplication",[ApplyLeaveController::class,"leaveapplication"])->name("leaveapplication");
+
+        Route::post("/postsaveleave",[ApplyLeaveController::class,"postsaveleave"])->name("postsaveleave");
+
+        Route::get("/monitoring",[ApplyLeaveController::class,"monitoring"])->name("monitoring");
+    // end 
 });
 

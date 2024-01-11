@@ -12,9 +12,12 @@
 <div class="wrapper">
 
   <!-- Preloader -->
+    @include("navigation_top")
 
+  	@include("navigation_left")
 
-    <div class="" style="width:80%;margin:auto;">
+  <div class="content-wrapper">
+    <div class="">
     <!-- Content Header (Page header) -->
 	    <div class="content-header">
 	      <div class="container-fluid">
@@ -227,8 +230,9 @@
        	</div>
 	    </div>
 	  </div>
+	</div>
 
 </div>
-
+@include("scripts.footscripts")
 </body>
 </html>

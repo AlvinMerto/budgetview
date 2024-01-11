@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('motheractivitydesigns', function (Blueprint $table) {
+        Schema::create('apply_leaves', function (Blueprint $table) {
             $table->id();
-            $table->string("motheractivitytitle");
-            $table->string('activityid');
-            $table->string("initialbudget");
+            $table->integer("userid");
+            $table->string("grpid");
+            $table->string("dates");
+            $table->integer("typeofleave");
+            $table->text("reason")->nullable();
+            $table->enum("status",["approved","disapproved"]);
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('motheractivitydesigns');
+        Schema::dropIfExists('apply_leaves');
     }
 };
