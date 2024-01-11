@@ -95,8 +95,9 @@
 			        		<div class="card-footer">
 			        			<?php if (!$update) { ?>
 				        			<button class="btn btn-primary" id="applyforleave"> Apply for Leave </button>
+				        		<?php } else {?>
+				        			<p class="btn btn-default mb-0"> Download the File </p>
 				        		<?php } ?>
-				        		<p class="btn btn-default mb-0"> Download the File </p>
 				        	</div>
 				        </form>
 		        	</div>

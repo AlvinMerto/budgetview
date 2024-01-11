@@ -304,6 +304,11 @@ class DivisionwindowController extends Controller
         $chargeid   = $save->chargingid;
 
         // add to budgetview 
+
+        $plannedamount  = str_replace(",","",$plannedamount);
+        $actualamount   = str_replace(",","",$actualamount);
+      //  $plannedamount  = str_replace(",","",$plannedamount);
+
         $collection     = [
             "divid"         => $chargeid,
             "planned"       => $plannedamount,

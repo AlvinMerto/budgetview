@@ -71,23 +71,23 @@
 	        						<option> 2023 </option>
 	        					</select>
 	        				</div>
-	        				<div class="card-body">
+	        				<div class="card-body pl-0 pr-0">
 	        					<table class="table monitoringtable">
 	        						<thead>
 	        							<tr>
 		        							<th> Employee Name </th>
-		        							<th colspan="4"> Jan </th>
-		        							<th colspan="4"> Feb </th>
-		        							<th colspan="4"> Mar </th>
-		        							<th colspan="4"> Apr </th>
-		        							<th colspan="4"> May </th>
-		        							<th colspan="4"> Jun </th>
-		        							<th colspan="4"> Jul </th>
-		        							<th colspan="4"> Aug </th>
-		        							<th colspan="4"> Sep </th>
-		        							<th colspan="4"> Oct </th>
-		        							<th colspan="4"> Nov </th>
-		        							<th colspan="4"> Dec </th>
+		        							<th colspan="5"> Jan </th>
+		        							<th colspan="5"> Feb </th>
+		        							<th colspan="5"> Mar </th>
+		        							<th colspan="5"> Apr </th>
+		        							<th colspan="5"> May </th>
+		        							<th colspan="5"> Jun </th>
+		        							<th colspan="5"> Jul </th>
+		        							<th colspan="5"> Aug </th>
+		        							<th colspan="5"> Sep </th>
+		        							<th colspan="5"> Oct </th>
+		        							<th colspan="5"> Nov </th>
+		        							<th colspan="5"> Dec </th>
 	        							</tr>
 	        							<tr>
 	        								<th> &nbsp; </th>
@@ -96,139 +96,119 @@
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th class="right-border"> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
 	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> Other Leave </th>
 	        							</tr>
 	        						</thead>
 	        						<tbody>
 	        							<?php
-	        								foreach($months as $ms) {
+	        								$ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	        								foreach($months as $key => $m) {
 	        									echo "<tr>";
-	        										foreach($ms as $m) {
-	        											echo "<td>";
-	        												echo $m;
-	        											echo "</td>";
+	        										echo "<td>";
+	        											echo $m['name'];
+	        										echo "</td>";
+	        										foreach($ms as $mm) {
+	        											if (isset($m[$mm])) {
+	        												echo "<td>";
+		        												if (isset($m[$mm]['sleave'])) {
+				        											echo $m[$mm]['sleave'];
+			        											}
+		        											echo "</td>";
+
+		        											echo "<td>";
+			        											if (isset($m[$mm]['vleave'])) {
+				        											echo $m[$mm]['vleave'];
+			        											}
+		        											echo "</td>";
+
+		        											echo "<td>";
+			        											if (isset($m[$mm]['psperson'])) {
+				        											echo $m[$mm]['psperson'];
+			        											}
+		        											echo "</td>";
+
+		        											echo "<td>";
+			        											if (isset($m[$mm]['psoffic'])) {
+				        											echo $m[$mm]['psoffic'];
+			        											}
+		        											echo "</td>";
+
+		        											echo "<td>";
+			        											if (isset($m[$mm]['oleave'])) {
+				        											echo $m[$mm]['oleave'];
+			        											}
+		        											echo "</td>";
+	        											}
 	        										}
 	        									echo "</tr>";
 	        								}
 	        							?>
-	        							<!-- <tr>
-	        								<td> Alvin Merto </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        								<td> 1 </td>
-	        								<td> 26 </td>
-	        								<td> 68 </td>
-	        								<td> 73 </td>
-
-	        							</tr> -->
 	        						</tbody>
 	        					</table>
 	        				</div>
@@ -240,76 +220,65 @@
 	        	</div>
 	        	<div class="row">
 	        		<div class="col-md-6">
-	        			<div class="card-body pt-0">
-	                <div class="d-flex">
-	                  <p class="d-flex flex-column">
-	                    <span class="text-bold text-lg"> Leave distribution </span>
-	                    <span> &nbsp; </span>
-	                  </p>
-	                  <!-- <p class="ml-auto d-flex flex-column text-right">
-	                    <span class="text-bold text-lg">
-	                        65%
-	                    </span>
-	                    <span class="text-muted"> <small> as of &nbsp; </small> 1st quarter </span>
-	                  </p> -->
-	                </div>
-                <!-- /.d-flex -->
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<div class="d-flex">
+		                  <p class="d-flex flex-column mb-0">
+		                    <span class="text-bold text-lg"> Leave distribution </span>
+		                  </p>
+		                </div>
+	        				</div>
+		        			<div class="card-body pt-0">
+		               
+		                <div class="position-relative mt-3">
+		                  <canvas id="leave-distribution" height="200"></canvas>
+		                </div>
 
-	                <div class="position-relative mb-4">
-	                  <!-- <canvas id="visitors-chart" height="200"></canvas> -->
-	                  <canvas id="leave-distribution" height="200"></canvas>
-	                </div>
-
-	                <div class="d-flex flex-row justify-content-end">
-	                  <span class="mr-2">
-	                    &nbsp;
-	                    <!-- <i class="fas fa-square text-primary"></i> Utilization -->
-	                  </span>
-	                </div>
+	              	</div>
               	</div>
 	        		</div>
 	        		<div class="col-md-6">
-	        			<div class="card-body pt-0">
-	                <div class="d-flex">
-	                  <p class="d-flex flex-column">
-	                    <span class="text-bold text-lg"> Employees with most 
-		                    <select class="form-control">
-		                    	<option> Vacation Leave </option>
-		                    	<option> Sick Leave </option>
-		                    	<option> PS: Official </option>
-		                    	<option> PS: Personal </option>
-		                    </select>
-	                    </span>
-	                  </p>
-	                </div>
-                <!-- /.d-flex -->
+	        			<div class="card">
+	        				<div class="card-header">
+	        					<div class="d-flex">
+		                  <p class="d-flex flex-column mb-0">
+		                    <span class="text-bold text-lg"> Employees with most 
+			                    <select class="form-control">
+			                    	<option> Vacation Leave </option>
+			                    	<option> Sick Leave </option>
+			                    	<option> PS: Official </option>
+			                    	<option> PS: Personal </option>
+			                    </select>
+		                    </span>
+		                  </p>
+		                </div>
+	        				</div>
+		        			<div class="card-body pt-0">
+		                <div class="position-relative mb-4">
+		                  <table class="table">
+		                  	<thead>
+		                  		<th> Name </th>
+		                  		<th> Count </th>
+		                  	</thead>
+		                  	<tbody>
+		                  		<tbody>
+		                  			<tr>
+		                  				<td> Alvin Merto </td>
+		                  				<td> 2 </td>
+		                  			</tr>
+		                  		</tbody>
+		                  	</tbody>
+		                  </table>
+		                </div>
 
-	                <div class="position-relative mb-4">
-	                  <!-- <canvas id="visitors-chart" height="200"></canvas> -->
-	                  <!-- <canvas id="leave-distribution" height="200"></canvas> -->
-	                  <table class="table">
-	                  	<thead>
-	                  		<th> Name </th>
-	                  		<th> Count </th>
-	                  	</thead>
-	                  	<tbody>
-	                  		<tbody>
-	                  			<tr>
-	                  				<td> Alvin Merto </td>
-	                  				<td> 2 </td>
-	                  			</tr>
-	                  		</tbody>
-	                  	</tbody>
-	                  </table>
-	                </div>
-
-	                <div class="d-flex flex-row justify-content-end">
-	                  <span class="mr-2">
-	                    &nbsp;
-	                    <!-- <i class="fas fa-square text-primary"></i> Utilization -->
-	                  </span>
-	                </div>
-              	</div>
+		                <div class="d-flex flex-row justify-content-end">
+		                  <span class="mr-2">
+		                    &nbsp;
+		                    <!-- <i class="fas fa-square text-primary"></i> Utilization -->
+		                  </span>
+		                </div>
+	              	</div>
+	              </div>
 	        		</div>
 	        	</div>
 	        </div>

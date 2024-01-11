@@ -170,17 +170,11 @@
                 </div>
                 <!-- /.d-flex -->
 
-                <div class="position-relative mb-4">
+                <div class="position-relative mb-0">
                   <!-- <canvas id="visitors-chart" height="200"></canvas> -->
                   <canvas id="office-budget-chart" height="200"></canvas>
                 </div>
 
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    &nbsp;
-                    <!-- <i class="fas fa-square text-primary"></i> Utilization -->
-                  </span>
-                </div>
               </div>
             </div>
             <!-- /.card -->

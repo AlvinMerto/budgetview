@@ -80,112 +80,126 @@ class ApplyLeaveController extends Controller
     function monitoring() {
         $data = ApplyLeave::whereYear("dates","2024")->get();
 
-        // $months = [
-        //     "Jan" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Feb" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Mar" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Apr" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "May" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Jun" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Jul" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Aug" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Sep" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Oct" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Nov" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ],
-        //     "Dec" => [
-        //             "vleave"    => 0,
-        //             "sleave"    => 0,
-        //             "oleave"    => 0,
-        //             "psperson"  => 0,
-        //             "psoffic"   => 0
-        //         ]
-        // ];
+        $months   = [];
+        $vleave   = 0;
+        $sleave   = 0;
+        $psperson = 0;
+        $psoffic  = 0;
+        $oleave   = 0;
 
-        $months = [];
-        $plus   = 0;
         foreach($data as $d) {
+            $months = [$d->userid => 
+                        ["Jan" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Feb" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Mar" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Apr" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["May" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Jun" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Jul" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Aug" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Sep" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Oct" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Nov" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["Dec" => [
+                            'vleave'   => null,
+                            'sleave'   => null,
+                            'psperson' => null,
+                            'psoffic'  => null,
+                            'oleave'   => null]
+                        ],
+                        ["name" => $d->thename->name]
+                      ];
+                      
             if ($d->typeofleave == 1) {
-                $months = [$d->userid => [date("M") => ['vleave' => $plus]]];
+                $vleave += 1;
+                $months[$d->userid][date("M", strtotime($d->dates))]['vleave'] = $vleave;
             } else if ($d->typeofleave == 3) {
-                $months = [$d->userid => [date("M") => ['sleave' => $plus]]];
-                // $months[$d->userid][date("M")]['sleave'] += 1;
+                $sleave += 1;
+                $months[$d->userid][date("M", strtotime($d->dates))]['sleave'] = $sleave;
             } else if ($d->typeofleave == 14) {
-                $months = [$d->userid => [date("M") => ['psperson' => $plus]]];
-                // $months[$d->userid][date("M")]['psperson'] += 1;
+                $psperson += 1;
+                $months[$d->userid][date("M", strtotime($d->dates))]['psperson'] = $psperson;
             } else if ($d->typeofleave == 15) {
-                $months = [$d->userid => [date("M") => ['psoffic' => $plus]]];
-                // $months[$d->userid][date("M")]['psoffic'] += 1;
+                $psoffic += 1;
+                $months[$d->userid][date("M", strtotime($d->dates))]['psoffic'] = $psoffic;
             } else {
-                $months = [$d->userid => [date("M") => ['oleave' => $plus]]];
-                // $months[$d->userid][date("M")]['oleave'] += 1;
+                $oleave += 1;
+                $months[$d->userid][date("M", strtotime($d->dates))]['oleave'] = $oleave;
             }
+
+           //  array_push($months[$d->userid], ["name" => $d->thename->name]);
+
         }
+
+         var_dump($months);
+
+        // echo $months[11]['name']; 
         // return view("leavedashboard",compact("months"));
     }
 }
