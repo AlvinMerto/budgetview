@@ -42,6 +42,7 @@
         $allactivity    = null;
         $menuopen       = null;
         $menu_href      = null;
+        $charges        = null;
 
         $uri    = explode("/",Request::url())[3];
         switch($uri) {
@@ -66,6 +67,11 @@
             break;
           case "allactivities":
             $allactivity = "active";
+            $menuopen    = "menu-open";
+            $menu_href   = "active";
+            break;
+          case "charge":
+            $charges     = "active";
             $menuopen    = "menu-open";
             $menu_href   = "active";
             break;
@@ -170,6 +176,13 @@
                 <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Budget Line</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('charge')}}" class="nav-link <?php echo $charges; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Charges</p>
                 </a>
               </li>
 
