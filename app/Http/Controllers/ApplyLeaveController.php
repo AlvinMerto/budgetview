@@ -39,7 +39,10 @@ class ApplyLeaveController extends Controller
             $d = json_encode($dates);
         }
 
-        return view("leave", compact("leave","leaveid","update","d","dates"));
+        $ownername = Auth::user()->name;
+        $ownerid   = Auth::user()->id;
+
+        return view("leave", compact("leave","leaveid","update","d","dates","ownername","ownerid"));
     }
 
     function postsaveleave(Request $req) {

@@ -45,8 +45,8 @@
 			        		<div class="card-body">
 					        	<div class="form-group">
 				        			<label> Name: </label>
-				        			<p> <?php echo $leave[0]->thename->name; ?> </p>
-				        			<input type='hidden' value="<?php echo $leave[0]->userid; ?>" name="userid"/>
+				        			<p> <?php echo $ownername; ?> </p>
+				        			<input type='hidden' value="<?php echo $ownerid; ?>" name="userid"/>
 					        	</div>
 				        		<div class="form-group">
 				        			<label> Dates </label>
