@@ -261,8 +261,8 @@
 		                  	  <select class="form-control" id='typeofleave'>
 			                    	<option value='1'> Vacation Leave </option>
 			                    	<option value='3'> Sick Leave </option>
-			                    	<option value='14'> PS: Official </option>
-			                    	<option value='15'> PS: Personal </option>
+			                    	<option value='14'> PS: Personal </option>
+			                    	<option value='15'> PS: Official </option>
 			                    </select>
 		                  </p>
 		                </div>
