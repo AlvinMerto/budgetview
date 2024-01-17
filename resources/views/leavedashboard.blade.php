@@ -107,74 +107,74 @@
 
 	        								<th class="left-border"> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th class="right-border"> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 
 	        								<th> Sick </th>
 	        								<th> Vacation </th>
-	        								<th> PS: Official </th>
 	        								<th> PS: Personal </th>
+	        								<th> PS: Official </th>
 	        								<th> Other Leave </th>
 	        							</tr>
 	        						</thead>
