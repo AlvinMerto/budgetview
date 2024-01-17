@@ -8,6 +8,7 @@ use App\Models\User;
 
 use Auth;
 use Response;
+use DB;
 
 class ApplyLeaveController extends Controller
 {
@@ -77,129 +78,112 @@ class ApplyLeaveController extends Controller
         // return view("leaveapplication");
     }
 
-    function monitoring() {
-        $data = ApplyLeave::whereYear("dates","2024")->get();
-
-        $months   = [];
-        $vleave   = 0;
-        $sleave   = 0;
-        $psperson = 0;
-        $psoffic  = 0;
-        $oleave   = 0;
-
-        foreach($data as $d) {
-            $months = [$d->userid => 
-                        ["Jan" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Feb" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Mar" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Apr" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["May" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Jun" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Jul" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Aug" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Sep" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Oct" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Nov" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["Dec" => [
-                            'vleave'   => null,
-                            'sleave'   => null,
-                            'psperson' => null,
-                            'psoffic'  => null,
-                            'oleave'   => null]
-                        ],
-                        ["name" => $d->thename->name]
-                      ];
-                      
-            if ($d->typeofleave == 1) {
-                $vleave += 1;
-                $months[$d->userid][date("M", strtotime($d->dates))]['vleave'] = $vleave;
-            } else if ($d->typeofleave == 3) {
-                $sleave += 1;
-                $months[$d->userid][date("M", strtotime($d->dates))]['sleave'] = $sleave;
-            } else if ($d->typeofleave == 14) {
-                $psperson += 1;
-                $months[$d->userid][date("M", strtotime($d->dates))]['psperson'] = $psperson;
-            } else if ($d->typeofleave == 15) {
-                $psoffic += 1;
-                $months[$d->userid][date("M", strtotime($d->dates))]['psoffic'] = $psoffic;
-            } else {
-                $oleave += 1;
-                $months[$d->userid][date("M", strtotime($d->dates))]['oleave'] = $oleave;
-            }
-
-           //  array_push($months[$d->userid], ["name" => $d->thename->name]);
-
+    function monitoring($year) {
+        if ($year == null || strlen($year) == 0) {
+            die("Please specify the year");
         }
 
-         var_dump($months);
+        $data  = ApplyLeave::whereYear("dates",$year)->get();
+        $users = user::get();
 
-        // echo $months[11]['name']; 
-        // return view("leavedashboard",compact("months"));
+        $months   = [];
+        $names    = [];
+
+        foreach($users as $u) {
+            $vleave   = 0;
+            $sleave   = 0;
+            $psperson = 0;
+            $psoffic  = 0;
+            $oleave   = 0;
+            
+            foreach($data as $d) {
+                if ($d->userid == $u->id) {
+                    if ($d->typeofleave == 1) {
+                        $vleave   += 1;
+                        $months[$d->thename->id][date("M", strtotime($d->dates))]['vleave'] = $vleave;
+                    } else if ($d->typeofleave == 3) {
+                        $sleave   += 1;
+                        $months[$d->thename->id][date("M", strtotime($d->dates))]['sleave'] = $sleave;
+                    } else if ($d->typeofleave == 14) {
+                        $psperson += 1;
+                        $months[$d->thename->id][date("M", strtotime($d->dates))]['psperson'] = $psperson;
+                    } else if ($d->typeofleave == 15) {
+                        $psoffic += 1;
+                        $months[$d->thename->id][date("M", strtotime($d->dates))]['psoffic'] = $psoffic;
+                    } else {
+                        $oleave += 1;
+                        $months[$d->thename->id][date("M", strtotime($d->dates))]['oleave'] = $oleave;
+                    }
+                    $names[$d->thename->id]['name'] = $d->thename->name;
+                }
+            }
+        }
+       
+       // var_dump($months); return;
+        return view("leavedashboard",compact("months","names","year"));
+    }
+
+    function get_pie_data(Request $req) {
+        $year = $req->input("theyear");
+        $data  = ApplyLeave::whereYear("dates",$year)->get();
+        $users = user::get();
+
+        $months   = [];
+        $labels   = [];
+        $lbl      = null;
+
+            $vleave   = 0;
+            $sleave   = 0;
+            $psperson = 0;
+            $psoffic  = 0;
+            $oleave   = 0;
+            
+            foreach($data as $d) {
+                if ($d->typeofleave == 1) {
+                    $vleave           += 1;
+                    $months['vleave'] = $vleave;
+                    $lbl              = "Vacation Leave";
+                } else if ($d->typeofleave == 3) {
+                    $sleave   += 1;
+                    $months['sleave'] = $sleave;
+                    $lbl              = "Sick Leave";
+                } else if ($d->typeofleave == 14) {
+                    $psperson += 1;
+                    $months['psperson'] = $psperson;
+                    $lbl       = "Pass Slip: Personal";
+                } else if ($d->typeofleave == 15) {
+                    $psoffic += 1;
+                    $months['psoffic'] = $psoffic;
+                    $lbl       = "Pass Slip: Official";
+                } else {
+                    $oleave += 1;
+                    $months['oleave'] = $oleave;
+                    $lbl       = "Other Leave";
+                }
+
+                if (!in_array($lbl, $labels)) {
+                    array_push($labels,$lbl);
+                }
+            }
+
+        $months = array_values($months);
+        return response()->json([$months,$labels]);
+    }
+
+    function emps_with_most(Request $req) {
+        // $leavetype = $req->input("typeofleave");
+        $year      = $req->input('year');
+        $leavetype = $req->input("leavetype");
+        
+        $data      = DB::table("apply_leaves")
+                        ->select(array("users.name","users.id",DB::raw('count(userid) as cnt')))
+                        ->leftjoin("users","apply_leaves.userid","=","users.id")
+                        ->where("typeofleave",$leavetype)
+                        ->whereYear("dates",$year)
+                        ->groupBy("userid")
+                        ->get();
+                    
+        $html      = view("leavecount",compact("data"))->render();
+        return response()->json($html);
     }
 }

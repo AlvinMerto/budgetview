@@ -33,17 +33,17 @@
 
 	.monitoringtable thead tr th{
 		text-align: center;
-		border-left: 1px solid #333;
-		border-right: 1px solid #333;
-		border-top: 1px solid #333;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		border-top: 1px solid #ccc;
 	}
 
 	.left-border {
-		border-left: 1px solid #333;
+		border-left: 1px solid #ccc;
 	}
 
 	.right-border {
-		border-right: 1px solid #333;
+		border-right: 1px solid #ccc;
 	}
 </style>
 	
@@ -66,14 +66,27 @@
 	        			<div>
 	        				<div class="card-header">
 	        					<span class="text-bold text-lg"> Leave Monitoring </span>
-	        					<select style="float: right;">
-	        						<option> 2024 </option>
-	        						<option> 2023 </option>
+	        					<select style="float: right;" id="theyearholder">
+	        						<?php
+	        							$startyear = date("Y");
+	        							$thesel   = null;
+
+	        							for($i=$startyear,$count = 1;$count<=3;$i--, $count++) {
+	        								
+	        								if ( strcmp($year,$i) == 0) {
+	        									$thesel = 'selected';
+	        								} else {
+	        									$thesel = null;
+	        								}
+
+	        								echo "<option value='{$i}' $thesel> {$i} </option>";
+	        							}
+	        						?>
 	        					</select>
 	        				</div>
 	        				<div class="card-body pl-0 pr-0">
 	        					<table class="table monitoringtable">
-	        						<thead>
+	        						<thead style="border-top: 1px solid #ccc;">
 	        							<tr>
 		        							<th> Employee Name </th>
 		        							<th colspan="5"> Jan </th>
@@ -171,7 +184,7 @@
 	        								foreach($months as $key => $m) {
 	        									echo "<tr>";
 	        										echo "<td>";
-	        											echo $m['name'];
+	        											 echo $names[$key]['name'];
 	        										echo "</td>";
 	        										foreach($ms as $mm) {
 	        											if (isset($m[$mm])) {
@@ -240,16 +253,17 @@
 	        		<div class="col-md-6">
 	        			<div class="card">
 	        				<div class="card-header">
-	        					<div class="d-flex">
+	        					<div class="d-flex" style="justify-content: space-between;">
 		                  <p class="d-flex flex-column mb-0">
-		                    <span class="text-bold text-lg"> Employees with most 
-			                    <select class="form-control">
-			                    	<option> Vacation Leave </option>
-			                    	<option> Sick Leave </option>
-			                    	<option> PS: Official </option>
-			                    	<option> PS: Personal </option>
+		                    <span class="text-bold text-lg"> Employees with the most </span>
+		                  </p>
+		                  <p class="d-flex flex-column mb-0">
+		                  	  <select class="form-control" id='typeofleave'>
+			                    	<option value='1'> Vacation Leave </option>
+			                    	<option value='3'> Sick Leave </option>
+			                    	<option value='14'> PS: Official </option>
+			                    	<option value='15'> PS: Personal </option>
 			                    </select>
-		                    </span>
 		                  </p>
 		                </div>
 	        				</div>
@@ -260,13 +274,8 @@
 		                  		<th> Name </th>
 		                  		<th> Count </th>
 		                  	</thead>
-		                  	<tbody>
-		                  		<tbody>
-		                  			<tr>
-		                  				<td> Alvin Merto </td>
-		                  				<td> 2 </td>
-		                  			</tr>
-		                  		</tbody>
+		                  	<tbody id="leavecounts">
+
 		                  	</tbody>
 		                  </table>
 		                </div>
@@ -286,5 +295,35 @@
 	  </div>
 	</div>
 	@include("scripts.footscripts")
+
+	<script>
+		$(document).ready(function(){
+			var theyear = $(document).find("#theyearholder").val();
+			retrievedata(theyear,1);
+		});
+
+		$(document).on("change","#theyearholder", function(){
+			var thisyear = $(this).val();
+			window.location.href = thisyear;
+		})
+
+		$(document).on("change","#typeofleave", function(){
+			var theyear = $(document).find("#theyearholder").val();
+			retrievedata(theyear, $(this).val() );
+		});
+
+		function retrievedata(year, leavetype) {
+			$(document).find("#leavecounts").children().remove();
+			$.ajax({
+				url	 	   : url+"/emps_with_most",
+				type     : "get",
+				data     : {year : year , leavetype : leavetype},
+				dataType : "json",
+				success  : function(data) {
+					$(document).find("#leavecounts").html(data);
+				}
+			})
+		}
+	</script>
 </body>
 </html>

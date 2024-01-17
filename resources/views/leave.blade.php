@@ -68,23 +68,23 @@
 				        			<select class="form-control" name="leavetype">
 				        				<optgroup label="Leave Attendance Form">
 					        				<option value="1"> Vacation Leave </option>
-											<option value="2"> Mandatory/Forced Leave </option>
-											<option value="3"> Sick Leave </option>
-											<option value="4"> Maternity Leave</option>
-											<option value="5"> Paternity Leave</option>
-											<option value="6"> Special Privilege Leave</option>
-											<option value="7"> Solo Parent Leave</option>
-											<option value="8"> Study Leave</option>
-											<option value="9"> 10-day VAWC Leave</option>
-											<option value="10"> Rehabilitation Privilege</option>
-											<option value="11"> Special Leave Benefits for Women</option>
-											<option value="12"> Special Emergency (Calamity Leave)</option>
-											<option value="13"> Adoption Leave</option>
-										</optgroup>
-										<optgroup label="Pass Slip">
-											<option value="14"> Personal </option>
-											<option value="15"> Official </option>
-										</optgroup>
+													<option value="2"> Mandatory/Forced Leave </option>
+													<option value="3"> Sick Leave </option>
+													<option value="4"> Maternity Leave</option>
+													<option value="5"> Paternity Leave</option>
+													<option value="6"> Special Privilege Leave</option>
+													<option value="7"> Solo Parent Leave</option>
+													<option value="8"> Study Leave</option>
+													<option value="9"> 10-day VAWC Leave</option>
+													<option value="10"> Rehabilitation Privilege</option>
+													<option value="11"> Special Leave Benefits for Women</option>
+													<option value="12"> Special Emergency (Calamity Leave)</option>
+													<option value="13"> Adoption Leave</option>
+												</optgroup>
+												<optgroup label="Pass Slip">
+													<option value="14"> Personal </option>
+													<option value="15"> Official </option>
+												</optgroup>
 				        			</select>
 				        		</div>
 				        		<div class="form-group">

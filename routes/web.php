@@ -91,7 +91,11 @@ Route::middleware("auth")->group(function(){
 
         Route::post("/postsaveleave",[ApplyLeaveController::class,"postsaveleave"])->name("postsaveleave");
 
-        Route::get("/monitoring",[ApplyLeaveController::class,"monitoring"])->name("monitoring");
+        Route::get("/monitoring/{year}",[ApplyLeaveController::class,"monitoring"])->name("monitoring");
+
+        Route::post("/get_pie_data",[ApplyLeaveController::class,"get_pie_data"])->name("get_pie_data");
+
+        Route::get("/emps_with_most",[ApplyLeaveController::class,"emps_with_most"])->name("emps_with_most");
     // end 
 });
 
