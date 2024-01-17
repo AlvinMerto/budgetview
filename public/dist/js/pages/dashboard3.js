@@ -187,7 +187,7 @@ $(function () {
           }
         ]
       }
-
+      
       var pieOptions = {
         legend: {
           display: true
