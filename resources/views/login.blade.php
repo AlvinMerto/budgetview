@@ -11,7 +11,7 @@
 <!-- Automatic element centering -->
 <div class="lockscreen-wrapper">
   <div class="lockscreen-logo">
-  	Policy, Planning, Knowledge and Project Development Office <br/> <b>(PPPKDO)</b>
+  	<img class="animation__wobble" src="dist/img/PPPDO_minda.png" alt="PPPDO Budget System" height="45" width="210" style="margin-left: 10px;">
     <!-- <a href="../../index2.html"><b>Admin</b>LTE</a> -->
   </div>
   <!-- User name -->
