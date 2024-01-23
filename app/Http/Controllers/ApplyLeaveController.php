@@ -13,7 +13,7 @@ use DB;
 class ApplyLeaveController extends Controller
 {
     //
-    function applyleave($leaveid = null) {
+    function applyleave($leaveid = null, $typeofleave = null) {
 
         $arr        = null;
         $update     = false;
@@ -42,7 +42,35 @@ class ApplyLeaveController extends Controller
         $ownername = Auth::user()->name;
         $ownerid   = Auth::user()->id;
 
-        return view("leave", compact("leave","leaveid","update","d","dates","ownername","ownerid"));
+        $leaveform = null;
+        if ($typeofleave != null) {
+            switch($typeofleave) {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "10":
+                case "11":
+                case "12":
+                case "13":
+                    $leaveform = url("leaveapplication");
+                    break;
+                case "14":
+                case "15":
+                    $leaveform = url("passslipapplication");
+                    break;
+                case "16":
+                    $leaveform = url("pafapplication");
+                    break;
+            }
+        }
+
+        return view("leave", compact("leave","leaveid","update","d","dates","ownername","ownerid","leaveform"));
     }
 
     function postsaveleave(Request $req) {
@@ -65,7 +93,7 @@ class ApplyLeaveController extends Controller
             $save->save();
         }
 
-        return redirect("/leave/{$grpid}");
+        return redirect("/leave/{$grpid}/{$typeofleave}");
     }
 
     function leaveapplication() {
@@ -79,6 +107,27 @@ class ApplyLeaveController extends Controller
         return Response::download($file, 'applicationforleave.pdf', $headers);
 
         // return view("leaveapplication");
+    }
+
+    function passslipapplication() {
+        $file    = storage_path(). "/document/applicationpassslip.pdf";
+
+        $headers = array(
+                    'Content-Type: application/pdf',
+                   );
+
+        return Response::download($file, 'applicationpassslip.pdf', $headers);
+
+    }
+
+    function pafapplication() {
+        $file    = storage_path(). "/document/applicationpaf.pdf";
+
+        $headers = array(
+                    'Content-Type: application/pdf',
+                   );
+
+        return Response::download($file, 'applicationpaf.pdf', $headers);
     }
 
     function monitoring($year) {

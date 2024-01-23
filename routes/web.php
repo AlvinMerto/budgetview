@@ -86,8 +86,7 @@ Route::middleware("auth")->group(function(){
     Route::get("/generateqr/{actgrpid?}/{title?}", [InputwindowController::class,"generateqr"])->name("generateqr");
 
     // leave applications
-        Route::get("/leave/{leaveid?}", [ApplyLeaveController::class,"applyleave"])->name("applyleave");
-        Route::get("/leaveapplication",[ApplyLeaveController::class,"leaveapplication"])->name("leaveapplication");
+        Route::get("/leave/{leaveid?}/{typeofleave?}", [ApplyLeaveController::class,"applyleave"])->name("applyleave");
 
         Route::post("/postsaveleave",[ApplyLeaveController::class,"postsaveleave"])->name("postsaveleave");
 
@@ -97,5 +96,9 @@ Route::middleware("auth")->group(function(){
 
         Route::get("/emps_with_most",[ApplyLeaveController::class,"emps_with_most"])->name("emps_with_most");
     // end 
+
+    Route::get("/leaveapplication",[ApplyLeaveController::class,"leaveapplication"])->name("leaveapplication");
+    Route::get("/passslipapplication",[ApplyLeaveController::class,"passslipapplication"])->name("passslipapplication");
+    Route::get("/pafapplication",[ApplyLeaveController::class,"pafapplication"])->name("pafapplication");
 });
 
