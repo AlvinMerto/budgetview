@@ -17,91 +17,91 @@ class BudgetviewController extends Controller
     //
 
     function budgetviewwindow() {
-        $values      = $this->getthebudgetvalues();
-        $activities  = $this->getactivities();
+        echo "bullshit and shit";
+        // $values      = $this->getthebudgetvalues();
+        // $activities  = $this->getactivities();
 
-        $planned     = $values['planned'];
-        $actual      = $values['actual'];
-        $spent       = $this->getexpenditure();
-        $lefttospend = $actual-$spent;
+        // $planned     = $values['planned'];
+        // $actual      = $values['actual'];
+        // $spent       = $this->getexpenditure();
+        // $lefttospend = $actual-$spent;
 
-        $bur         = 0;
+        // $bur         = 0;
     
-        if ($spent > 0) {
-            $bur         = ($spent/$actual)*100;
-            $bur         = number_format($bur,2);
-        }
+        // if ($spent > 0) {
+        //     $bur         = ($spent/$actual)*100;
+        //     $bur         = number_format($bur,2);
+        // }
 
-            $date        = date("l, M. d, Y");
-            $date_month  = date("m");
-            $qtr         = null;
+        //     $date        = date("l, M. d, Y");
+        //     $date_month  = date("m");
+        //     $qtr         = null;
         
 
-            if ($date_month >= 1 && $date_month <= 3) {
-                $qtr     = "1st Quarter of ".date("Y");
-            } else if ($date_month >= 4 && $date_month <= 6) {
-                $qtr     = "2st Quarter of".date("Y");
-            } else if ($date_month >= 7 && $date_month <= 9) {
-                $qtr     = "3rd Quarter of".date("Y");
-            } else if ($date_month >= 10 && $date_month <= 12) {
-                $qtr     = "4th Quarter of".date("Y");
-            }
+        //     if ($date_month >= 1 && $date_month <= 3) {
+        //         $qtr     = "1st Quarter of ".date("Y");
+        //     } else if ($date_month >= 4 && $date_month <= 6) {
+        //         $qtr     = "2st Quarter of".date("Y");
+        //     } else if ($date_month >= 7 && $date_month <= 9) {
+        //         $qtr     = "3rd Quarter of".date("Y");
+        //     } else if ($date_month >= 10 && $date_month <= 12) {
+        //         $qtr     = "4th Quarter of".date("Y");
+        //     }
 
-        array_map(function($a){
+        // array_map(function($a){
 
-            $lastupdate  = null;
-            $lastpoint   = null;
-            $currentdate = date("Y-m-d");
+        //     $lastupdate  = null;
+        //     $lastpoint   = null;
+        //     $currentdate = date("Y-m-d");
 
-            if ($a->daterelease != null) {
-                $lastupdate = date("Y-m-d", strtotime($a->daterelease));
-                $lastpoint  = "Director's Office";
-            }
+        //     if ($a->daterelease != null) {
+        //         $lastupdate = date("Y-m-d", strtotime($a->daterelease));
+        //         $lastpoint  = "Director's Office";
+        //     }
 
-            if ($a->daterecvbyoc != null) {
-                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
-                $lastpoint  = "Received by OC";
-            }
+        //     if ($a->daterecvbyoc != null) {
+        //         $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
+        //         $lastpoint  = "Received by OC";
+        //     }
 
-            if ($a->datereleasedbyoc != null) {
-                $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
-                $lastpoint  = "Released from OC";
-            }
+        //     if ($a->datereleasedbyoc != null) {
+        //         $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
+        //         $lastpoint  = "Released from OC";
+        //     }
 
-            if ($a->daterecvbyproc != null) {
-                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
-                $lastpoint  = "Procurement";
-            }
+        //     if ($a->daterecvbyproc != null) {
+        //         $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
+        //         $lastpoint  = "Procurement";
+        //     }
 
-            if ($a->date_po != null) {
-                $lastupdate = date("Y-m-d", strtotime($a->date_po));
-                $lastpoint  = "P.O.";
-            }
+        //     if ($a->date_po != null) {
+        //         $lastupdate = date("Y-m-d", strtotime($a->date_po));
+        //         $lastpoint  = "P.O.";
+        //     }
 
-            $date1  = new \DateTime($lastupdate);
-            $date2  = new \DateTime($currentdate);
+        //     $date1  = new \DateTime($lastupdate);
+        //     $date2  = new \DateTime($currentdate);
 
-            $interval             = $date1->diff($date2);
-            $maturity             = null;
+        //     $interval             = $date1->diff($date2);
+        //     $maturity             = null;
 
-             if ($a->date_po != null) {
-                $po_last_date1 = new \DateTime($a->daterecvbyproc);
-                $po_last_date2 = new \DateTime($lastupdate);
+        //      if ($a->date_po != null) {
+        //         $po_last_date1 = new \DateTime($a->daterecvbyproc);
+        //         $po_last_date2 = new \DateTime($lastupdate);
 
-                $sec_interval  = $po_last_date1->diff($po_last_date2);
-                $maturity      = null;
-            } else {
-                $maturity = $interval->days." days";
-            }
+        //         $sec_interval  = $po_last_date1->diff($po_last_date2);
+        //         $maturity      = null;
+        //     } else {
+        //         $maturity = $interval->days." days";
+        //     }
 
-            $a->{"maturity"}      = $maturity;
-            $a->{"lastpoint"}     = $lastpoint.": <strong> ".date("M. d, Y", strtotime($lastupdate))."</strong>";
+        //     $a->{"maturity"}      = $maturity;
+        //     $a->{"lastpoint"}     = $lastpoint.": <strong> ".date("M. d, Y", strtotime($lastupdate))."</strong>";
 
-            return $a;
-        }, $activities);
+        //     return $a;
+        // }, $activities);
 
-
-        return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
+        //  return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
 
     function charges($divid = null) {
