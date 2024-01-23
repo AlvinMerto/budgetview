@@ -69,6 +69,7 @@
                     <option value='1'> Super Administrator </option>
                     <option value='2'> Administrator </option>
                     <option value='3'> Division Attendant </option>
+                    <option value='4'> Rank-in-file </option>
                   </select>
                   <hr/>
                   <input type="submit" value="Add User" name="adduser" class="btn btn-primary btn-block"/>
