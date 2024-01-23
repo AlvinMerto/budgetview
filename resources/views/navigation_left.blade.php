@@ -81,43 +81,25 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-header">LEAVE ADMINISTRATION</li>
-          <li class="nav-item">
-            <?php $theyear = date("Y"); $url = route("monitoring", $theyear); ?>
-            <a href="<?php echo $url; ?>" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p> Leave Monitoring </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('applyleave')}}" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Leave Cabinet
-              </p>
-            </a>
-            <!-- <ul class="nav nav-treeview">
-              
-              <li class="nav-item"> 
-                <a href="{{route('applyleave')}}" class="nav-link"> 
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Apply for Leave </p>
-                </a>
-              </li>
-              <li class="nav-item"> 
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Apply for Pass Slip </p>
-                </a>
-              </li>
-              <li class="nav-item"> 
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Apply for OB </p>
-                </a>
-              </li>
-            </ul> -->
-          </li>
+
+          <?php if ($accounttype == 1 ||$accounttype == 2 ||$accounttype == 3 ||$accounttype == 4) {?>
+            <li class="nav-header">LEAVE ADMINISTRATION</li>
+            <li class="nav-item">
+              <?php $theyear = date("Y"); $url = route("monitoring", $theyear); ?>
+              <a href="<?php echo $url; ?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Leave Monitoring </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('applyleave')}}" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  Leave Cabinet
+                </p>
+              </a>
+            </li>
+          <?php } ?>
           
           <?php //if ($accounttype == "2" || $accounttype == "1") { ?>
           <li class="nav-header">OFFICE ADMIN</li>
