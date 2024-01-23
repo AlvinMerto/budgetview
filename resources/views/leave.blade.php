@@ -85,6 +85,9 @@
 													<option value="14"> Personal </option>
 													<option value="15"> Official </option>
 												</optgroup>
+												<optgroup label="Personal Attendance Form">
+													<option value="16"> PAF </option>
+												</optgroup>
 				        			</select>
 				        		</div>
 				        		<div class="form-group">
@@ -96,14 +99,14 @@
 			        			<?php if (!$update) { ?>
 				        			<button class="btn btn-primary" id="applyforleave"> Apply for Leave </button>
 				        		<?php } else {?>
-				        			<p class="btn btn-default mb-0"> Download the File </p>
+				        			<a class="btn btn-default mb-0" href="<?php echo $leaveform; ?>"> Download the File </a>
 				        		<?php } ?>
 				        	</div>
 				        </form>
 		        	</div>
 	        	</div>
 	        	<?php if ($update) { ?>
-	        	<div class="col-md-5">
+	        	<!-- <div class="col-md-5">
 	        		<div class="card">
 	        			<div class="card-header">
 	        				<h4 class="card-title"> Document Details </h4>
@@ -127,7 +130,7 @@
 	        				<button class="btn btn-default"> Save Status </button>
 	        			</div>
 	        		</div>
-	        	</div>
+	        	</div> -->
 	        	<?php } ?>
 	        </div>
         </div>
