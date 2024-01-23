@@ -99,9 +99,9 @@ class BudgetviewController extends Controller
 
             return $a;
         }, $activities);
+echo "shit";
 
-
-        return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
+        // return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
 
     function charges($divid = null) {
