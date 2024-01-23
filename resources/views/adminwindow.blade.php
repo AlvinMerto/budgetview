@@ -73,9 +73,7 @@
                   </select>
                   <hr/>
                   <input type="submit" value="Add User" name="adduser" class="btn btn-primary btn-block"/>
-                 
-                  
-                  <!-- <button class="btn btn-primary btn-block"> Add User </button> -->
+            
                 </div>
                  </form>
               </div>
