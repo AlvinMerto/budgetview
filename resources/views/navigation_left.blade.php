@@ -82,7 +82,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <?php if ($accounttype == 1 ||$accounttype == 2 ||$accounttype == 3 ||$accounttype == 4) {?>
+          <?php //if ($accounttype == 1 ||$accounttype == 2 ||$accounttype == 3 ||$accounttype == 4) {?>
             <li class="nav-header">LEAVE ADMINISTRATION</li>
             <li class="nav-item">
               <?php $theyear = date("Y"); $url = route("monitoring", $theyear); ?>
@@ -99,7 +99,7 @@
                 </p>
               </a>
             </li>
-          <?php } ?>
+          <?php //} ?>
           
           <?php //if ($accounttype == "2" || $accounttype == "1") { ?>
           <li class="nav-header">OFFICE ADMIN</li>
