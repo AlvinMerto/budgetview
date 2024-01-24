@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('budget')}}" class="brand-link">
-      <img class="animation__wobble" src="{{ asset('dist/img/PPPDO_minda.png')}}" alt="PPPDO Budget System" height="45" width="210" style="margin-left: 10px;">
+      <img class="animation__wobble__" src="{{ asset('dist/img/PPPDO_minda.png')}}" alt="PPPDO Budget System" height="45" width="210" style="margin-left: 10px;">
       <!-- <h3 class="brand-text font-weight-light mb-0" style="text-align: center;">PPPDKMO</h3> -->
     </a>
 
