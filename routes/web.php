@@ -101,4 +101,3 @@ Route::middleware("auth")->group(function(){
     Route::get("/passslipapplication",[ApplyLeaveController::class,"passslipapplication"])->name("passslipapplication");
     Route::get("/pafapplication",[ApplyLeaveController::class,"pafapplication"])->name("pafapplication");
 });
-

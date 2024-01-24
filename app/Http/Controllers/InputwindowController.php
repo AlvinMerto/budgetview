@@ -116,7 +116,7 @@ class InputwindowController extends Controller
 
     function saveactivity(Request $req) {
 
-        $grpid            = $req->input("activitygrpid");
+        $grpid                = $req->input("activitygrpid");
 
         if ( strlen($grpid) == 0 ) {
             $activitygrpid    = md5(date("mdyhis"));
