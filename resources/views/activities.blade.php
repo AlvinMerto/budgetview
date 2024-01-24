@@ -149,7 +149,7 @@
                                 <th> P.O. Released </th>
                                 <th> Status </th>
                                 <th> Division </th>
-                                <!-- <th> Charge to </th> {$a->lastpoint} {$a->maturity}-->
+                                <!-- <th> Charge to </th> {$a->lastpoint} {$a->maturity} -->
                               </tr>
                               </thead>
                               <tbody>
