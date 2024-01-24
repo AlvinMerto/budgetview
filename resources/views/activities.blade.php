@@ -149,7 +149,7 @@
                                 <th> P.O. Released </th>
                                 <th> Status </th>
                                 <th> Division </th>
-                                <!-- <th> Charge to </th> -->
+                                <!-- <th> Charge to </th> {$a->lastpoint} {$a->maturity}-->
                               </tr>
                               </thead>
                               <tbody>
@@ -158,8 +158,8 @@
                                     if (count($activities) > 0) {
                                       foreach($activities as $a) {
                                         echo "<tr>";
-                                          echo "<td> {$a->lastpoint} </td> ";
-                                          echo "<td> {$a->maturity} </td> ";
+                                          echo "<td>  </td> ";
+                                          echo "<td>  </td> ";
                                           echo "<td> {$a->activitytitle} </td>";
                                           echo "<td>". number_format($a->initialcost,2)."</td>";
                                           echo "<td>". number_format($a->acost,2)."</td>";
