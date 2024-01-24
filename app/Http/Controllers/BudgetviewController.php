@@ -10,6 +10,8 @@ use App\Models\inputwindow;
 
 use Auth;
 use DB;
+use DateTime;
+
 // use \stdClass
 
 class BudgetviewController extends Controller
@@ -47,7 +49,6 @@ class BudgetviewController extends Controller
             $qtr     = "4th Quarter of".date("Y");
         }
 
-        // array_map(function($a){
         foreach($activities as $a) {
             $lastupdate  = null;
             $lastpoint   = null;
@@ -78,15 +79,15 @@ class BudgetviewController extends Controller
                 $lastpoint  = "P.O.";
             }
 
-            $date1  = new \DateTime($lastupdate);
-            $date2  = new \DateTime($currentdate);
+            $date1  = new DateTime($lastupdate);
+            $date2  = new DateTime($currentdate);
 
             $interval             = $date1->diff($date2);
             $maturity             = null;
 
              if ($a->date_po != null) {
-                $po_last_date1 = new \DateTime($a->daterecvbyproc);
-                $po_last_date2 = new \DateTime($lastupdate);
+                $po_last_date1 = new DateTime($a->daterecvbyproc);
+                $po_last_date2 = new DateTime($lastupdate);
 
                 $sec_interval  = $po_last_date1->diff($po_last_date2);
                 $maturity      = null;
@@ -103,11 +104,8 @@ class BudgetviewController extends Controller
             $a->{"maturity"}      = $maturity;
             $a->{"lastpoint"}     = $lastpoint.": <strong> ".$lastupdate."</strong>";
         }
-       //  var_dump($activities);
-        //    return $a;
-        // }, $activities);
 
-          return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
+        return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
 
     function charges($divid = null) {
@@ -147,8 +145,8 @@ class BudgetviewController extends Controller
                 $lastpoint  = "P.O.";
             }
 
-            $date1  = new \DateTime($lastupdate);
-            $date2  = new \DateTime($currentdate);
+            $date1  = new DateTime($lastupdate);
+            $date2  = new DateTime($currentdate);
 
             $interval             = $date1->diff($date2);
             $maturity             = null;
