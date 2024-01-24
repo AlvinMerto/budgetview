@@ -115,7 +115,7 @@ class BudgetviewController extends Controller
     function activities($divid = null) {
         $activities      = $this->getactivities($divid);
 
-        foreach($activities as $a) {
+        foreach($activities as $a) { 
             // $lastupdate  = null;
             // $lastpoint   = null;
             // $currentdate = date("Y-m-d");
