@@ -51,7 +51,7 @@ class BudgetviewController extends Controller
         foreach($activities as $a) {
             $lastupdate  = null;
             $lastpoint   = null;
-            $currentdate = date("m-d-Y");
+            $currentdate = date("Y-m-d");
 
             if ($a->daterelease != null) {
                 $lastupdate = date("m-d-Y", strtotime($a->daterelease));
