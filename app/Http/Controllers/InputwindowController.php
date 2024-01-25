@@ -118,11 +118,11 @@ class InputwindowController extends Controller
     }
 
     function saveactivity(Request $req) {
-
+   
         $grpid                = $req->input("activitygrpid");
 
         if ( strlen($grpid) == 0 ) {
-            $activitygrpid    = Hash::make( Carbon::today() );
+            $activitygrpid    = md5(date("mdyhis"));
         } else {
             $activitygrpid    = $grpid;
         }   
