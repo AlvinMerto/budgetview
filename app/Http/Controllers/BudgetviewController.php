@@ -115,49 +115,49 @@ class BudgetviewController extends Controller
         $activities      = $this->getactivities($divid);
 
         foreach($activities as $a) { 
-            // $lastupdate  = null;
-            // $lastpoint   = null;
-            // $currentdate = date("Y-m-d");
+            $lastupdate  = null;
+            $lastpoint   = null;
+            $currentdate = date("Y-m-d");
 
-            // if ($a->daterelease != null) {
-            //     $lastupdate = date("Y-m-d", strtotime($a->daterelease));
-            //     $lastpoint  = "Director's Office";
-            // }
+            if ($a->daterelease != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterelease));
+                $lastpoint  = "Director's Office";
+            }
 
-            // if ($a->daterecvbyoc != null) {
-            //     $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
-            //     $lastpoint  = "Received by OC";
-            // }
+            if ($a->daterecvbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
+                $lastpoint  = "Received by OC";
+            }
 
-            // if ($a->datereleasedbyoc != null) {
-            //     $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
-            //     $lastpoint  = "Released from OC";
-            // }
+            if ($a->datereleasedbyoc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
+                $lastpoint  = "Released from OC";
+            }
 
-            // if ($a->daterecvbyproc != null) {
-            //     $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
-            //     $lastpoint  = "Procurement";
-            // }
+            if ($a->daterecvbyproc != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
+                $lastpoint  = "Procurement";
+            }
 
-            // if ($a->date_po != null) {
-            //     $lastupdate = date("Y-m-d", strtotime($a->date_po));
-            //     $lastpoint  = "P.O.";
-            // }
+            if ($a->date_po != null) {
+                $lastupdate = date("Y-m-d", strtotime($a->date_po));
+                $lastpoint  = "P.O.";
+            }
 
-            // $date1  = new DateTime($lastupdate);
-            // $date2  = new DateTime($currentdate);
+            $date1  = new DateTime($lastupdate);
+            $date2  = new DateTime($currentdate);
 
-            // $interval             = $date1->diff($date2);
-            // $maturity             = null;
+            $interval             = $date1->diff($date2);
+            $maturity             = null;
 
-            // if ($a->date_po != null) {
-            //     $maturity = null;
-            // } else {
-            //     $maturity = $interval->days." days";
-            // }
+            if ($a->date_po != null) {
+                $maturity = null;
+            } else {
+                $maturity = $interval->days." days";
+            }
 
-            // $a->{"maturity"}      = $maturity;
-            // $a->{"lastpoint"}     = $lastpoint;
+            $a->{"maturity"}      = $maturity;
+            $a->{"lastpoint"}     = $lastpoint;
         }
 
         return view("activities",compact('activities','divid'));
