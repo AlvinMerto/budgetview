@@ -48,61 +48,61 @@ class BudgetviewController extends Controller
             $qtr     = "4th Quarter of".date("Y");
         }
 
-        // foreach($activities as $a) {
-        //     $lastupdate  = null;
-        //     $lastpoint   = null;
-        //     $currentdate = date("m-d-Y");
+        foreach($activities as $a) {
+            $lastupdate  = null;
+            $lastpoint   = null;
+            $currentdate = date("m-d-Y");
 
-        //     if ($a->daterelease != null) {
-        //         $lastupdate = date("m-d-Y", strtotime($a->daterelease));
-        //         $lastpoint  = "Director's Office";
-        //     }
+            if ($a->daterelease != null) {
+                $lastupdate = date("m-d-Y", strtotime($a->daterelease));
+                $lastpoint  = "Director's Office";
+            }
 
-        //     if ($a->daterecvbyoc != null) {
-        //         $lastupdate = date("m-d-Y", strtotime($a->daterecvbyoc));
-        //         $lastpoint  = "Received by OC";
-        //     }
+            if ($a->daterecvbyoc != null) {
+                $lastupdate = date("m-d-Y", strtotime($a->daterecvbyoc));
+                $lastpoint  = "Received by OC";
+            }
 
-        //     if ($a->datereleasedbyoc != null) {
-        //         $lastupdate = date("m-d-Y", strtotime($a->datereleasedbyoc));
-        //         $lastpoint  = "Released from OC";
-        //     }
+            if ($a->datereleasedbyoc != null) {
+                $lastupdate = date("m-d-Y", strtotime($a->datereleasedbyoc));
+                $lastpoint  = "Released from OC";
+            }
 
-        //     if ($a->daterecvbyproc != null) {
-        //         $lastupdate = date("m-d-Y", strtotime($a->daterecvbyproc));
-        //         $lastpoint  = "Procurement";
-        //     }
+            if ($a->daterecvbyproc != null) {
+                $lastupdate = date("m-d-Y", strtotime($a->daterecvbyproc));
+                $lastpoint  = "Procurement";
+            }
 
-        //     if ($a->date_po != null) {
-        //         $lastupdate = date("m-d-Y", strtotime($a->date_po));
-        //         $lastpoint  = "P.O.";
-        //     }
+            if ($a->date_po != null) {
+                $lastupdate = date("m-d-Y", strtotime($a->date_po));
+                $lastpoint  = "P.O.";
+            }
 
-        //     $date1  = new DateTime($lastupdate);
-        //     $date2  = new DateTime($currentdate);
+            $date1  = new DateTime($lastupdate);
+            $date2  = new DateTime($currentdate);
 
-        //     $interval             = $date1->diff($date2);
-        //     $maturity             = null;
+            $interval             = $date1->diff($date2);
+            $maturity             = null;
 
-        //      if ($a->date_po != null) {
-        //         $po_last_date1 = new DateTime($a->daterecvbyproc);
-        //         $po_last_date2 = new DateTime($lastupdate);
+             if ($a->date_po != null) {
+                $po_last_date1 = new DateTime($a->daterecvbyproc);
+                $po_last_date2 = new DateTime($lastupdate);
 
-        //         $sec_interval  = $po_last_date1->diff($po_last_date2);
-        //         $maturity      = null;
-        //     } else {
-        //         $maturity = $interval->days." days";
-        //     }
+                $sec_interval  = $po_last_date1->diff($po_last_date2);
+                $maturity      = null;
+            } else {
+                $maturity = $interval->days." days";
+            }
 
-        //     if ($lastupdate != null) {
-        //         $lastupdate = date("M. d, Y", strtotime($lastupdate));
-        //     } else {
-        //         $lastupdate = null;
-        //     }
+            if ($lastupdate != null) {
+                $lastupdate = date("M. d, Y", strtotime($lastupdate));
+            } else {
+                $lastupdate = null;
+            }
 
-        //     $a->{"maturity"}      = $maturity;
-        //     $a->{"lastpoint"}     = $lastpoint.": <strong> ".$lastupdate."</strong>";
-        // }
+            $a->{"maturity"}      = $maturity;
+            $a->{"lastpoint"}     = $lastpoint.": <strong> ".$lastupdate."</strong>";
+        }
 
         return view("budget", compact("planned","actual","spent","lefttospend","activities","bur","qtr","date"));
     }
