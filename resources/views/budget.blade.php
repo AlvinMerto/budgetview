@@ -239,8 +239,8 @@
                               echo "<td> {$a->divaccr} </td>";
                               echo "<td> {$a->activitytitle} </td>";
                               echo "<td>". number_format($a->acost,2)."</td>";
-                              echo "<td>  </td>";
-                              echo "<td>  </td>";
+                              echo "<td> {$a->lastpoint} </td>";
+                              echo "<td> {$a->maturity} </td>";
                               echo "<td>";
 
                               $thecolor = null;
