@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\inputwindow;
 use App\Models\chargingto;
 use App\Models\chargingtbl;
@@ -14,6 +15,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 use Auth;
 use DB;
+use Carbon\Carbon;
+
 
 class InputwindowController extends Controller
 {
@@ -119,7 +122,7 @@ class InputwindowController extends Controller
         $grpid                = $req->input("activitygrpid");
 
         if ( strlen($grpid) == 0 ) {
-            $activitygrpid    = md5(date("mdyhis"));
+            $activitygrpid    = Hash::make( Carbon::today() );
         } else {
             $activitygrpid    = $grpid;
         }   

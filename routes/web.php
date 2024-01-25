@@ -9,6 +9,7 @@ use App\Http\Controllers\DivisionwindowController;
 use App\Http\Controllers\AdminwindowController;
 use App\Http\Controllers\ApplyLeaveController;
 
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,4 +101,11 @@ Route::middleware("auth")->group(function(){
     Route::get("/leaveapplication",[ApplyLeaveController::class,"leaveapplication"])->name("leaveapplication");
     Route::get("/passslipapplication",[ApplyLeaveController::class,"passslipapplication"])->name("passslipapplication");
     Route::get("/pafapplication",[ApplyLeaveController::class,"pafapplication"])->name("pafapplication");
+});
+
+Route::get("/test", function(){
+    $mutable = Carbon::today();
+   // $immutable = CarbonImmutable::now();
+
+    echo $mutable;
 });
