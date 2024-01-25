@@ -16,7 +16,6 @@ use DateTime;
 
 class BudgetviewController extends Controller
 {
-    //
 
     function budgetviewwindow() {
         $values      = $this->getthebudgetvalues();
