@@ -13,4 +13,5 @@ class divisiontbl extends Model
     protected $fillable     = [
         "divaccr","divfullname","created_at","updated_at"
     ];
+
 }

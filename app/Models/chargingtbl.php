@@ -15,4 +15,8 @@ class chargingtbl extends Model
         "chargingname","divisionid","created_at","updated_at"
     ];
 
+    
+    public function activity_designs($divid) {
+        
+    }
 }

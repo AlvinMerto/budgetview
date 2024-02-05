@@ -316,22 +316,17 @@
 				          			<td style="float:right;"> <a href="<?php echo url('generateqr')."/".$grpid; ?>" target="_blank"> <i class="fa fa-download"></i> </a> </td>
 				          		</tr>
 			          		<tr> 
-			          			<td style="vertical-align: middle; text-align: right;"> Charge to </td>
+			          			<td style="vertical-align: middle; text-align: right;"> Mother Activity Design </td>
 			          			<td>
 			          				<select class="form-control" id="charging" name="chargeto">
 			          					<?php foreach($chargingtables as $ct) { ?>
 			          						<option value="<?php echo $ct->chargingid; ?>"> <?php echo $ct->chargingname; ?> </option>
 			          					<?php } ?>
-				         					<!-- <option value="1"> PDD </option>
-				         					<option value="2"> PRD </option>
-				         					<option value="3"> PFD </option>
-				         					<option value="4"> KMD </option>
-				         					<option value="5"> MRB-NEXUS </option> -->
-				         				</select>
+				         			</select>
 			          			</td>
 			          		</tr>
-			          		<tr> 
-			          			<td style="vertical-align: middle; text-align: right;"> Mother Activity Design </td>
+			          		<!-- <tr> 
+			          			<td style="vertical-align: middle; text-align: right;"> Program </td>
 			          			<td> 
 			          				<select class="form-control">
 			          					<option> Lorem Ipsum Dolor Set amit </option>
@@ -339,7 +334,7 @@
 			          					<option> Test Test Test </option>
 			          				</select>
 			          			</td>
-			          		</tr>
+			          		</tr> -->
 			          		<tr> 
 			          			<td style="vertical-align: middle; text-align: right;"> What to charge? </td>
 			          			<td>
