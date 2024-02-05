@@ -9,6 +9,7 @@ use App\Models\loginControl;
 use App\Models\chargingto;
 use App\Models\chargingtbl;
 use App\Models\inputwindow;
+use App\Models\programs;
 
 use Auth;
 use DB;
@@ -24,10 +25,14 @@ class DivisionwindowController extends Controller
                             ->where("login_controls.userid",$id)
                             ->get(["divisiontbls.divisionid","divisiontbls.divfullname"])->toArray(); 
 
-        $budgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
+        $budgetlines     = loginControl::join("programs","login_controls.divisionid","=","programs.divisionid")
+                            ->join("chargingtbls","programs.divisionid","=","chargingtbls.divisionid")
                             ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
                             ->where(["login_controls.userid"=>$id,"budgetviews.isactive"=>1])
                             ->get(); 
+
+        // $budgetlines             = loginControl::join("programs","login_controls.divisionid","=","programs.divisionid")
+        //                                          ->join()
                             
         $inactivebudgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
                                     ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
@@ -63,9 +68,13 @@ class DivisionwindowController extends Controller
         // per division 
         $divisionbudget  = [];
 
+        // programs
+        $programs        = [];
+
         $displayright    = false;
         if ($chargingid != null) {
             $selecteddiv = $this->getdivision($chargingid);
+      
             if ($tab != null) {
                 switch ($tab) {
                     case 'division':
@@ -114,7 +123,7 @@ class DivisionwindowController extends Controller
                         break;
                 }
             }
-            
+            $programs         = programs::where("divisionid",$selecteddiv)->get();
         }
 
         $qtr         = null;
@@ -140,7 +149,7 @@ class DivisionwindowController extends Controller
         }
 
         return view("divisionwindow", 
-                        compact("budget","division","budgetlines", "displayright","tab", 
+                        compact("programs","budget","division","budgetlines", "displayright","tab", 
                                 "chargingid","spent","planned","actual","leftospend","year","selecteddiv",
                                 "activities","charges","inactivebudgetlines","budgetlinestatus","divisionid","bur","qtr"));
     }
@@ -201,8 +210,9 @@ class DivisionwindowController extends Controller
     }
 
     function getdivision($chargingid) {
-        $division = chargingtbl::where("chargingid",$chargingid)->get("divisionid");
-
+        $division = chargingtbl::join("programs","chargingtbls.divisionid","=","programs.id")
+                                ->where("chargingtbls.chargingid",$chargingid)->get("programs.divisionid");
+            //var_dump($division); return;
         if (count($division) > 0) {
             return $division[0]->divisionid; 
         }
@@ -333,16 +343,20 @@ class DivisionwindowController extends Controller
         $actual       = $req->input("update_actualamount"); // -> budgetviews
         $isactive     = $req->input("isactive");
         
+        // division :: program id
+        $programid    = $req->input("programselect");
+        
         // $b = str_replace( ',', '', $a );
         $planned      = str_replace(',', '', $planned);
         $actual       = str_replace(',', '', $actual);
 
         // update chargingtbls 
-        $update       = chargingtbl::where("chargingid",$chargingid)->update(["chargingname"=>$budgetname,"divisionid"=>$charging_div]);
+        $update       = chargingtbl::where("chargingid",$chargingid)->update(["chargingname"=>$budgetname,"divisionid"=>$programid]);
         $update       = budgetview::updateOrCreate(
                             ["divid"=>$chargingid],
                             ["planned"=>$planned,"actual"=>$actual,"year"=>$budgetyear,"isactive"=>$isactive]
                         );
+    //    $update       = 
         // $update       = budgetview::where("divid",$chargingid)->update(["planned"=>$planned,"actual"=>$actual,"year"=>$budgetyear,"isactive"=>$isactive]);
         
         if ($update) {

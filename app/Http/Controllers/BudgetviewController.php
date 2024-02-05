@@ -54,27 +54,27 @@ class BudgetviewController extends Controller
             $currentdate = date("Y-m-d");
 
             if ($a->daterelease != null) {
-                $lastupdate = date("m-d-Y", strtotime($a->daterelease));
+                $lastupdate = date("Y-m-d", strtotime($a->daterelease));
                 $lastpoint  = "Director's Office";
             }
 
             if ($a->daterecvbyoc != null) {
-                $lastupdate = date("m-d-Y", strtotime($a->daterecvbyoc));
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyoc));
                 $lastpoint  = "Received by OC";
             }
 
             if ($a->datereleasedbyoc != null) {
-                $lastupdate = date("m-d-Y", strtotime($a->datereleasedbyoc));
+                $lastupdate = date("Y-m-d", strtotime($a->datereleasedbyoc));
                 $lastpoint  = "Released from OC";
             }
 
             if ($a->daterecvbyproc != null) {
-                $lastupdate = date("m-d-Y", strtotime($a->daterecvbyproc));
+                $lastupdate = date("Y-m-d", strtotime($a->daterecvbyproc));
                 $lastpoint  = "Procurement";
             }
 
             if ($a->date_po != null) {
-                $lastupdate = date("m-d-Y", strtotime($a->date_po));
+                $lastupdate = date("Y-m-d", strtotime($a->date_po));
                 $lastpoint  = "P.O.";
             }
 

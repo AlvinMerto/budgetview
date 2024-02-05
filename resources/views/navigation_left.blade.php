@@ -150,22 +150,22 @@
               <li class="nav-item">
                 <a href="{{route('allactivities')}}" class="nav-link <?php echo $allactivity; ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Activity Design</p>
+                  <p>Activities</p>
                 </a>
               </li>
               <?php } ?>
 
               <li class="nav-item">
-                <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
+                <a href="{{route('charge')}}" class="nav-link <?php echo $charges; ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Budget Line</p>
+                  <p>Charges</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{route('charge')}}" class="nav-link <?php echo $charges; ?>">
+                <a href="http://localhost:8000/divisionwindow/14/division/1" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Charges</p>
+                  <p> Division Budget </p>
                 </a>
               </li>
 
@@ -176,15 +176,34 @@
                   <p>Enter Activity Design</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mother Activity Designs</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('programs')}}" class="nav-link <?php echo $inputwindow; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Programs</p>
+                </a>
+              </li>
               <?php } ?>
             </ul>
           </li>
           <?php } ?>
-          <li>
-            <a href="{{route('logout')}}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-             <p> Sign out </p>
-            </a>
+         
+        </ul>
+      </nav>
+      <nav class="mt-2" style="position: absolute;bottom: 0px;">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+              <a href="{{route('logout')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+                <p> Sign out </p>
+              </a>
           </li>
         </ul>
       </nav>

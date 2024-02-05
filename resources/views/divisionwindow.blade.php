@@ -77,6 +77,17 @@
                           </td>
                         </tr>
                         <tr>
+                          <td> Program </td>
+                          <td> 
+                            <div class="input-group">
+                              <select class="form-control" name="program_list" required="required">
+                                <option> PDRM </option>
+                                <option> MindaNow </option>
+                              </select>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
                           <td> Planned Amount </td>
                           <td> 
                             <div class="input-group">
@@ -96,7 +107,7 @@
                           <td> Year </td>
                           <td> 
                             <div class="input-group">
-                              <input type='text' class="form-control" name="budgetyear" required ='required'/> 
+                              <input type='text' class="form-control" name="budgetyear" required ='required' value="<?php echo date("Y"); ?>"/> 
                             </div>
                           </td>
                         </tr>
@@ -140,7 +151,7 @@
               <?php } ?>
               <div class="card">
                 <div class="card-header">
-                  <h6 class="card-title"> Active Budget Lines </h6>
+                  <h6 class="card-title"> Mother Activity Designs </h6>
                 </div>
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">
@@ -168,17 +179,12 @@
                         echo "<li class='nav-item'> <a href='{$url}' class='nav-link {$selected}' {$style}/> <i class='nav-icon fas fa-copy'></i> &nbsp; {$b->chargingname} </a> </li>";
                       }
                     ?>
-                    <!-- <li class="nav-item"> <a href="#" class="nav-link"/> KMD Regular </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"/> KMD Continuing </a> </li> -->
                   </ul>
                 </div>
               </div>
               <div class="card">
                 <div class="card-header">
-                  <h6 class="card-title"> Inactive Budget Lines </h6>
-                  <!-- <div class="card-tools">
-                    <small> show inactive </small>
-                  </div> -->
+                  <h6 class="card-title"> Inactive </h6>
                 </div>
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">
@@ -381,6 +387,20 @@
                                     ?>
                                   </select>
                                 </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td> Program </td>
+                              <td>
+                                <select class='form-control' name='programselect'>
+                                  <?php 
+                                    foreach($programs as $p) {
+                                      echo "<option value='{$p->id}'>";
+                                        echo $p->theprograms;
+                                      echo "</option>";
+                                    }
+                                  ?>
+                                </select>
                               </td>
                             </tr>
                             <tr>

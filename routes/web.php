@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginControlController;
 use App\Http\Controllers\DivisionwindowController;
 use App\Http\Controllers\AdminwindowController;
 use App\Http\Controllers\ApplyLeaveController;
+use App\Http\Controllers\ProgramsController;
 
 use Carbon\Carbon;
 /*
@@ -101,11 +102,7 @@ Route::middleware("auth")->group(function(){
     Route::get("/leaveapplication",[ApplyLeaveController::class,"leaveapplication"])->name("leaveapplication");
     Route::get("/passslipapplication",[ApplyLeaveController::class,"passslipapplication"])->name("passslipapplication");
     Route::get("/pafapplication",[ApplyLeaveController::class,"pafapplication"])->name("pafapplication");
-});
 
-Route::get("/test", function(){
-    $mutable = Carbon::today();
-   // $immutable = CarbonImmutable::now();
-
-    echo $mutable;
+    // programs
+    Route::get("/programs",[ProgramsController::class,"programs"])->name("programs");
 });
