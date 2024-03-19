@@ -163,7 +163,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="http://localhost:8000/divisionwindow/14/division/1" class="nav-link">
+                <a href="{{url('')}}/divisionwindow/14/division/1" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Division Budget </p>
                 </a>
