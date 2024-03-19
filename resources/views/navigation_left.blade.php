@@ -177,19 +177,19 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="{{route('divisionwindow')}}" class="nav-link <?php echo $divisionwindow; ?>">
+              <!-- <li class="nav-item">
+                <a href="{{route('divisionwindow')}}" class="nav-link <?php // echo $divisionwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mother Activity Designs</p>
                 </a>
-              </li>
+              </li> -->
 
-              <li class="nav-item">
-                <a href="{{route('programs')}}" class="nav-link <?php echo $inputwindow; ?>">
+              <!-- <li class="nav-item">
+                <a href="{{route('programs')}}" class="nav-link <?php // echo $inputwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Programs</p>
                 </a>
-              </li>
+              </li> -->
               <?php } ?>
             </ul>
           </li>
