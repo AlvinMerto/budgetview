@@ -316,7 +316,7 @@
 				          			<td style="float:right;"> <a href="<?php echo url('generateqr')."/".$grpid; ?>" target="_blank"> <i class="fa fa-download"></i> </a> </td>
 				          		</tr>
 			          		<tr> 
-			          			<td style="vertical-align: middle; text-align: right;"> Mother Activity Design </td>
+			          			<td style="vertical-align: middle; text-align: right;"> Charge To: </td>
 			          			<td>
 			          				<select class="form-control" id="charging" name="chargeto">
 			          					<?php foreach($chargingtables as $ct) { ?>

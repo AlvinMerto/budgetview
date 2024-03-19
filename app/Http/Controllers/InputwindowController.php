@@ -92,7 +92,7 @@ class InputwindowController extends Controller
 
         $values     = [
             "activitygrpid"     => $grpid,
-            "actualcost"        => $actualcost,
+            "actualcost"        => str_replace(",","",$actualcost),
             "chargewhat"        => $chargewhat,
             "chargeto"          => $chargeto,
             "chargetype"        => $chargetype
