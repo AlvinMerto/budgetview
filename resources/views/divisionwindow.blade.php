@@ -76,7 +76,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td> Program </td>
                           <td> 
                             <div class="input-group">
@@ -86,7 +86,7 @@
                               </select>
                             </div>
                           </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <td> Planned Amount </td>
                           <td> 
@@ -151,7 +151,7 @@
               <?php } ?>
               <div class="card">
                 <div class="card-header">
-                  <h6 class="card-title"> Mother Activity Designs </h6>
+                  <h6 class="card-title"> Active Budget </h6>
                 </div>
                 <div class="card-content pl-1">
                   <ul class="nav nav-pills flex-column">

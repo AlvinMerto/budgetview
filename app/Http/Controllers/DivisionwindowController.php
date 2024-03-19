@@ -25,12 +25,12 @@ class DivisionwindowController extends Controller
                             ->where("login_controls.userid",$id)
                             ->get(["divisiontbls.divisionid","divisiontbls.divfullname"])->toArray(); 
 
-        $budgetlines     = loginControl::join("programs","login_controls.divisionid","=","programs.divisionid")
-                            ->join("chargingtbls","programs.divisionid","=","chargingtbls.divisionid")
+        $budgetlines     = loginControl::join("chargingtbls","login_controls.divisionid","=","chargingtbls.divisionid")
                             ->join("budgetviews","chargingtbls.chargingid","=","budgetviews.divid")
                             ->where(["login_controls.userid"=>$id,"budgetviews.isactive"=>1])
                             ->get(); 
-
+        
+        // join("programs","login_controls.divisionid","=","programs.divisionid")
         // $budgetlines             = loginControl::join("programs","login_controls.divisionid","=","programs.divisionid")
         //                                          ->join()
                             
