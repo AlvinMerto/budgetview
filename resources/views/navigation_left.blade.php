@@ -197,7 +197,7 @@
          
         </ul>
       </nav>
-      <nav class="mt-2" style="position: absolute;bottom: 0px;">
+      <nav class="mt-2" style="bottom: 0px;">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
               <a href="{{route('logout')}}" class="nav-link">
