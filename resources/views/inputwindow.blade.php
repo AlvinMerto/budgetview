@@ -149,7 +149,7 @@
 			          					<option value="40" <?php echo $dir_approved; ?>> Approved by Director </option>
 			          					<option value="60" <?php echo $oc_rcvd; ?>> for OC's signature </option>
 			          					<option value="80" <?php echo $proc_rcvd; ?>> for Procurement </option>
-			          					<option value="100" <?php echo $po_rlsd; ?>> P.O. Released </option>
+			          					<option value="100" <?php echo $po_rlsd; ?>> P.O. Released/Completed Event</option>
 			          				</select>
 			          			</td>
 			          		</tr>

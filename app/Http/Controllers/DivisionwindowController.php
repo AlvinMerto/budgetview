@@ -82,7 +82,7 @@ class DivisionwindowController extends Controller
 
                         $divisionbudget   = $this->getdivisionbudget($selecteddiv);
                         $divisionexpenses = $this->getdivisionexpenditure($selecteddiv);
-
+                        
                         $planned          = $divisionbudget['planned'];
                         $actual           = $divisionbudget['actual'];
                         $spent            = $divisionexpenses['totalspent'];
@@ -171,11 +171,13 @@ class DivisionwindowController extends Controller
                 "totalspent"   => $totalspent,
             ];
 
-        return $division_expenses;
     }
 
     function getdivisionbudget($division_id) {
-        $divisionbudget    = DB::select("select sum(planned) as planned, sum(actual) as actual from budgetviews join chargingtbls on budgetviews.divid = chargingtbls.chargingid where chargingtbls.divisionid = '{$division_id}' and budgetviews.isactive = 1; ");
+        $divisionbudget    = DB::select("select sum(planned) as planned, 
+                                                sum(actual) as actual from budgetviews 
+                                            join chargingtbls on budgetviews.divid = chargingtbls.chargingid 
+                                                where chargingtbls.divisionid = '{$division_id}' and budgetviews.isactive = 1; ");
 
         $planned = 0;
         $actual  = 0;
@@ -210,8 +212,11 @@ class DivisionwindowController extends Controller
     }
 
     function getdivision($chargingid) {
-        $division = chargingtbl::join("programs","chargingtbls.divisionid","=","programs.id")
-                                ->where("chargingtbls.chargingid",$chargingid)->get("programs.divisionid");
+        // $division = chargingtbl::join("programs","chargingtbls.divisionid","=","programs.id")
+        //                         ->where("chargingtbls.chargingid",$chargingid)->get("programs.divisionid");
+
+        $division = chargingtbl::where("chargingtbls.chargingid",$chargingid)->get("divisionid");
+
             //var_dump($division); return;
         if (count($division) > 0) {
             return $division[0]->divisionid; 
