@@ -350,8 +350,11 @@ class DivisionwindowController extends Controller
         $planned      = str_replace(',', '', $planned);
         $actual       = str_replace(',', '', $actual);
 
+        // echo $chargingid;
+        // return;
+
         // update chargingtbls 
-        $update       = chargingtbl::where("chargingid",$chargingid)->update(["chargingname"=>$budgetname,"divisionid"=>$chargingid]);
+        $update       = chargingtbl::where("chargingid",$chargingid)->update(["chargingname"=>$budgetname,"divisionid"=>$charging_div]);
         $update       = budgetview::updateOrCreate(
                             ["divid"=>$chargingid],
                             ["planned"=>$planned,"actual"=>$actual,"year"=>$budgetyear,"isactive"=>$isactive]
