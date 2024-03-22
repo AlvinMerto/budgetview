@@ -119,49 +119,49 @@
 	        								$ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 											for ($o=1; $o <= count($ms); $o++) {
-												
+
 											}
 
-	        								// foreach($months as $key => $m) {
-	        								// 	echo "<tr>";
-	        								// 		echo "<td>";
-	        								// 			 echo $names[$key]['name'];
-	        								// 		echo "</td>";
-	        								// 		foreach($ms as $mm) {
-	        								// 			if (isset($m[$mm])) {
-	        								// 				echo "<td>";
-		        							// 					if (isset($m[$mm]['sleave'])) {
-				        					// 						echo $m[$mm]['sleave'];
-			        						// 					}
-		        							// 				echo "</td>";
+	        								foreach($months as $key => $m) {
+	        									echo "<tr>";
+	        										echo "<td>";
+	        											 echo $names[$key]['name'];
+	        										echo "</td>";
+	        										foreach($ms as $mm) {
+	        											if (isset($m[$mm])) {
+	        												echo "<td>";
+		        												if (isset($m[$mm]['sleave'])) {
+				        											echo $m[$mm]['sleave'];
+			        											}
+		        											echo "</td>";
 
-		        							// 				echo "<td>";
-			        						// 					if (isset($m[$mm]['vleave'])) {
-				        					// 						echo $m[$mm]['vleave'];
-			        						// 					}
-		        							// 				echo "</td>";
+		        											echo "<td>";
+			        											if (isset($m[$mm]['vleave'])) {
+				        											echo $m[$mm]['vleave'];
+			        											}
+		        											echo "</td>";
 
-		        							// 				echo "<td>";
-			        						// 					if (isset($m[$mm]['psperson'])) {
-				        					// 						echo $m[$mm]['psperson'];
-			        						// 					}
-		        							// 				echo "</td>";
+		        											echo "<td>";
+			        											if (isset($m[$mm]['psperson'])) {
+				        											echo $m[$mm]['psperson'];
+			        											}
+		        											echo "</td>";
 
-		        							// 				echo "<td>";
-			        						// 					if (isset($m[$mm]['psoffic'])) {
-				        					// 						echo $m[$mm]['psoffic'];
-			        						// 					}
-		        							// 				echo "</td>";
+		        											echo "<td>";
+			        											if (isset($m[$mm]['psoffic'])) {
+				        											echo $m[$mm]['psoffic'];
+			        											}
+		        											echo "</td>";
 
-		        							// 				echo "<td>";
-			        						// 					if (isset($m[$mm]['oleave'])) {
-				        					// 						echo $m[$mm]['oleave'];
-			        						// 					}
-		        							// 				echo "</td>";
-	        								// 			}
-	        								// 		}
-	        								// 	echo "</tr>";
-	        								// }
+		        											echo "<td>";
+			        											if (isset($m[$mm]['oleave'])) {
+				        											echo $m[$mm]['oleave'];
+			        											}
+		        											echo "</td>";
+	        											}
+	        										}
+	        									echo "</tr>";
+	        								}
 	        							?>
 	        						</tbody>
 	        					</table>
