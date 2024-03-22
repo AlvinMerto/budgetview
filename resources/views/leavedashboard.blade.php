@@ -105,122 +105,63 @@
 	        							<tr>
 	        								<th> &nbsp; </th>
 
-	        								<th class="left-border"> Sick </th>
-	        								<th> Vacation </th>
-	        								<th class="right-border"> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
-
-	        								<th> Sick </th>
-	        								<th> Vacation </th>
-	        								<th> PS: Personal </th>
-	        								<th> PS: Official </th>
-	        								<th> Other Leave </th>
+											<?php for($i = 1; $i<=12; $i++) { ?>
+												<th class="left-border"> Sick </th>
+												<th> Vacation </th>
+												<th class="right-border"> PS: Personal </th>
+												<th> PS: Official </th>
+												<th> Other Leave </th>
+											<?php } ?>
 	        							</tr>
 	        						</thead>
 	        						<tbody>
 	        							<?php
 	        								$ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	        								foreach($months as $key => $m) {
-	        									echo "<tr>";
-	        										echo "<td>";
-	        											 echo $names[$key]['name'];
-	        										echo "</td>";
-	        										foreach($ms as $mm) {
-	        											if (isset($m[$mm])) {
-	        												echo "<td>";
-		        												if (isset($m[$mm]['sleave'])) {
-				        											echo $m[$mm]['sleave'];
-			        											}
-		        											echo "</td>";
 
-		        											echo "<td>";
-			        											if (isset($m[$mm]['vleave'])) {
-				        											echo $m[$mm]['vleave'];
-			        											}
-		        											echo "</td>";
+											for ($o=1; $o <= count($ms); $o++) {
+												
+											}
 
-		        											echo "<td>";
-			        											if (isset($m[$mm]['psperson'])) {
-				        											echo $m[$mm]['psperson'];
-			        											}
-		        											echo "</td>";
+	        								// foreach($months as $key => $m) {
+	        								// 	echo "<tr>";
+	        								// 		echo "<td>";
+	        								// 			 echo $names[$key]['name'];
+	        								// 		echo "</td>";
+	        								// 		foreach($ms as $mm) {
+	        								// 			if (isset($m[$mm])) {
+	        								// 				echo "<td>";
+		        							// 					if (isset($m[$mm]['sleave'])) {
+				        					// 						echo $m[$mm]['sleave'];
+			        						// 					}
+		        							// 				echo "</td>";
 
-		        											echo "<td>";
-			        											if (isset($m[$mm]['psoffic'])) {
-				        											echo $m[$mm]['psoffic'];
-			        											}
-		        											echo "</td>";
+		        							// 				echo "<td>";
+			        						// 					if (isset($m[$mm]['vleave'])) {
+				        					// 						echo $m[$mm]['vleave'];
+			        						// 					}
+		        							// 				echo "</td>";
 
-		        											echo "<td>";
-			        											if (isset($m[$mm]['oleave'])) {
-				        											echo $m[$mm]['oleave'];
-			        											}
-		        											echo "</td>";
-	        											}
-	        										}
-	        									echo "</tr>";
-	        								}
+		        							// 				echo "<td>";
+			        						// 					if (isset($m[$mm]['psperson'])) {
+				        					// 						echo $m[$mm]['psperson'];
+			        						// 					}
+		        							// 				echo "</td>";
+
+		        							// 				echo "<td>";
+			        						// 					if (isset($m[$mm]['psoffic'])) {
+				        					// 						echo $m[$mm]['psoffic'];
+			        						// 					}
+		        							// 				echo "</td>";
+
+		        							// 				echo "<td>";
+			        						// 					if (isset($m[$mm]['oleave'])) {
+				        					// 						echo $m[$mm]['oleave'];
+			        						// 					}
+		        							// 				echo "</td>";
+	        								// 			}
+	        								// 		}
+	        								// 	echo "</tr>";
+	        								// }
 	        							?>
 	        						</tbody>
 	        					</table>

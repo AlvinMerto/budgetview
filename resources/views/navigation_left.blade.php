@@ -43,6 +43,7 @@
         $menuopen       = null;
         $menu_href      = null;
         $charges        = null;
+        $divisionbudget = null;
 
         $uri    = explode("/",Request::url())[3];
         switch($uri) {
@@ -163,7 +164,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{url('')}}/divisionwindow/14/division/1" class="nav-link">
+                <a href="{{url('')}}/divisionwindow/14/division/1" class="nav-link <?php echo $divisionwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Division Budget </p>
                 </a>
@@ -173,7 +174,7 @@
               <li class="nav-item">
                 <a href="{{route('inputwindow')}}" class="nav-link <?php echo $inputwindow; ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Enter Activity Design</p>
+                  <p>Enter Activity</p>
                 </a>
               </li>
 
