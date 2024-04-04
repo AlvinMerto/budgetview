@@ -151,27 +151,53 @@ class ApplyLeaveController extends Controller
             foreach($data as $d) {
                 if ($d->userid == $u->id) {
                     if ($d->typeofleave == 1) {
-                        $vleave   += 1;
+                        $vleave   = 1;
+
+                        if (isset( $months[$d->thename->id][date("M", strtotime($d->dates))]['vleave']) ) {
+                            $vleave =  $months[$d->thename->id][date("M", strtotime($d->dates))]['vleave']+1;
+                        }
+
                         $months[$d->thename->id][date("M", strtotime($d->dates))]['vleave'] = $vleave;
                     } else if ($d->typeofleave == 3) {
-                        $sleave   += 1;
+                        $sleave   = 1; 
+                        
+                        if (isset($months[$d->thename->id][date("M", strtotime($d->dates))]['sleave'])) {
+                            $sleave = $months[$d->thename->id][date("M", strtotime($d->dates))]['sleave']+1;
+                        }
+
                         $months[$d->thename->id][date("M", strtotime($d->dates))]['sleave'] = $sleave;
                     } else if ($d->typeofleave == 14) {
-                        $psperson += 1;
+                        $psperson = 1;
+
+                        if ( isset($months[$d->thename->id][date("M", strtotime($d->dates))]['psperson']) ) {
+                            $psperson = $months[$d->thename->id][date("M", strtotime($d->dates))]['psperson']+1;
+                        }
+
                         $months[$d->thename->id][date("M", strtotime($d->dates))]['psperson'] = $psperson;
                     } else if ($d->typeofleave == 15) {
-                        $psoffic += 1;
+                        $psoffic = 1;
+
+                        if ( isset($months[$d->thename->id][date("M", strtotime($d->dates))]['psoffic']) ) {
+                            $psoffic = $months[$d->thename->id][date("M", strtotime($d->dates))]['psoffic']+1;
+                        }
+
                         $months[$d->thename->id][date("M", strtotime($d->dates))]['psoffic'] = $psoffic;
                     } else {
-                        $oleave += 1;
+                        $oleave = 1;
+
+                        if (isset($months[$d->thename->id][date("M", strtotime($d->dates))]['oleave'])) {
+                            $oleave = $months[$d->thename->id][date("M", strtotime($d->dates))]['oleave']+1;
+                        }
+                        
                         $months[$d->thename->id][date("M", strtotime($d->dates))]['oleave'] = $oleave;
                     }
+                    
                     $names[$d->thename->id]['name'] = $d->thename->name;
                 }
             }
         }
        
-       // var_dump($months); return;
+        // var_dump($months); return;
         return view("leavedashboard",compact("months","names","year"));
     }
 

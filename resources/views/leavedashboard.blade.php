@@ -118,9 +118,9 @@
 	        							<?php
 	        								$ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-											for ($o=1; $o <= count($ms); $o++) {
+											// for ($o=1; $o <= count($ms); $o++) {
 
-											}
+											// }
 
 	        								foreach($months as $key => $m) {
 	        									echo "<tr>";
@@ -158,7 +158,13 @@
 				        											echo $m[$mm]['oleave'];
 			        											}
 		        											echo "</td>";
-	        											}
+	        											} else {
+															echo "<td> </td>";
+															echo "<td> </td>";
+															echo "<td> </td>";
+															echo "<td> </td>";
+															echo "<td> </td>";
+														}
 	        										}
 	        									echo "</tr>";
 	        								}
